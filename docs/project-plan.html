@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="TokenHarbor 项目规划：统一模型 API、可靠计量与账务、供应商路由、安全运维及分阶段验收。">
+<title>TokenHarbor · 项目规划与技术设计</title>
+<style>
+:root{--ink:#193530;--muted:#5e716b;--accent:#087c68;--pale:#e8f2ed;--line:#d7e0d9;--paper:#fbfcf8;--white:#fff;--amber:#925b18;--amber-bg:#fff4db;--blue:#355fa0;--blue-bg:#edf2fb;--nav:#163b34}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:26px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}a{color:var(--accent);text-underline-offset:4px;overflow-wrap:anywhere}a:hover{color:#004f43}a:focus-visible,button:focus-visible,summary:focus-visible,.table-wrap:focus-visible{outline:3px solid #dcae43;outline-offset:4px}button{font:inherit;cursor:pointer}h1,h2,h3,h4,p,ul,ol{margin-top:0}h1{font-size:clamp(38px,5vw,66px);letter-spacing:-2px;line-height:1.13;margin-bottom:22px;font-weight:760}h2{font-size:29px;line-height:1.4;margin-bottom:12px;letter-spacing:-.5px}h3{font-size:19px;line-height:1.5;margin-bottom:10px}h4{font-size:16px;margin-bottom:8px}p{margin-bottom:15px}ul,ol{padding-left:23px;margin-bottom:16px}li{margin:5px 0}strong{font-weight:680}code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:#edf1ed;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#153b34;color:#e5f4eb;padding:20px;border-radius:10px;font:13px/1.75 ui-monospace,SFMono-Regular,Menlo,monospace}pre code{background:none;color:inherit;padding:0}.skip{position:absolute;top:-100px;left:15px;background:white;padding:12px;z-index:9}.skip:focus{top:10px}.sidebar{position:fixed;width:248px;inset:0 auto 0 0;background:var(--nav);color:#e1eee7;padding:30px 23px;overflow:auto}.brand{font-size:22px;font-weight:750;letter-spacing:-.6px;color:#fff;text-decoration:none}.brand-mark{display:inline-block;width:12px;height:22px;border:3px solid #83cfb1;border-top:0;border-radius:0 0 8px 8px;vertical-align:-3px;margin-right:9px}.side-sub{font-size:11px;letter-spacing:2px;color:#a7c6b8;margin:7px 0 23px}.sidebar nav a{display:flex;gap:13px;align-items:baseline;text-decoration:none;color:#c9dcd3;font-size:13px;line-height:1.5;padding:8px 9px;border-radius:6px}.sidebar nav a:hover,.sidebar nav a.active{background:#295448;color:#fff}.sidebar nav span{font:11px ui-monospace,monospace;color:#88b3a2}.side-foot{margin-top:25px;padding-top:18px;border-top:1px solid #3c5e50;font-size:11px;color:#a7c6b8}.content{margin-left:248px;max-width:1440px;padding:48px 5vw 30px}.topbar{display:flex;justify-content:space-between;gap:20px;font-size:12px;color:var(--muted);margin-bottom:34px;align-items:center}.print-btn{border:1px solid var(--line);border-radius:30px;padding:7px 17px;color:var(--ink);background:white;font-size:12px}.eyebrow{font:12px/1.5 ui-monospace,SFMono-Regular,monospace;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:20px}.hero{padding-bottom:40px;border-bottom:1px solid var(--line)}.hero-title-cn{display:block;font-size:clamp(25px,3.3vw,43px);letter-spacing:-1px;margin-top:12px;font-weight:580}.lead{max-width:830px;font-size:18px;color:var(--muted);line-height:1.9}.tags{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0}.tag{display:inline-block;font-size:11px;line-height:1.5;letter-spacing:.2px;border:1px solid transparent;padding:3px 8px;border-radius:5px;white-space:nowrap;vertical-align:2px}.known{background:var(--pale);color:#17644e;border-color:#bfd9cb}.suggest{background:var(--blue-bg);color:var(--blue);border-color:#cfdbf0}.pending{background:var(--amber-bg);color:var(--amber);border-color:#ead7aa}.hero-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}.hero-grid article{background:#eef3ed;padding:20px;border-radius:9px}.hero-grid b{font-size:27px;font-weight:480;color:var(--accent);display:block}.hero-grid h3{font-size:16px;margin:5px 0}.hero-grid p{font-size:13px;margin:0;color:var(--muted)}section{padding:43px 0 35px;border-bottom:1px solid var(--line);scroll-margin-top:10px}.section-top{display:flex;gap:15px;align-items:baseline}.section-num{font:13px ui-monospace,monospace;color:var(--accent);white-space:nowrap}.intro{color:var(--muted);margin-bottom:24px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.card{background:var(--white);border:1px solid var(--line);border-radius:9px;padding:21px;min-width:0}.card p:last-child,.card ul:last-child,.callout p:last-child{margin-bottom:0}.callout{padding:19px 22px;border-left:4px solid var(--accent);background:var(--pale);border-radius:0 8px 8px 0;margin:20px 0}.callout.warn{background:var(--amber-bg);border-color:#c28c31}.small{font-size:13px;color:var(--muted)}.table-wrap{width:100%;overflow-x:auto;margin:20px 0;border:1px solid var(--line);border-radius:8px;background:#fff}table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.75}th,td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);overflow-wrap:anywhere}th{background:#edf3ee;font-weight:650;font-size:12px;color:#36594c}tr:last-child td{border-bottom:0}td:first-child{font-weight:600}table.wide{min-width:740px}.table-hint{display:none;font-size:12px;color:var(--muted);margin-bottom:-10px}.diagram{padding:24px;border:1px solid var(--line);border-radius:10px;background:white;margin:22px 0}.arch-client{text-align:center;border:1px solid #a5cdbd;border-radius:7px;background:#f0f7f2;padding:13px}.arrow{text-align:center;color:var(--accent);font-size:22px;line-height:1.4;margin:6px}.arch-plane{border:1px dashed #acc7ba;border-radius:8px;padding:18px;margin-top:14px}.arch-plane.dark{border:0;background:#173d34;color:#e1efe6}.arch-plane h3{font-size:15px;margin-bottom:14px}.nodes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.node{border:1px solid #d7e3d9;border-radius:6px;padding:11px;background:#f7f9f4;font-size:13px;text-align:center}.dark .node{background:#2c5548;border-color:#4f7364;color:#f3f7ed}.diagram-key{font-size:12px;color:var(--muted);margin:16px 0 0}.sequence{list-style:none;margin:22px 0;padding:0;counter-reset:step}.sequence li{position:relative;padding:0 0 22px 49px;border-left:1px solid #bfcec3;margin:0 0 0 15px}.sequence li:last-child{border:0;padding-bottom:0}.sequence li:before{counter-increment:step;content:counter(step);position:absolute;left:-16px;top:0;width:31px;height:31px;border:1px solid #a5c6b7;border-radius:50%;text-align:center;background:var(--paper);color:var(--accent);font-size:12px;line-height:29px}.sequence h3{font-size:16px;margin-bottom:5px}.sequence p{font-size:14px;margin:0}.state{display:flex;flex-wrap:wrap;gap:9px;align-items:center;font:12px/1.6 ui-monospace,monospace;margin:14px 0}.state span{background:#eef3eb;border:1px solid var(--line);padding:8px;border-radius:6px}.state b{color:var(--accent)}.formula{padding:20px 23px;background:#173d34;color:#e8f5eb;border-radius:9px;font:14px/2 ui-monospace,SFMono-Regular,monospace;margin:18px 0;overflow-wrap:anywhere}.formula small{color:#b6cfbf;font-size:12px}.decision{padding:20px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:65px minmax(0,1fr);gap:15px}.decision:first-of-type{border-top:0}.priority{font:13px ui-monospace,monospace;color:var(--amber);padding-top:4px}.decision h3{font-size:17px}.decision p{margin:0;font-size:14px}.sources{list-style:none;padding:0;font-size:14px}.sources li{padding:12px 0;border-bottom:1px solid var(--line)}.sources li:last-child{border:0}.sources strong{display:inline-block;min-width:35px;color:var(--accent)}.sources p{font-size:12px;color:var(--muted);margin:4px 0 0 39px}.footer{padding:28px 0;font-size:12px;color:var(--muted);display:flex;gap:25px;justify-content:space-between}.mobile-toc{display:none}.print-only{display:none}sup{font-size:10px;margin-left:3px}svg{max-width:100%;height:auto;display:block}.legend{display:flex;gap:12px;flex-wrap:wrap;margin:15px 0;font-size:12px;color:var(--muted)}.rail{border-top:3px solid var(--accent);padding-top:16px}.rail b{color:var(--accent);font:13px ui-monospace,monospace}.rail h3{margin:8px 0}.table-wrap caption{padding:12px 16px;text-align:left;font-weight:650;background:#f7f9f3;font-size:13px}.no-break{break-inside:avoid}.muted{color:var(--muted)}
+@media(min-width:1600px){.content{padding-left:85px;padding-right:85px}}@media(max-width:1100px){.sidebar{width:215px;padding-left:17px;padding-right:17px}.content{margin-left:215px;padding-left:30px;padding-right:30px}.grid3{grid-template-columns:1fr}.nodes{grid-template-columns:repeat(2,minmax(0,1fr))}.table-hint{display:block}}@media(max-width:760px){html{scroll-padding-top:15px}.sidebar{display:none}.content{margin-left:0;padding:24px 20px}.topbar{font-size:11px;margin-bottom:26px}.hero{padding-bottom:25px}.hero-grid{grid-template-columns:1fr;gap:10px}.hero-grid article{display:grid;grid-template-columns:35px minmax(0,1fr);gap:0 12px;padding:15px}.hero-grid b{grid-row:span 2;font-size:22px}.hero-grid h3{margin-top:0}.hero-grid p{grid-column:2}.lead{font-size:16px}.grid2{grid-template-columns:1fr}.mobile-toc{display:block;border:1px solid var(--line);border-radius:8px;padding:13px 15px;background:#fff;margin-top:23px}.mobile-toc summary{cursor:pointer;font-size:14px;font-weight:650}.mobile-toc nav{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;padding-top:14px}.mobile-toc a{font-size:12px;text-decoration:none}section{padding-top:31px;padding-bottom:22px}h2{font-size:24px}h3{font-size:17px}.section-top{gap:10px}.card{padding:17px}.diagram{padding:15px}.arch-plane{padding:13px}.nodes{grid-template-columns:1fr}.arch-plane h3{font-size:14px}.node{padding:9px}.table-wrap{margin:16px 0}table{font-size:13px}th,td{padding:11px}.table-hint{display:block}.callout{padding:16px}.footer{display:block}.decision{grid-template-columns:38px minmax(0,1fr);gap:10px}.sources p{margin-left:0}.state{font-size:11px}.sequence li{padding-left:32px}.formula{padding:17px;font-size:12px}.hero-title-cn{line-height:1.4}.tags{gap:6px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{@page{size:A4;margin:16mm 14mm}html{scroll-behavior:auto}body{background:#fff;color:#152921;font-size:10pt;line-height:1.65}.sidebar,.topbar,.mobile-toc,.skip,.no-print{display:none!important}.content{margin:0;max-width:none;padding:0}.hero{padding-bottom:16pt}h1{font-size:34pt}.hero-title-cn{font-size:23pt}h2{font-size:19pt}h3{font-size:12pt}.lead{font-size:11pt}.hero-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:16pt}.hero-grid article{padding:11pt;display:block}.hero-grid p{font-size:9pt}.hero-grid b{font-size:18pt}.hero-grid h3{font-size:10pt}.grid2{grid-template-columns:repeat(2,minmax(0,1fr));gap:10pt}.grid3{grid-template-columns:1fr}.card{padding:12pt}.tag{font-size:8pt}section{padding:20pt 0 16pt;scroll-margin-top:0}h2,h3,h4,.section-top{break-after:avoid}.callout,.card,.diagram,.decision,.rail,.formula,.sequence li{break-inside:avoid}.table-wrap{overflow:visible;border-radius:0;margin:12pt 0}table,table.wide{min-width:0!important;width:100%;table-layout:fixed;font-size:8.5pt}th,td{padding:7pt;word-break:normal}thead{display:table-header-group}tr{break-inside:avoid}.table-hint{display:none}.diagram{padding:14pt}.nodes{grid-template-columns:repeat(3,minmax(0,1fr))}.node{font-size:8.5pt}.arch-plane{padding:10pt}.arch-plane.dark,.dark .node,.formula,pre{background:#f0f5ef;color:#152921;border:1px solid #bacbbf}.formula small{color:#40584b}.print-only{display:block}.sources{font-size:9pt}.sources li{break-inside:avoid}.sources a{color:#174c3a}.sources a:after{content:" — " attr(href);font-size:7.5pt;color:#40584b;overflow-wrap:anywhere}.footer{font-size:8pt}.small,.sources p,.diagram-key{font-size:8.5pt}a{color:inherit;text-decoration:none}.state span{padding:5pt}.section-num{font-size:10pt}.sequence h3{font-size:10pt}.sequence p{font-size:9pt}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳转到正文</a>
+<aside class="sidebar" aria-label="文档目录">
+<a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>TokenHarbor</a>
+<div class="side-sub">PROJECT DESIGN NOTE · 01</div>
+<nav>
+<a href="#context"><span>01</span>背景与项目定位</a><a href="#customers"><span>02</span>客户与商业假设</a><a href="#scope"><span>03</span>MVP 与范围边界</a><a href="#architecture"><span>04</span>总体架构</a><a href="#lifecycle"><span>05</span>请求与 SSE 生命周期</a><a href="#adapters"><span>06</span>供应商与模型适配</a><a href="#routing"><span>07</span>路由与故障治理</a><a href="#billing"><span>08</span>计量与账务一致性</a><a href="#failure"><span>09</span>幂等与异常收敛</a><a href="#data"><span>10</span>核心实体与 API</a><a href="#security"><span>11</span>安全、隐私与授权</a><a href="#operations"><span>12</span>运维、成本与恢复</a><a href="#stack"><span>13</span>技术选型建议</a><a href="#roadmap"><span>14</span>路线与验收条件</a><a href="#risks"><span>15</span>风险与优先决策</a><a href="#references"><span>16</span>术语与官方来源</a>
+</nav>
+<div class="side-foot">规划稿 v0.1 · 2026.10.30<br>离线阅读 · 响应式 · 可打印<br>设计提案，不代表功能已实现</div>
+</aside>
+<main class="content" id="main">
+<div class="topbar" id="top"><span>ENGINEERING / PRODUCT / OPERATIONS</span><button class="print-btn" type="button" onclick="window.print()">打印 / 保存 PDF</button></div>
+<header class="hero">
+<div class="eyebrow">A reliable harbor for model access</div>
+<h1>TokenHarbor<span class="hero-title-cn">项目规划与技术设计</span></h1>
+<p class="lead">把多家大模型能力接入同一个调用入口，让每次请求的身份、用量、价格、成本和账务结果都有据可查。先打通一条可靠的文本调用闭环，再扩展供应商、客户和业务规模。</p>
+<div class="tags"><span class="tag known">已知 · 新建项目</span><span class="tag suggest">建议 · 模块化单体起步</span><span class="tag pending">待决策 · 客户 / 上游 / 价格 / 技术栈</span></div>
+<p class="small">版本 v0.1 · 编写与资料访问日期 2026-10-30 · 仓库：<a href="https://github.com/lipeng1667/TokenHarbor">lipeng1667/TokenHarbor</a><br>本文为技术与产品规划。所有性能目标、留存时长、阶段范围和选型均为建议；示例金额不代表真实报价。</p>
+<div class="hero-grid">
+<article><b>01</b><h3>先把账算清楚</h3><p>预占、结算、释放、对账；每笔变动有来源和版本。</p></article>
+<article><b>02</b><h3>再把调用做稳定</h3><p>显式能力边界；可控超时、限流和有条件的切换。</p></article>
+<article><b>03</b><h3>最后验证可持续经营</h3><p>成本、争议、坏账和运维都进入收益判断。</p></article>
+</div>
+<details class="mobile-toc"><summary>浏览章节目录 · 16 章</summary><nav>
+<a href="#context">01 背景与定位</a><a href="#customers">02 客户与商业</a><a href="#scope">03 MVP 范围</a><a href="#architecture">04 总体架构</a><a href="#lifecycle">05 请求生命周期</a><a href="#adapters">06 供应商适配</a><a href="#routing">07 故障治理</a><a href="#billing">08 计量与账务</a><a href="#failure">09 幂等与异常</a><a href="#data">10 实体与 API</a><a href="#security">11 安全与授权</a><a href="#operations">12 运维与成本</a><a href="#stack">13 技术选型</a><a href="#roadmap">14 路线与验收</a><a href="#risks">15 风险与决策</a><a href="#references">16 术语与来源</a>
+</nav></details>
+</header>
+
+<section id="context">
+<div class="section-top"><span class="section-num">01 / CONTEXT</span><h2>背景与项目定位</h2></div>
+<p class="intro">项目的核心资产，是可解释的调用与计费记录，以及持续可用的上游服务关系。</p>
+<div class="grid2"><article class="card"><h3>已经明确的起点 <span class="tag known">已知</span></h3><ul><li>名称为 TokenHarbor，方向是多家大模型统一 API 与按 Token 计费。</li><li>GitHub 仓库已建立，本地项目从空目录开始。</li><li>当前任务是形成 HTML 项目文档，尚未实现业务功能。</li><li>计划在办公室和家中通过 GitHub 协作开发。</li></ul></article><article class="card"><h3>仍需验证的前提 <span class="tag pending">待决策</span></h3><ul><li>首批客户是谁，愿意为何种能力付费。</li><li>能合法、稳定接入哪些供应商及账户。</li><li>平台运营地区、数据处理地区和客户范围。</li><li>团队能力、预算、币种、收款方式和预期负载。</li></ul></article></div>
+<p>潜在客户通常要分别处理供应商协议、API 差异、模型版本、用量统计和预算。TokenHarbor 的价值假设是：以统一身份与配额管理降低接入成本，以透明账单和可追溯日志降低运营成本，以受约束的多渠道路由改善可用性。是否比客户直接使用供应商更有价值，需要实际访谈和试点数据验证。</p>
+<div class="callout"><strong>产品承诺的建议边界</strong><p>提供已列明能力的统一接口、可核查的计费明细和清晰的失败状态。上游限制、授权范围和模型差异必须可见；不承诺“所有模型完全兼容”，也不将任何第三方账户视为天然具备转售资格。</p></div>
+</section>
+
+<section id="customers">
+<div class="section-top"><span class="section-num">02 / BUSINESS</span><h2>客户与商业假设</h2></div>
+<p class="intro">先选一个客群、一个主要场景和一种结算方式，验证闭环后再扩张。</p>
+<div class="table-wrap" tabindex="0" aria-label="客户假设表"><table><thead><tr><th>候选客户</th><th>需要验证的问题</th><th>产品重点与代价</th></tr></thead><tbody><tr><td>独立开发者 / 小团队</td><td>是否因多账户接入、充值管理或账单分散而困扰？是否接受预付费？</td><td>易接入、API Key、明确余额；客服与小额交易成本可能偏高。</td></tr><tr><td>AI 应用与 SaaS 团队</td><td>是否需要多渠道容灾、项目预算和稳定的错误契约？</td><td>兼容性、限流、用量导出；对稳定性及账务解释要求更高。</td></tr><tr><td>企业内部平台</td><td>是否允许数据经中间平台处理？采购及审计要求是什么？</td><td>组织权限、数据地域、合同与合规；销售周期和交付复杂度更高。</td></tr></tbody></table></div>
+<div class="grid2"><article class="card"><h3>模式 A：平台采购、按量销售</h3><p>平台承担上游成本，以输入、输出及其他已明确计量项收取服务费。建议以预付余额试点；要核实转售授权、现金流、退款、税费和异常扣费争议。</p></article><article class="card"><h3>模式 B：客户自带上游 Key</h3><p>平台收订阅费或管理费，客户承担上游费用。减少采购敞口，但新增客户密钥托管责任；与平台余额模式应分开设计和计账。</p></article></div>
+<p><span class="tag suggest">起步建议</span> 优先验证小型开发团队的文本 API 场景，访谈 3–5 个候选客户，记录现有月用量、最高并发、最常用模型、可接受中断和账单颗粒度。该数量是调研建议，不是已存在客户。</p>
+<p>经营指标建议关注：有效接入率、首个成功调用时间、持续使用率、账单争议率、每活跃租户贡献毛利和支持工时。促销额度必须与付费余额分账，设置额度上限与到期规则。</p>
+</section>
+
+<section id="scope">
+<div class="section-top"><span class="section-num">03 / SCOPE</span><h2>MVP 与范围边界</h2></div>
+<div class="grid2"><article class="card"><h3>第一版闭环 <span class="tag suggest">建议</span></h3><ul><li>租户 / 用户、基础角色、API Key 创建与撤销。</li><li>一个明确的文本 API 子集，支持普通响应与 SSE。</li><li>一个供应商先跑通，再用第二个供应商验证适配边界。</li><li>输入 / 输出用量、价格版本、预占和结算、余额查询。</li><li>调用明细、可解释错误、成本统计、人工差异处理。</li><li>渠道配置、限流、熔断、审计和恢复演练。</li></ul></article><article class="card"><h3>暂不进入第一版</h3><ul><li>全模型 / 全协议兼容、自动跨模型语义替换。</li><li>实时音视频、视频生成、图像工作流、异步长任务。</li><li>复杂代理商分销、返佣、信用赊账、多币种钱包。</li><li>自动托管工具执行、浏览器代理或客户代码执行。</li><li>微服务集群、多地域双活、复杂推荐与自动定价。</li><li>未选定支付商前的真实充值、提现和金融功能。</li></ul></article></div>
+<div class="callout warn"><strong>验证额度与真实资金分开</strong><p>早期在测试环境使用明确标注的模拟额度。正式收费前必须补齐支付订单、验证回调、重复回调去重、退款和对账规则；不能通过“直接改用户余额”代替资金流程。视频只作为未来计量维度扩展。</p></div>
+<h3>最低可用体验</h3><p>用户创建 Key → 查询可用模型与价格 → 发起一次请求 → 获得内容或明确错误 → 查看 request_id、用量来源、冻结 / 结算状态与余额变动。运营人员能从同一个 request_id 查到路由选择、上游尝试、成本证据和账务凭证。</p>
+</section>
+
+<section id="architecture">
+<div class="section-top"><span class="section-num">04 / ARCHITECTURE</span><h2>总体架构</h2></div>
+<p class="intro">建议先用模块化单体：一个代码库、清晰模块边界、一个主事务数据库。网关和后台任务可作为同一代码库的不同进程运行。</p>
+<figure class="diagram" aria-labelledby="arch-caption">
+<div class="arch-client"><strong>客户端 SDK / 应用后端</strong><br><span class="small">租户 Key · 请求参数 · 幂等键</span></div><div class="arrow" aria-hidden="true">↓</div>
+<div class="arch-plane dark"><h3>调用数据面 · 低延迟、可限流、可追踪</h3><div class="nodes"><div class="node">鉴权与租户解析<br>权限 / 额度校验</div><div class="node">计价快照与预占<br>请求 / 尝试记录</div><div class="node">能力匹配与路由<br>适配器 / SSE 转发</div></div></div>
+<div class="arrow" aria-hidden="true">↓ ↑</div><div class="arch-client"><strong>已授权供应商 A / B / …</strong><br><span class="small">独立凭证、区域、配额、协议与模型版本</span></div>
+<div class="arch-plane"><h3>控制面 · 管理与策略</h3><div class="nodes"><div class="node">用户与项目<br>Key / RBAC</div><div class="node">模型目录 / 渠道<br>价格 / 路由版本</div><div class="node">账单 / 对账<br>审计 / 人工处理</div></div></div>
+<div class="arch-plane"><h3>共享基础与后台任务 · 事件驱动但不依赖消息“恰好一次”</h3><div class="nodes"><div class="node"><strong>PostgreSQL</strong><br>账本 / 预占 / 请求 / Outbox</div><div class="node"><strong>可选 Redis</strong><br>限流 / 短期缓存</div><div class="node"><strong>Worker + 可观测性</strong><br>结算补偿 / 对账 / 告警</div></div></div>
+<figcaption id="arch-caption" class="diagram-key">示意图为逻辑关系，并非已经部署的系统。数据面从数据库或已验证的版本缓存读取策略；控制面写入版本化配置；后台任务处理待结算记录与异常。PostgreSQL 为账务事实源，Redis 不保存唯一余额。</figcaption>
+</figure>
+<div class="grid2"><article class="card"><h3>调用数据面</h3><p>仅承载鉴权、权限校验、预算、路由、转发和最小持久化。一个流的存续时间不应占用一条数据库事务或数据库连接。使用短事务，在调用前预占，在获得证据后结算。</p></article><article class="card"><h3>控制面</h3><p>管理渠道、价格、客户与审计。修改发布为不可变版本，并保留操作者和变更原因。新请求使用新版本，进行中的请求继续遵循其快照。</p></article></div>
+<p><strong>故障边界：</strong>数据库不可用时拒绝新的付费请求；已开始请求可能仍产生上游成本，应尽力保留证据并标记待对账。缓存故障不能放开预算或默认无限额；控制台故障不应中断已建立的流；报表故障可延后恢复。</p>
+<p><strong>扩容触发：</strong>先测量连接数、网关 CPU / 内存、数据库锁等待和账务吞吐。只有出现独立扩容需求、团队边界或隔离需求，再拆分服务。避免一开始引入跨服务资金事务。</p>
+</section>
+
+<section id="lifecycle">
+<div class="section-top"><span class="section-num">05 / LIFECYCLE</span><h2>请求与 SSE 生命周期</h2></div>
+<p class="intro">内容交付状态与账务状态是两条独立轴：用户已收到内容，不一定表示最终用量已经可确认。</p>
+<ol class="sequence">
+<li><h3>接收 · 客户端 → 网关</h3><p>生成 request_id；解析租户 Key、幂等键和请求指纹；检查请求体大小、模型权限、支持参数、并发与速率。未通过校验不调用上游。</p></li>
+<li><h3>锁定商业条件 · 网关 → 数据库</h3><p>快照模型映射、路由与售卖价格版本；确定允许的上游候选及输出上限；用短事务写请求、冻结余额和预占记录。预占失败即拒绝。</p></li>
+<li><h3>登记尝试后发出 · 网关 → 供应商</h3><p>先持久化 attempt_id 与待发送状态，再调用上游。发送与数据库更新不能成为一个原子事务；崩溃窗口必须按“执行结果未知”处理。</p></li>
+<li><h3>读取响应 / 逐事件转发 · 供应商 → 网关 → 客户端</h3><p>记录上游 request_id、首字节与首个有效内容时间。完整解析 UTF-8 和 SSE 事件边界；一条网络分片不等于一条事件。普通响应在完整校验后返回；流式响应按协议逐步转发。</p></li>
+<li><h3>归一化证据 · 网关 → 数据库</h3><p>保存原始 usage 的必要字段与归一化结果、来源、版本、完成原因。最终 usage 缺失时，标为 provisional / unknown，不把“未获得”写成零。</p></li>
+<li><h3>结算 · 同步短事务 / 可恢复 Worker</h3><p>同一事务完成唯一结算凭证、余额变动、冻结释放和账务状态变更，并写 Outbox。任务重复执行时由唯一约束与条件迁移防止重复扣费。</p></li>
+<li><h3>展示与补偿 · 控制台 / 对账任务</h3><p>用户看到交付状态和结算状态；运营对超时未决、迟到 usage、成本差异进行核对。修正使用追加调整凭证，不覆写已发生账目。</p></li>
+</ol>
+<h3>流式传输的具体约束</h3>
+<div class="table-wrap" tabindex="0" aria-label="SSE 行为约束"><table><thead><tr><th>环节</th><th>建议设计</th></tr></thead><tbody><tr><td>协议与代理</td><td>使用 <code>text/event-stream</code>；关闭不必要的代理缓冲，验证负载均衡器空闲超时；事件按 UTF-8 与空行边界解析。浏览器原生 EventSource 的重连行为不等于生成请求幂等，需按具体客户端实现控制。<sup><a href="#s1">[1]</a></sup></td></tr><tr><td>头部与错误</td><td>开始输出前可返回标准 HTTP 错误；输出后无法改写已经发送的状态码。根据公开接口契约发送错误事件或终止流，并提供 request_id 查询状态。禁止向客户端暴露上游凭证。</td></tr><tr><td>背压与断线</td><td>为慢客户端设置有界缓冲和写入超时；断开后尝试取消上游，不能据此假定取消成功或成本为零。终止后进入独立、有时间上限的结算 / 对账流程。</td></tr><tr><td>完成信号</td><td>分别记录内容完成、上游终止、客户端断线和账务完成。即使已有协议终止标记，账务也应由实际 usage 证据决定；不能从 chunk 数或字数直接计费。</td></tr><tr><td>日志</td><td>不要将每个 token 或正文写进普通日志；只记录边界事件、时延和计量证据。单次流不应无限增长内存。</td></tr></tbody></table></div>
+</section>
+
+<section id="adapters">
+<div class="section-top"><span class="section-num">06 / ADAPTERS</span><h2>供应商适配与模型版本</h2></div>
+<p>统一接口应发布一张可测试的能力矩阵。建议从文本对话、输入 / 输出上限、普通响应和 SSE 开始；工具调用、JSON Schema、缓存、推理、视觉和多模态必须逐项验证后开放。</p>
+<div class="grid2"><article class="card"><h3>适配器职责</h3><ul><li>将规范化请求映射为供应商协议。</li><li>校验参数、格式、长度及工具能力；不支持时明确拒绝。</li><li>解析流、错误、完成原因与用量维度。</li><li>输出可重试判断所需的“已发送 / 已接受 / 未知”等证据。</li><li>保留有限原始字段与来源，不把不同语义强行合并。</li></ul></article><article class="card"><h3>模型标识分三层</h3><ul><li><strong>公开模型名：</strong>客户端选择的稳定产品标识。</li><li><strong>内部映射版本：</strong>绑定能力、价格和允许路由。</li><li><strong>上游真实模型版本：</strong>实际请求与响应中的标识，连同供应商和区域保存。</li></ul><p class="small">别名升级需灰度与回滚；不要悄悄切到能力不同或价格不同的模型。跨供应商替代须事先约定并显式披露。</p></article></div>
+<p class="table-hint">窄屏可横向滚动查看完整能力表。</p>
+<div class="table-wrap" tabindex="0" aria-label="供应商计量差异"><table class="wide"><thead><tr><th>官方行为示例</th><th>对 TokenHarbor 的设计影响</th><th>验证方式</th></tr></thead><tbody><tr><td>OpenAI Chat Completions 的流式 usage 可在最后一个 usage chunk 提供；中断时可能收不到。<sup><a href="#s2">[2]</a></sup></td><td>适配器显式请求支持的 usage；缺失进入待核对。该行为不自动适用于 Responses 或其他 API。</td><td>完整结束、输出中断、终止前断线；不能默认最终 usage 必达。</td></tr><tr><td>Anthropic Messages 的 <code>message_delta</code> usage 为累计值；流中可能包含错误与新事件类型。<sup><a href="#s3">[3]</a></sup></td><td>按字段语义合并累计值，不能逐事件求和；保留已知状态并安全处理未知事件。</td><td>重复 / 多次累计更新、错误事件、未知事件、部分工具参数。</td></tr><tr><td>Gemini 提供调用前 token 计数及调用后 usage 维度。<sup><a href="#s4">[4]</a></sup></td><td>前置计数用于预算，不替代最终结算；不同端点的字段名需独立映射。</td><td>输入计数与实际 usage 的差异；缓存 / thinking 等字段的含义与包含关系。</td></tr></tbody></table></div>
+<div class="callout warn"><strong>禁止重复计算用量</strong><p>缓存输入、推理输出可能是某个总量的子集，而不是额外加项。每个供应商 / 端点 / 模型版本都应定义字段包含关系，形成互斥的计费分桶；未知维度先停用相关能力或挂账，不按猜测收费。</p></div>
+<p>供应商准入还需记录：协议版本、数据区域、超时 / 取消语义、幂等支持范围、凭证配额、用量查询与账单能力。只有经测试和授权核实的渠道才能进入生产候选池。</p>
+</section>
+
+<section id="routing">
+<div class="section-top"><span class="section-num">07 / RESILIENCE</span><h2>路由、超时、熔断与限流</h2></div>
+<div class="grid3"><article class="card"><h3>先过滤资格</h3><p>租户策略 → 区域与授权 → 模型与能力 → 健康状态 → 配额与预算。不能为了低价越过地域或能力限制。</p></article><article class="card"><h3>再选择渠道</h3><p>初版采用显式优先级与权重；后续再依据时延、成功率和成本调整。记录候选快照、选择原因和实际成本版本。</p></article><article class="card"><h3>最后决定是否重试</h3><p>从“是否可能已执行”判断，而非仅看 HTTP 码。SDK 内置重试也必须计入平台统一重试预算。</p></article></div>
+<div class="table-wrap" tabindex="0" aria-label="故障治理参数"><table><thead><tr><th>机制</th><th>设计要点</th><th>上线前验收</th></tr></thead><tbody><tr><td>超时</td><td>区分排队、连接、首字节、流空闲、客户端写入与总时长。所有重试共享总 deadline；按模型与场景配置。</td><td>各类超时均有明确错误、账务去向和资源回收；无无限挂起。</td></tr><tr><td>重试与切换</td><td>仅在确定未执行，或上游有已验证幂等保证时重试；遵守 Retry-After 与总预算。首个内容字节后不透明切换模型或供应商。</td><td>模拟请求已送达但响应丢失，验证不会自动产生第二次生成。</td></tr><tr><td>熔断</td><td>按供应商账户 / 端点 / 模型隔离，滑动窗口加最小样本，半开限量探测。单租户输入错误不应熔断全渠道。</td><td>故障渠道被隔离、恢复后渐进放量；探测调用计入成本。</td></tr><tr><td>限流</td><td>租户 / Key / 模型 / 上游配额多层限制 RPM、TPM 与并发。预估 token 先预扣、实际用量再校正；排队有界。</td><td>并发无配额穿透；拒绝返回明确可重试信息；取消 / 超时释放并发槽。</td></tr><tr><td>Redis 可选实现</td><td>计数与过期必须原子化；官方 INCR 模式说明了分步更新的竞态风险。<sup><a href="#s6">[6]</a></sup> 故障时对付费请求拒绝或采用经验证的保守上限。</td><td>进程中断、TTL 异常、缓存重启不会放开预算。租户账务仍由数据库约束。</td></tr></tbody></table></div>
+<p><strong>建议初始默认：</strong>执行结果不明时自动重试次数为 0；其余已确认安全场景最多 1 次重试。数值只是保守起点，需压测、成本数据与供应商协议验证后调整。</p>
+</section>
+
+<section id="billing">
+<div class="section-top"><span class="section-num">08 / ACCOUNTING</span><h2>计量与账务一致性</h2></div>
+<p class="intro">将用量事实、售卖价格、上游成本和资金变动分开保存，再以不可变版本关联。业务状态可以变化，已经发生的账务凭证只能追加修正。</p>
+<h3>四类记录，四种含义</h3>
+<div class="grid2"><article class="card"><h4>Usage · 用量事实</h4><p>原始维度、规范化分桶、模型 / 协议版本、证据来源（上游最终值 / 估计 / 账单核对）、证据时间。缺失值与 0 严格区分。</p></article><article class="card"><h4>Price · 商业规则</h4><p>币种、最小记账单位、计费维度、单价分子 / 分母、生效时间、舍入方式、用户价格方案和失败计费政策。</p></article><article class="card"><h4>Cost · 平台采购成本</h4><p>每个上游 attempt 单独记录成本与来源，包括失败重试。未知成本先作为估计或敞口，日后对账修正。</p></article><article class="card"><h4>Ledger · 余额凭证</h4><p>充值、扣费、退款和调整均关联唯一业务事件、操作者及理由。建议平衡分录或等价的可校验追加式账本，余额为同事务维护的可重建投影。</p></article></div>
+<h3>金额精度与版本</h3>
+<p>Token 数使用整数；金额使用固定最小单位的整数，单价可用定点数或整数比率；禁止二进制浮点累加金额。可采用 BIGINT 或有明确精度与溢出界限的 NUMERIC，接口把大整数序列化为十进制字符串。售卖价与采购价分别版本化，写入请求 / 尝试快照，不用当前价格重算历史账单。</p>
+<div class="formula">计费金额 = Round<sub>价格版本</sub> ( Σ [互斥计量桶数量 × 该桶单价] )<br>可用余额 A = 账面余额 B − 有效冻结 H<br><small>币种一致；每次结算只在已约定层级舍入一次；不能在每个 SSE chunk 上向上取整。</small></div>
+<h3>预占 → 结算 → 释放 → 对账</h3>
+<ol><li><strong>预占：</strong>用输入估计、最大输出、允许的额外收费项计算保守上限 R。在事务内锁定钱包或用条件更新确保 <code>B − H ≥ R</code>，增加 H，并保存 reservation。无法界定成本上限的能力先不开放。</li><li><strong>结算：</strong>获取可靠证据后计算实际费用 C。以请求为唯一初次结算对象，在同一事务中写凭证、更新 <code>B = B − C</code>、<code>H = H − R</code>、终结预占并创建 Outbox 事件。</li><li><strong>释放：</strong>若可靠证据证明未调用 / 不应收费，则按同一状态条件释放 R。不能仅因锁过期、客户端断线或 Worker 超时就推断免费。</li><li><strong>对账：</strong>按请求 / 上游标识、模型、时间和用量匹配供应商报告；若上游仅提供汇总账单，只能做聚合核对，将无法归因部分列为差异，不编造逐请求证据。</li></ol>
+<p>数据库事务只覆盖本地状态。建议对钱包行采取统一锁顺序，对关键迁移使用条件更新与唯一约束；若采用 Serializable，应用需处理序列化失败并重跑本地事务，不能因此重发上游生成请求。<sup><a href="#s5">[5]</a></sup></p>
+<div class="callout warn"><strong>实际费用大于冻结金额怎么办？</strong><p>这必须是受控异常，不是静默透支。优先通过参数上限与保守预占避免；发生时标记风险敞口，按已约定规则尝试追加预占。建议第一版不向未授权余额强行扣成负数；无法补足部分进入人工裁定 / 平台承担队列，并暂停相关计费配置排查。</p></div>
+<h3>金额算例 <span class="tag pending">纯假设 · 非官方报价</span></h3>
+<p>假设结算单位为演示币 U，1 U = 1,000,000 μU；输入价 2 U / 百万 Token，输出价 8 U / 百万 Token。一次请求输入 1,200 Token、输出 300 Token、输出上限 1,000 Token；忽略缓存、工具、税费和汇率。采购价仅为演示，假设输入 1 U、输出 4 U / 百万 Token。</p>
+<div class="table-wrap" tabindex="0" aria-label="假设金额算例"><table><thead><tr><th>项目</th><th>计算</th><th>结果</th></tr></thead><tbody><tr><td>请求前预占 R</td><td>1,200 × 2 + 1,000 × 8</td><td>10,400 μU = 0.0104 U</td></tr><tr><td>实际售卖费用 C</td><td>1,200 × 2 + 300 × 8</td><td>4,800 μU = 0.0048 U</td></tr><tr><td>释放剩余冻结</td><td>10,400 − 4,800</td><td>5,600 μU = 0.0056 U</td></tr><tr><td>采购成本</td><td>1,200 × 1 + 300 × 4</td><td>2,400 μU = 0.0024 U</td></tr><tr><td>调用毛差额</td><td>4,800 − 2,400</td><td>2,400 μU；尚未扣运维 / 支付 / 争议成本</td></tr></tbody></table></div>
+<p class="small">若初始 B = 1 U、H = 0，预占后 A = 0.9896 U；结算后 B = A = 0.9952 U、H = 0。总冻结 0.0104 U 在结算时解除，其中 0.0048 U 转为消费，剩余 0.0056 U 恢复可用。不是重复释放两次。</p>
+<h3>不可破坏的约束</h3>
+<ul><li>同一请求最多一张初次消费凭证；调整凭证有独立幂等键并引用原凭证。</li><li>单币种分录平衡，钱包投影与账本重建结果一致，正常业务下有效冻结与可用余额不为负。</li><li>已终结预占不能重复释放或重新初次结算；迟到证据通过调整流程处理。</li><li>账本、钱包投影、预占状态和 Outbox 在同一事务内提交；消息可重复投递，消费者必须幂等。</li><li>先确保调用证据可恢复，再考虑异步报表速度；缓存和队列不是唯一事实来源。</li></ul>
+</section>
+
+<section id="failure">
+<div class="section-top"><span class="section-num">09 / FAILURE MODES</span><h2>幂等、未知结果与异常收敛</h2></div>
+<p>系统只能通过数据库约束实现本地结算不重复；不能无条件保证跨网络生成“恰好一次”。因此应分别管理逻辑请求、每次上游尝试和每次账务事件。</p>
+<div class="state" aria-label="请求状态示意"><span>RECEIVED</span><b>→</b><span>RESERVED</span><b>→</b><span>DISPATCHING</span><b>→</b><span>STREAMING / WAITING</span><b>→</b><span>COMPLETED / FAILED / UNKNOWN</span></div>
+<div class="state" aria-label="账务状态示意"><span>HELD</span><b>→</b><span>AWAITING_USAGE</span><b>→</b><span>SETTLED / RELEASED</span><b>+</b><span>ADJUSTMENT（独立凭证）</span></div>
+<h3>平台幂等契约建议</h3>
+<p>对约定的生成接口使用租户 + 端点 + Idempotency-Key 唯一键，并保存规范化请求的指纹。同键同请求：返回已有状态或明确的进行中提示；同键不同请求：返回冲突。与模型相关的全部有效参数及价格快照都需关联。建议保留窗口至少覆盖客户端重试和最长对账处理窗口，实际时长待决策。</p>
+<p>流式响应如果没有安全保存完整内容，就不能声称能重放历史流。建议 MVP 重复请求返回状态 / 凭证查询指引，明确不重新生成；幂等结果查询也必须按租户鉴权。普通响应是否短期保留用于重放，须与隐私策略一起确定。</p>
+<p class="table-hint">窄屏可横向滚动查看异常处理矩阵。</p>
+<div class="table-wrap" tabindex="0" aria-label="异常处理矩阵"><table class="wide"><thead><tr><th>事件 / 证据</th><th>调用处理</th><th>账务处理与恢复</th></tr></thead><tbody><tr><td>鉴权失败 / 预算不足</td><td>拒绝，不发上游请求。</td><td>无消费；若已预占但未发送，按原子条件释放。</td></tr><tr><td>明确在发送前连接失败</td><td>可在总 deadline 和同一预占内选择合格渠道；必须有未发送的证据。</td><td>记录失败 attempt；不因连接失败自动创建消费。</td></tr><tr><td>上游可能已执行，响应丢失</td><td>标记 UNKNOWN，不默认重试或跨渠道切换；若存在已验证查询 / 幂等机制，再按协议恢复。</td><td>保持待核对，记录成本敞口；核对上游记录。不得把未知当作零用量。</td></tr><tr><td>客户端在流中断开</td><td>尝试取消并记录取消结果；后续恢复工作有独立 deadline。</td><td>按最终证据与事先公开的中断计费政策结算。取消请求不等于上游停止计费。</td></tr><tr><td>流正常结束但 usage 缺失</td><td>保留交付完成状态；对账任务继续。</td><td>不展示为已确认费用；估计只能标为预估。超出处理时限进入人工裁定，不无限冻结。</td></tr><tr><td>迟到 usage / 更正 usage</td><td>按证据来源、序号或内容哈希去重。</td><td>未结算时完成结算；已结算时计算差额并追加调整。已释放后不得再消费同一 reservation；追加收费需符合用户约定及额度政策。</td></tr><tr><td>并发重试 / Worker 重复投递</td><td>唯一幂等键认领同一请求；每个实际 attempt 独立编号。</td><td>唯一凭证 + 状态条件防双扣；消费者确认消息前提交事务。</td></tr><tr><td>进程崩溃 / 结算提交结果未知</td><td>租约与扫描器识别失联任务。调用是否已发送不清楚时不重新生成。</td><td>先查询唯一凭证是否存在，再幂等重试本地结算；不可凭内存结果直接再扣。</td></tr><tr><td>冻结超时 / 长期无上游证据</td><td>超过业务处理期限后升级人工处理。</td><td>冻结到期只触发核对任务。按公开政策在限定时间内选择释放、确认收费或平台承担，留下决定与通知记录。</td></tr></tbody></table></div>
+<div class="callout"><strong>对账队列必须有人负责</strong><p>为每条异常设负责人、处理期限、金额上限和升级路径。建议待定 usage 超过 30 分钟告警，24 小时进入人工处置；这些是试点候选值，必须与上游报表延迟、客户条款和实际能力匹配。</p></div>
+</section>
+
+<section id="data">
+<div class="section-top"><span class="section-num">10 / DOMAIN MODEL</span><h2>核心实体与接口边界</h2></div>
+<div class="table-wrap" tabindex="0" aria-label="核心数据实体"><table><thead><tr><th>实体</th><th>关键内容</th><th>约束 / 关联</th></tr></thead><tbody><tr><td>Tenant / User / Membership</td><td>租户、用户、角色与成员关系</td><td>权限按租户隔离，角色变更留审计。</td></tr><tr><td>Project / APIKey</td><td>归属、key_id、前缀、哈希、权限、到期、预算与撤销时间</td><td>高熵 Key 单次展示；不存明文。</td></tr><tr><td>Provider / Credential / Channel</td><td>授权证据引用、区域、密钥引用、配额和健康状态</td><td>上游密钥加密存储，与租户调用 Key 区分。</td></tr><tr><td>Model / MappingVersion / Capability</td><td>公开标识、真实模型、端点与能力</td><td>映射版本不可变，请求保存实际版本。</td></tr><tr><td>PriceVersion / CostRateVersion</td><td>币种、计量桶、价格、舍入与生效时间</td><td>售卖与采购分开；历史请求绑定快照。</td></tr><tr><td>Request / Attempt</td><td>tenant_id、request_id、幂等键、指纹、路由、上游标识、各阶段时间</td><td>请求与尝试 1:N；明确每次发送的生命周期。</td></tr><tr><td>UsageEvidence / UsageSummary</td><td>必要原始字段、归一化桶、来源、证据版本、置信状态</td><td>不可将未知补零；重复证据去重并保留更正关系。</td></tr><tr><td>Wallet / Reservation</td><td>币种、整数余额投影、有效冻结、预占状态</td><td>一请求一预占；原子余额约束；状态单向终结。</td></tr><tr><td>Journal / LedgerEntry</td><td>消费、退款、调整等业务凭证与分录</td><td>唯一业务事件；同币种平衡；引用原凭证，不覆写历史。</td></tr><tr><td>Outbox / ReconciliationCase / AuditLog</td><td>事件、差异单、操作者与原因</td><td>事件与业务同事务；差异有负责人、期限与证据。</td></tr><tr><td>PaymentOrder / PaymentEvent（后续）</td><td>支付商订单、验证回调、退款与拒付</td><td>支付商事件唯一；金额 / 币种 / 订单匹配后入账。</td></tr></tbody></table></div>
+<p><strong>数据组织：</strong>所有租户资源显式携带 tenant_id，并使用包含租户的唯一约束 / 外键或等价隔离策略，防止跨租户关联。按 request_id、tenant_id + 时间、待结算状态建必要索引；大规模分区和冷热分层由真实数据量触发。</p>
+<h3>接口草案 <span class="tag suggest">非已实现 API</span></h3>
+<div class="grid2"><article class="card"><h4>调用与用户侧</h4><ul><li><code>GET /v1/models</code>：本租户可用模型及能力。</li><li><code>POST /v1/chat/completions</code>：若选择该兼容子集，只支持公开且经过测试的字段。</li><li><code>GET /console/requests/{id}</code>：调用与账务状态。</li><li><code>GET /console/usage</code> 与 <code>/console/ledger</code>：用量和凭证。</li></ul></article><article class="card"><h4>控制与管理侧</h4><ul><li>Key 创建、轮换、撤销与权限范围。</li><li>渠道配置、测试、禁用与版本发布。</li><li>价格草稿、生效、历史查询与审计。</li><li>对账差异、人工调整和退款审批。</li></ul></article></div>
+<p>公开 API 与控制台管理认证分离；错误响应包含稳定错误码、request_id 和有限的重试建议。外部公开接口、状态字段与幂等政策需以版本化契约发布，开发前由一个 ADR 记录最终选择。</p>
+</section>
+
+<section id="security">
+<div class="section-top"><span class="section-num">11 / TRUST</span><h2>安全、隐私与上游授权</h2></div>
+<div class="grid2"><article class="card"><h3>API Key 生命周期</h3><ul><li>用安全随机源生成高熵密钥，创建时仅展示一次；数据库保存哈希与可识别前缀。</li><li>限制项目、模型、预算、有效期；需要时支持 IP 范围。</li><li>轮换提供短暂双 Key 过渡，撤销及时失效；缓存失效延迟纳入安全测试。</li><li>管理端强认证、分角色授权；密钥和账务高风险操作审计。</li></ul></article><article class="card"><h3>租户与网络隔离</h3><ul><li>租户身份来自已验证凭证，不信任客户端自报 tenant_id。</li><li>请求、账单、导出和对象存储下载都检查资源归属。</li><li>上游地址采用受控配置与出站白名单，禁止任意 URL 代理，防 SSRF。</li><li>限制请求体、并发、输出长度和工具能力；试用额度设硬上限。</li></ul></article></div>
+<h3>日志和数据最小化</h3>
+<p>业务日志默认只保存 request_id、租户标识、模型、状态、时延与计量结果；不保存 Authorization、上游密钥或完整提示词 / 回复。OWASP 对敏感数据排除与日志保护的建议可作为基线。<sup><a href="#s7">[7]</a></sup> 如客户主动开启排障内容采样，应单独授权、加密、限时和审计，且可关闭。</p>
+<div class="table-wrap" tabindex="0" aria-label="数据保留建议"><table><thead><tr><th>数据类</th><th>候选策略（待确认）</th><th>必须验证</th></tr></thead><tbody><tr><td>请求元数据 / 普通技术日志</td><td>在线 30 天；聚合指标延长，精确时长依据成本与用途。</td><td>自动删除、导出权限、索引与副本一致清理。</td></tr><tr><td>提示词 / 回复正文</td><td>默认不留；经许可的排障样本最长 24 小时作为候选值。</td><td>采样可关闭、密钥脱敏、访问审计、备份到期清理。</td></tr><tr><td>计费证据 / 账本 / 审计</td><td>保留必要字段；期限由经营主体、合同和适用义务确定。</td><td>更正可追溯；删除请求与法定 / 合同保留要求的处理流程。</td></tr><tr><td>备份</td><td>加密、独立权限与明确轮换期限。</td><td>恢复后重新执行删除 / 撤销策略，防止已删数据或 Key 回流。</td></tr></tbody></table></div>
+<div class="callout warn"><strong>授权与合规是上线门槛，当前尚未核实</strong><p>逐个上游核实商业 API 使用权、是否允许代理 / 转售、账户共享限制、服务地区、数据处理和保留条款。确定运营主体、客户地区、部署地区后，再核实隐私、税务、支付和内容治理义务。本文不对任何供应商的授权或具体法律合规作出结论。</p></div>
+<p>凭证放入部署环境的密钥管理设施，不写入 Git；生产与测试账户隔离。对滥用检测、投诉处理、暂停账户和费用争议制定流程。运营后台也遵循最小权限，人工调账应有理由、证据与复核。</p>
+</section>
+
+<section id="operations">
+<div class="section-top"><span class="section-num">12 / OPERATIONS</span><h2>可观测性、成本与恢复</h2></div>
+<h3>一条追踪链，两个经营视角</h3>
+<p>将 request_id → attempt_id → 上游 request_id → usage 证据 → 凭证串联。追踪可采样，账务事实不可因采样丢失；避免把 request_id 作为高基数指标标签，详细定位放在日志 / 追踪中。</p>
+<div class="grid2"><article class="card"><h4>运行健康</h4><p>平台拒绝与上游失败分开统计；记录首有效内容时延、总耗时、活跃流、队列等待、背压、熔断状态、数据库锁等待、结算积压与未知 usage 占比。</p></article><article class="card"><h4>经营健康</h4><p>收入、所有尝试的上游成本、未确认成本敞口、退款 / 拒付、支付费、促销消耗和基础设施费用分开。按租户、模型和渠道观察贡献毛利。</p></article></div>
+<div class="formula">单次贡献 = 确认净收入 − 全部上游尝试成本 − 支付 / 退款成本 − 可归属基础设施成本<br><small>该式为运营分析口径，不替代财务收入确认。未知上游成本单列；重试成本与促销额度不可漏计。</small></div>
+<p>售卖币种与采购币种不一致时，保存独立成本币种和固定的汇率快照；首版建议只开一种用户钱包币种。不要将充值额直接当成当期调用收入。</p>
+<h3>候选服务目标 <span class="tag suggest">压测后批准</span></h3>
+<ul><li>账务正确性：双扣、跨租户读取、无依据放开余额在验收中为零容忍。</li><li>平台增量开销：定义“排除上游与主动排队的网关处理时间”，建议试点 P95 &lt; 100 ms；必须在约定负载和环境下测量。</li><li>用量完整度：正常完成且上游提供 usage 的请求，建议 99.9% 在 60 秒内完成结算；未知证据不混入成功样本。</li><li>可用性：建议试点以月度 99.5% 为内部观察目标，同时报告端到端成功率与平台自身错误率；不是对外 SLA。</li></ul>
+<h3>容量估算先看长连接</h3>
+<p>并发存活请求约等于到达率 × 平均存活时间。例如纯假设的 5 请求 / 秒、平均流长 20 秒，约有 100 条同时存活的流。压测还要覆盖长尾流长、慢客户端、突发、租户偏斜、供应商限额及数据库热钱包；不能只报告普通 HTTP QPS。</p>
+<h3>备份、迁移和事故恢复</h3>
+<p>建议 PostgreSQL 采用可恢复的备份方案与连续 WAL 归档 / PITR，并验证完整恢复链。官方文档说明了基础备份结合 WAL 回放的恢复机制。<sup><a href="#s8">[8]</a></sup> Redis 可重建；凭证加密密钥需有独立、受控的恢复路径。</p>
+<ol><li>候选目标：RPO ≤ 15 分钟、RTO ≤ 2 小时；它们是待批准目标，不是现有保障。通过真实恢复演练量测。</li><li>事故期间暂停新的计费请求，保留请求与上游证据；切换前确保单一有效写入者，避免双主扣费。</li><li>恢复数据库后，对账本做余额重建与分录平衡检查；重放 Outbox 依靠幂等，不触发新的上游生成。</li><li>核对备份截止之后上游仍可能产生的费用、支付回调与撤销操作；未收敛差异先挂账。</li><li>数据库迁移先扩展兼容结构再切换，保留回滚预案；月度恢复演练及高风险升级前演练作为建议。</li></ol>
+</section>
+
+<section id="stack">
+<div class="section-top"><span class="section-num">13 / TECH CHOICES</span><h2>技术选型：以团队能力与验证结果为准</h2></div>
+<p class="intro">下面是候选比较，不是最终选型。没有团队经验与流量数据时，不以语言标签代替压测。</p>
+<p class="table-hint">窄屏可横向滚动查看完整选型比较。</p>
+<div class="table-wrap" tabindex="0" aria-label="技术选型比较"><table class="wide"><thead><tr><th>领域</th><th>候选</th><th>适合条件 / 代价</th><th>当前建议</th></tr></thead><tbody><tr><td>后端</td><td>Go<br>TypeScript / Node.js<br>Python / FastAPI</td><td>Go 便于明确处理连接与取消，但团队需熟悉并发与错误；TypeScript 便于全栈共享类型，但避免阻塞事件循环；Python 适合已有经验团队，需验证异步、部署进程与长连接管理。</td><td>能力相当时优先评估 Go；若团队熟悉 TS，选 TS 也合理。先做同一 SSE / 取消 / 账务原型，不维护三套实现。</td></tr><tr><td>主存储</td><td>PostgreSQL<br>MySQL</td><td>两者均可用事务与约束实现账务。团队现有运维经验、锁模型、备份能力更关键。</td><td>无既有约束时建议 PostgreSQL；实施前固定受支持版本并记录升级策略。</td></tr><tr><td>缓存与限流</td><td>单实例内存<br>Redis</td><td>单实例内存易起步，重启丢失且多实例不能共享；Redis 增加运维但便于统一限流。</td><td>单机原型可内存；多实例或共享配额时加入 Redis。余额始终由数据库保障。</td></tr><tr><td>异步任务</td><td>数据库 Outbox + Worker<br>独立消息队列</td><td>前者部署简单、事务边界清晰；后者适合较大吞吐与多消费者，但需要投递、运维和幂等治理。</td><td>先数据库任务 / Outbox，基于积压和吞吐证据再引入队列。</td></tr><tr><td>管理前端</td><td>React / Vue<br>服务端渲染页面</td><td>依团队能力选择；核心难度在权限、账单状态和错误可解释性。</td><td>初期普通管理控制台即可，图表不先于账务一致性。</td></tr><tr><td>部署</td><td>单区域容器<br>托管平台 / Kubernetes</td><td>单区域便于故障排查；托管服务要验证流超时和连接限制；Kubernetes 增加运维成本。</td><td>先单区域容器 + 托管数据库（若预算允许）；不预设必须 Kubernetes。</td></tr></tbody></table></div>
+<h3>多设备开发约定</h3>
+<p>GitHub 作为源代码与文档的同步点。每台设备开始前检查工作区并拉取，使用分支隔离较大任务；切换设备前提交并推送清晰的小步改动。不要同步生产数据库、真实密钥或本地凭证。依赖版本、数据库迁移、样例配置和本地启动步骤应入库；真实环境变量各设备独立配置。</p>
+<p>后续建议建立 ADR（架构决策记录）：记录问题、备选、选择、后果、验证方式与日期。首批 ADR 应覆盖 API 子集、后端语言、账务模型、流中断收费、未知用量处理和上游授权。</p>
+</section>
+
+<section id="roadmap">
+<div class="section-top"><span class="section-num">14 / DELIVERY</span><h2>分阶段路线与验收条件</h2></div>
+<p class="intro">按证据进入下一阶段，不在需求未定时承诺日历工期。每阶段结束需记录验收结果与未决事项。</p>
+<div class="grid2"><article class="card rail"><b>P0 · 决策与验证</b><h3>先把边界写清楚</h3><p>完成首批客群访谈、上游授权核实、API 子集、币种及计费政策选择。</p><p><strong>退出条件：</strong>可签字确认的决策表；至少一个合法可用上游；断线 / 未知用量政策明确；测试预算和负责人明确。</p></article><article class="card rail"><b>P1 · 单供应商技术闭环</b><h3>先做可恢复的一次调用</h3><p>在测试额度环境完成鉴权、普通 / SSE、usage、预占与结算、状态查询。</p><p><strong>退出条件：</strong>断线、超时、并发和崩溃注入后不双扣；余额可重建；任何未决记录能被扫描发现。</p></article><article class="card rail"><b>P2 · 多供应商与试点</b><h3>验证抽象是否成立</h3><p>第二个供应商、能力矩阵、明确路由、限流熔断、用户账单与对账台。</p><p><strong>退出条件：</strong>适配器契约测试通过；无透明危险重试；固定负载下达到批准的性能目标；恢复演练通过。</p></article><article class="card rail"><b>P3 · 正式收费准备</b><h3>让资金和运营可闭环</h3><p>支付商验证、充值 / 退款 / 拒付、权限、告警、客服与隐私流程。</p><p><strong>退出条件：</strong>支付回调去重与金额核对通过；合规 / 合同核实完成；账单能对到采购成本；事故与争议有人处理。</p></article></div>
+<p><strong>P4 · 依据证据扩展：</strong>企业组织能力、更多协议与模型、多地区部署。图像 / 音频 / 视频在独立评审后进入；它们可能按张、时长、分辨率或任务计费，不能硬套文本 Token 账单。</p>
+<h3>开发时必须覆盖的验收矩阵</h3>
+<div class="table-wrap" tabindex="0" aria-label="验收测试矩阵"><table><thead><tr><th>类别</th><th>可执行验证</th><th>通过标准</th></tr></thead><tbody><tr><td>计费单元与性质测试</td><td>大整数、边界 Token 数、价格版本、舍入、缓存子集、缺失字段。</td><td>同一证据可重复计算；金额无漂移、无重复包含。</td></tr><tr><td>并发与幂等</td><td>预算只够一次时并发发起多请求；同幂等键重复；结算重复投递。</td><td>不会超额放行；一个逻辑请求最多一张初次消费凭证。</td></tr><tr><td>流协议</td><td>UTF-8 字符跨分片、多行事件、usage 空值、流内错误、未知事件、慢客户端。</td><td>内容和终止状态正确；有界内存；无遗漏的结算记录。</td></tr><tr><td>故障注入</td><td>预占后崩溃、上游已接受时断网、usage 后崩溃、提交结果丢失、恢复重放。</td><td>不盲目重发；每个请求最终收敛至结算 / 释放 / 有负责人差异单。</td></tr><tr><td>安全与隔离</td><td>跨租户枚举、撤销 Key、日志扫描、恶意上游地址、大请求、权限提升。</td><td>跨租户访问被拒；密钥不进入日志；地址与资源限制有效。</td></tr><tr><td>运维与真实对账</td><td>备份恢复、真实小额上游样本对账、统计与账本重建、目标负载长连接压测。</td><td>恢复目标实测达标；差异可解释；采购账单与内部证据可对应。</td></tr></tbody></table></div>
+<p class="small">以上是后续业务开发的验收计划，不表示已执行。当前交付仅为此 HTML 文档及 README 入口。</p>
+</section>
+
+<section id="risks">
+<div class="section-top"><span class="section-num">15 / DECISIONS</span><h2>风险与优先决策</h2></div>
+<div class="table-wrap" tabindex="0" aria-label="主要风险表"><table><thead><tr><th>风险 / 优先级</th><th>触发信号与影响</th><th>缓解 / 建议责任角色</th></tr></thead><tbody><tr><td>授权不明确 · P0</td><td>账户共享、代理 / 转售资格不清；渠道可能中止，客户数据用途不明。</td><td>上游准入清单与合同核实；产品 / 经营负责人。</td></tr><tr><td>重复扣费或超额 · P0</td><td>并发预占、重复事件或恢复任务产生差异。</td><td>数据库约束、幂等、故障注入与日对账；后端负责人。</td></tr><tr><td>未知结果重试 · P0</td><td>首字节前超时被误判为未执行，采购成本翻倍。</td><td>尝试记录、执行证据分类、关闭隐藏重试；网关负责人。</td></tr><tr><td>密钥 / 数据泄露 · P0</td><td>日志或仓库含密钥、租户访问越界。</td><td>最小日志、权限测试、密钥轮换与出站限制；安全 / 后端。</td></tr><tr><td>价格 / 用量漂移 · P1</td><td>别名变化、缓存维度或供应商计价变动导致毛利异常。</td><td>不可变价格与模型版本、能力契约、成本告警；产品 / 财务运营。</td></tr><tr><td>资金与支持成本 · P1</td><td>拒付、退款、试用滥用、采购预付占用现金。</td><td>限额、风险准备、支付对账、明确退款政策；经营 / 运营。</td></tr><tr><td>长连接与恢复 · P1</td><td>慢客户端耗尽内存、数据库故障、备份不可恢复。</td><td>背压、连接预算、降载、恢复演练；运维 / 后端。</td></tr><tr><td>范围膨胀 · P1</td><td>尚未跑通账务就进入视频、多币种和复杂分销。</td><td>严格按阶段退出条件推进；项目负责人。</td></tr></tbody></table></div>
+<h3>开发前优先回答的 8 个问题</h3>
+<div class="decision"><div class="priority">D01</div><div><h3>首批服务谁，为何愿意付费？</h3><p>决定首个使用场景与验收指标；建议先访谈开发团队。负责人：产品，时间：P0。</p></div></div>
+<div class="decision"><div class="priority">D02</div><div><h3>哪些上游账户可用于此商业模式？</h3><p>列供应商、合同依据、区域与配额；无授权证据不上生产。负责人：经营，时间：P0。</p></div></div>
+<div class="decision"><div class="priority">D03</div><div><h3>首版协议和功能子集是什么？</h3><p>建议先文本普通 / SSE；明确是否包含工具调用、缓存和推理维度。负责人：产品 + 后端，时间：P0。</p></div></div>
+<div class="decision"><div class="priority">D04</div><div><h3>未知用量、流中断和取消怎样收费？</h3><p>选择证据优先级、冻结期限、估计是否可入账、后补扣费与平台承担条件。负责人：产品 + 经营，时间：P0。</p></div></div>
+<div class="decision"><div class="priority">D05</div><div><h3>币种、余额、价格与退款政策怎样定义？</h3><p>确认记账精度、舍入、价格生效、预付模式与支付渠道。真实收费前完成；原型只用测试额度。</p></div></div>
+<div class="decision"><div class="priority">D06</div><div><h3>选择什么技术栈和部署区域？</h3><p>依据团队熟悉度、供应商地域、预算和 SSE 原型数据确定。负责人：技术，时间：P0–P1。</p></div></div>
+<div class="decision"><div class="priority">D07</div><div><h3>需要多大容量、保留什么数据？</h3><p>确定并发、平均 / 长尾流长、日志与证据留存、客户数据限制、RPO / RTO。负责人：技术 + 产品，时间：P1 前。</p></div></div>
+<div class="decision"><div class="priority">D08</div><div><h3>谁处理故障、差异与客户争议？</h3><p>指定值守、调账复核、告警升级和上线签字角色；即使团队很小也需明确责任。时间：试点前。</p></div></div>
+<div class="callout"><strong>下一步建议</strong><p>先完成 D01–D04 和一个小型技术验证：一条真实授权的文本请求，在正常结束、断流、重复提交和进程重启四种情况下，都能得到可解释的调用与账务结果。再根据验证结果确认最终技术栈与开发计划。</p></div>
+</section>
+
+<section id="references">
+<div class="section-top"><span class="section-num">16 / REFERENCES</span><h2>术语与官方来源</h2></div>
+<div class="grid2"><article class="card"><h3>核心术语</h3><p><strong>Token：</strong>模型处理的计量单位，不等同于字数。<br><strong>SSE：</strong>HTTP 事件流格式，用于逐步传输结果。<br><strong>Tenant：</strong>拥有独立权限、预算和数据边界的客户主体。<br><strong>Attempt：</strong>逻辑请求中的一次实际上游尝试。<br><strong>Reservation：</strong>预占 / 冻结额度，不是最终消费。</p></article><article class="card"><h3>工程术语</h3><p><strong>Outbox：</strong>在业务事务内记录待处理事件，再由后台可靠投递。<br><strong>Idempotency：</strong>重复处理同一业务动作不重复产生副作用。<br><strong>PITR：</strong>恢复到指定时间点。<br><strong>RPO / RTO：</strong>可接受数据损失窗口 / 恢复服务时长。<br><strong>ADR：</strong>记录架构选择及理由的决策文档。</p></article></div>
+<p>以下为技术行为的官方依据，访问日期均为 <strong>2026-10-30</strong>。文中架构、政策、阈值与路线是针对 TokenHarbor 的设计建议，并非这些来源对本项目的背书。在线文档可能更新，实施时应固定版本并再次核对。</p>
+<ol class="sources">
+<li id="s1"><strong>[1]</strong> <a href="https://html.spec.whatwg.org/multipage/server-sent-events.html">WHATWG — Server-sent events</a><p>支持 SSE 事件格式、UTF-8、EventSource 连接与重连行为；不代表 POST 生成调用具备自动安全重试。</p></li>
+<li id="s2"><strong>[2]</strong> <a href="https://developers.openai.com/api/reference/resources/chat/subresources/completions/streaming-events">OpenAI — Chat Completions streaming events</a><p>支持 include_usage 与中断可能缺失最终 usage 的描述；只引用该端点，不扩大为所有 OpenAI API 的统一语义。</p></li>
+<li id="s3"><strong>[3]</strong> <a href="https://platform.claude.com/docs/en/build-with-claude/streaming">Anthropic — Streaming Messages</a><p>支持 message_delta usage 累计值、流内错误与新事件类型的描述。</p></li>
+<li id="s4"><strong>[4]</strong> <a href="https://ai.google.dev/gemini-api/docs/tokens">Google — Understand and count tokens</a><p>支持调用前输入 token 计数和调用后 usage 维度的区分；具体字段应按所选端点核实。</p></li>
+<li id="s5"><strong>[5]</strong> <a href="https://www.postgresql.org/docs/current/transaction-iso.html">PostgreSQL — Transaction Isolation</a><p>支持事务隔离与序列化失败需要重试本地事务的说明；不提供跨供应商网络调用的原子性。</p></li>
+<li id="s6"><strong>[6]</strong> <a href="https://redis.io/docs/latest/commands/incr/">Redis — INCR / Rate limiter patterns</a><p>支持限流计数、过期与竞态处理的说明。</p></li>
+<li id="s7"><strong>[7]</strong> <a href="https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html">OWASP — Logging Cheat Sheet</a><p>支持敏感数据排除、日志访问保护与安全日志设计；具体留存期限由本项目另行确定。</p></li>
+<li id="s8"><strong>[8]</strong> <a href="https://www.postgresql.org/docs/current/continuous-archiving.html">PostgreSQL — Continuous Archiving and PITR</a><p>支持基础备份与 WAL 回放的恢复机制；RPO / RTO 需要实际演练，不能由机制本身保证。</p></li>
+</ol>
+<p class="small">本文件正文、图示和样式均内嵌，无 CDN、外部字体或联网读取依赖；点击参考链接才访问外部网站。可关闭 JavaScript 阅读全文，打印按钮和目录高亮是可选增强。</p>
+</section>
+<footer class="footer"><span>TokenHarbor · 项目规划 v0.1 · 2026-10-30<br>文档资产，随已批准的决策持续更新。</span><a href="#top">返回顶部 ↑</a></footer>
+</main>
+<script>
+if ('IntersectionObserver' in window) {
+ const links = [...document.querySelectorAll('.sidebar nav a')];
+ const observer = new IntersectionObserver(entries => {
+  for (const entry of entries) if (entry.isIntersecting) {
+   links.forEach(link => {
+    const active = link.hash === '#' + entry.target.id;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+   });
+  }
+ }, {rootMargin: '-10% 0px -70% 0px', threshold: 0});
+ document.querySelectorAll('main section').forEach(section => observer.observe(section));
+}
+</script>
+</body>
+</html>
