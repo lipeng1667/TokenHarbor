@@ -21,7 +21,7 @@
 <nav>
 <a href="#context"><span>01</span>背景与项目定位</a><a href="#customers"><span>02</span>客户与商业假设</a><a href="#scope"><span>03</span>MVP 与范围边界</a><a href="#architecture"><span>04</span>总体架构</a><a href="#lifecycle"><span>05</span>请求与 SSE 生命周期</a><a href="#adapters"><span>06</span>供应商与模型适配</a><a href="#routing"><span>07</span>路由与故障治理</a><a href="#billing"><span>08</span>计量与账务一致性</a><a href="#failure"><span>09</span>幂等与异常收敛</a><a href="#data"><span>10</span>核心实体与 API</a><a href="#security"><span>11</span>安全、隐私与授权</a><a href="#operations"><span>12</span>运维、成本与恢复</a><a href="#stack"><span>13</span>技术选型建议</a><a href="#roadmap"><span>14</span>路线与验收条件</a><a href="#risks"><span>15</span>风险与优先决策</a><a href="#references"><span>16</span>术语与官方来源</a>
 </nav>
-<div class="side-foot">规划稿 v0.1 · 2026.10.30<br>离线阅读 · 响应式 · 可打印<br>设计提案，不代表功能已实现</div>
+<div class="side-foot">规划稿 v0.2 · 2026.11.04<br>离线阅读 · 响应式 · 可打印<br>设计提案，不代表功能已实现</div>
 </aside>
 <main class="content" id="main">
 <div class="topbar" id="top"><span>ENGINEERING / PRODUCT / OPERATIONS</span><button class="print-btn" type="button" onclick="window.print()">打印 / 保存 PDF</button></div>
@@ -29,8 +29,8 @@
 <div class="eyebrow">A reliable harbor for model access</div>
 <h1>TokenHarbor<span class="hero-title-cn">项目规划与技术设计</span></h1>
 <p class="lead">把多家大模型能力接入同一个调用入口，让每次请求的身份、用量、价格、成本和账务结果都有据可查。先打通一条可靠的文本调用闭环，再扩展供应商、客户和业务规模。</p>
-<div class="tags"><span class="tag known">已知 · 新建项目</span><span class="tag suggest">建议 · 模块化单体起步</span><span class="tag pending">待决策 · 客户 / 上游 / 价格 / 技术栈</span></div>
-<p class="small">版本 v0.1 · 编写与资料访问日期 2026-10-30 · 仓库：<a href="https://github.com/lipeng1667/TokenHarbor">lipeng1667/TokenHarbor</a><br>本文为技术与产品规划。所有性能目标、留存时长、阶段范围和选型均为建议；示例金额不代表真实报价。</p>
+<div class="tags"><span class="tag known">已知 · 新建项目</span><span class="tag suggest">建议 · C 转发核心 + Go 业务核心</span><span class="tag pending">待决策 · 客户 / 上游 / 价格 / 技术栈</span></div>
+<p class="small">版本 v0.2 · 架构讨论更新 2026-11-04 · 原参考资料访问日期 2026-10-30 · 仓库：<a href="https://github.com/lipeng1667/TokenHarbor">lipeng1667/TokenHarbor</a><br>本文为技术与产品规划。所有性能目标、留存时长、阶段范围和选型均为建议；示例金额不代表真实报价。</p>
 <div class="hero-grid">
 <article><b>01</b><h3>先把账算清楚</h3><p>预占、结算、释放、对账；每笔变动有来源和版本。</p></article>
 <article><b>02</b><h3>再把调用做稳定</h3><p>显式能力边界；可控超时、限流和有条件的切换。</p></article>
@@ -67,18 +67,21 @@
 
 <section id="architecture">
 <div class="section-top"><span class="section-num">04 / ARCHITECTURE</span><h2>总体架构</h2></div>
-<p class="intro">建议先用模块化单体：一个代码库、清晰模块边界、一个主事务数据库。网关和后台任务可作为同一代码库的不同进程运行。</p>
+<p class="intro">2026-11-04 讨论稿：将调用转发核心与业务账务核心分开。建议 C + libevent 承担网关，Go 承担业务、账务与 Worker，PostgreSQL 作为权威账本；这不是已批准或已实现的技术选型。</p>
+<div class="callout warn"><strong>先划清职责，再验证语言选择</strong><p>借鉴 OES 的 Linux C、事件驱动、连接管理与显式状态机思想，不照搬其业务协议。C 并非高并发的必选项；应以同一负载的 C + Go 与纯 Go 原型对照，验证收益是否抵消内存安全、协议解析和双语言维护成本。</p></div>
 <figure class="diagram" aria-labelledby="arch-caption">
 <div class="arch-client"><strong>客户端 SDK / 应用后端</strong><br><span class="small">租户 Key · 请求参数 · 幂等键</span></div><div class="arrow" aria-hidden="true">↓</div>
-<div class="arch-plane dark"><h3>调用数据面 · 低延迟、可限流、可追踪</h3><div class="nodes"><div class="node">鉴权与租户解析<br>权限 / 额度校验</div><div class="node">计价快照与预占<br>请求 / 尝试记录</div><div class="node">能力匹配与路由<br>适配器 / SSE 转发</div></div></div>
+<div class="arch-client"><strong>高可用负载均衡 / HTTPS 入口</strong><br><span class="small">健康检查、分流、连接排空；不负责余额与扣费</span></div><div class="arrow" aria-hidden="true">↓</div>
+<div class="arch-plane dark"><h3>C + libevent · 调用转发核心</h3><div class="nodes"><div class="node">连接 / 请求状态机<br>并发与有界缓冲</div><div class="node">上游协议适配<br>路由 / SSE 转发</div><div class="node">超时 / 背压 / 取消<br>计量证据采集</div></div></div>
 <div class="arrow" aria-hidden="true">↓ ↑</div><div class="arch-client"><strong>已授权供应商 A / B / …</strong><br><span class="small">独立凭证、区域、配额、协议与模型版本</span></div>
-<div class="arch-plane"><h3>控制面 · 管理与策略</h3><div class="nodes"><div class="node">用户与项目<br>Key / RBAC</div><div class="node">模型目录 / 渠道<br>价格 / 路由版本</div><div class="node">账单 / 对账<br>审计 / 人工处理</div></div></div>
-<div class="arch-plane"><h3>共享基础与后台任务 · 事件驱动但不依赖消息“恰好一次”</h3><div class="nodes"><div class="node"><strong>PostgreSQL</strong><br>账本 / 预占 / 请求 / Outbox</div><div class="node"><strong>可选 Redis</strong><br>限流 / 短期缓存</div><div class="node"><strong>Worker + 可观测性</strong><br>结算补偿 / 对账 / 告警</div></div></div>
-<figcaption id="arch-caption" class="diagram-key">示意图为逻辑关系，并非已经部署的系统。数据面从数据库或已验证的版本缓存读取策略；控制面写入版本化配置；后台任务处理待结算记录与异常。PostgreSQL 为账务事实源，Redis 不保存唯一余额。</figcaption>
+<div class="arch-plane"><h3>Go · 网关调用的业务与账务服务（不转发内容流）</h3><div class="nodes"><div class="node">鉴权 / 模型权限<br>价格快照 / 额度预占</div><div class="node">计量持久化 / 幂等结算<br>异常扫描 / 对账 Worker</div><div class="node">管理后台 API<br>用户 / 渠道 / 审计</div></div></div>
+<div class="arch-plane"><h3>数据与可观测性</h3><div class="nodes"><div class="node"><strong>PostgreSQL</strong><br>账本 / 预占 / 请求 / Outbox</div><div class="node"><strong>可选 Redis</strong><br>限流 / 短期缓存，不是账本</div><div class="node"><strong>指标 / 日志 / 告警</strong><br>调用状态与资金差异追踪</div></div></div>
+<figcaption id="arch-caption" class="diagram-key">C 网关在上游调用前请求 Go 服务鉴权并持久化预占，完成后将计量证据交给 Go 结算。管理控制台也调用 Go；资金写入集中在 PostgreSQL 短事务内。图示是逻辑关系，不表示系统已部署。</figcaption>
 </figure>
-<div class="grid2"><article class="card"><h3>调用数据面</h3><p>仅承载鉴权、权限校验、预算、路由、转发和最小持久化。一个流的存续时间不应占用一条数据库事务或数据库连接。使用短事务，在调用前预占，在获得证据后结算。</p></article><article class="card"><h3>控制面</h3><p>管理渠道、价格、客户与审计。修改发布为不可变版本，并保留操作者和变更原因。新请求使用新版本，进行中的请求继续遵循其快照。</p></article></div>
-<p><strong>故障边界：</strong>数据库不可用时拒绝新的付费请求；已开始请求可能仍产生上游成本，应尽力保留证据并标记待对账。缓存故障不能放开预算或默认无限额；控制台故障不应中断已建立的流；报表故障可延后恢复。</p>
-<p><strong>扩容触发：</strong>先测量连接数、网关 CPU / 内存、数据库锁等待和账务吞吐。只有出现独立扩容需求、团队边界或隔离需求，再拆分服务。避免一开始引入跨服务资金事务。</p>
+<div class="grid2"><article class="card"><h3>转发核心的边界</h3><p>C 负责协议与长连接，不嵌入复杂价格规则或独立余额账本。每条流有缓冲上限、读写超时与背压；阻塞操作不得卡住事件循环。Go 调用失败且无法确认预占成功时，不发起新的付费上游请求。</p></article><article class="card"><h3>Go 不只是管理后台</h3><p>鉴权和额度预占处于每次收费请求的关键路径，同样需要多实例与可观测性。初期一个 Go 项目内划分用户、渠道、账务、后台任务等模块，不急于拆成大量微服务或跨服务资金事务。</p></article></div>
+<p><strong>内部契约：</strong>用 request_id / attempt_id、请求指纹、价格版本和状态版本关联 C 与 Go；预占、证据落库及结算接口均定义幂等与超时语义。内部通信协议和鉴权方案需原型验证后确定。整个流不占用一条数据库事务或连接。</p>
+<p><strong>故障边界：</strong>数据库不可用时拒绝新的付费请求；已开始请求仍可能产生成本，证据写入失败需进入可恢复的待对账流程。不能只把 usage 放在 C 进程内存并假定最终会送达。缓存故障不能放开预算；管理界面故障应与已建立的流隔离。</p>
+<p><strong>配置一致性：</strong>渠道与价格发布为不可变版本，记录操作者和原因。新请求使用新版本，进行中的请求继续使用快照。数据库保存权威余额，缓存仅作加速；不能在多台网关分别按本地余额放行。</p>
 </section>
 
 <section id="lifecycle">
@@ -86,11 +89,11 @@
 <p class="intro">内容交付状态与账务状态是两条独立轴：用户已收到内容，不一定表示最终用量已经可确认。</p>
 <ol class="sequence">
 <li><h3>接收 · 客户端 → 网关</h3><p>生成 request_id；解析租户 Key、幂等键和请求指纹；检查请求体大小、模型权限、支持参数、并发与速率。未通过校验不调用上游。</p></li>
-<li><h3>锁定商业条件 · 网关 → 数据库</h3><p>快照模型映射、路由与售卖价格版本；确定允许的上游候选及输出上限；用短事务写请求、冻结余额和预占记录。预占失败即拒绝。</p></li>
+<li><h3>锁定商业条件 · C 网关 → Go → PostgreSQL</h3><p>快照模型映射、路由与售卖价格版本；确定允许的上游候选及输出上限；用短事务写请求、冻结余额和预占记录。预占失败即拒绝。预占须覆盖允许的最大费用，或采用受控追加机制；不能固定预扣小额却允许无限生成。</p></li>
 <li><h3>登记尝试后发出 · 网关 → 供应商</h3><p>先持久化 attempt_id 与待发送状态，再调用上游。发送与数据库更新不能成为一个原子事务；崩溃窗口必须按“执行结果未知”处理。</p></li>
 <li><h3>读取响应 / 逐事件转发 · 供应商 → 网关 → 客户端</h3><p>记录上游 request_id、首字节与首个有效内容时间。完整解析 UTF-8 和 SSE 事件边界；一条网络分片不等于一条事件。普通响应在完整校验后返回；流式响应按协议逐步转发。</p></li>
-<li><h3>归一化证据 · 网关 → 数据库</h3><p>保存原始 usage 的必要字段与归一化结果、来源、版本、完成原因。最终 usage 缺失时，标为 provisional / unknown，不把“未获得”写成零。</p></li>
-<li><h3>结算 · 同步短事务 / 可恢复 Worker</h3><p>同一事务完成唯一结算凭证、余额变动、冻结释放和账务状态变更，并写 Outbox。任务重复执行时由唯一约束与条件迁移防止重复扣费。</p></li>
+<li><h3>归一化证据 · C 网关 → Go → PostgreSQL</h3><p>保存原始 usage 的必要字段与归一化结果、来源、版本、完成原因。最终 usage 缺失时，标为 provisional / unknown，不把“未获得”写成零。</p></li>
+<li><h3>结算 · Go 短事务 / 可恢复 Worker</h3><p>同一事务完成唯一结算凭证、余额变动、冻结释放和账务状态变更，并写 Outbox。任务重复执行时由唯一约束与条件迁移防止重复扣费。</p></li>
 <li><h3>展示与补偿 · 控制台 / 对账任务</h3><p>用户看到交付状态和结算状态；运营对超时未决、迟到 usage、成本差异进行核对。修正使用追加调整凭证，不覆写已发生账目。</p></li>
 </ol>
 <h3>流式传输的具体约束</h3>
@@ -177,16 +180,33 @@
 <ul><li>账务正确性：双扣、跨租户读取、无依据放开余额在验收中为零容忍。</li><li>平台增量开销：定义“排除上游与主动排队的网关处理时间”，建议试点 P95 &lt; 100 ms；必须在约定负载和环境下测量。</li><li>用量完整度：正常完成且上游提供 usage 的请求，建议 99.9% 在 60 秒内完成结算；未知证据不混入成功样本。</li><li>可用性：建议试点以月度 99.5% 为内部观察目标，同时报告端到端成功率与平台自身错误率；不是对外 SLA。</li></ul>
 <h3>容量估算先看长连接</h3>
 <p>并发存活请求约等于到达率 × 平均存活时间。例如纯假设的 5 请求 / 秒、平均流长 20 秒，约有 100 条同时存活的流。压测还要覆盖长尾流长、慢客户端、突发、租户偏斜、供应商限额及数据库热钱包；不能只报告普通 HTTP QPS。</p>
+<h3>部署数量与扩容路线 <span class="tag suggest">尚未部署</span></h3>
+<div class="table-wrap" tabindex="0" aria-label="服务器部署阶段"><table><thead><tr><th>阶段</th><th>数量与职责</th><th>可用性边界</th></tr></thead><tbody>
+<tr><td>开发验证</td><td>1 台：C、Go / Worker、PostgreSQL 同机。</td><td>适合验证，所有组件共用一个故障域，不具备 HA。</td></tr>
+<tr><td>低成本试点</td><td>2 台：一台 C + Go / Worker，一台数据库。</td><td>应用与数据库仍各有单点；分开部署不等于高可用。</td></tr>
+<tr><td>商业起步建议</td><td>2 台业务 VM，跨可用区，每台 C + Go / Worker；另配高可用托管负载均衡及主备 PostgreSQL。</td><td>“2 台”仅指业务机，托管服务及数据库主备资源另计。任意一台故障，另一台须能承受约定峰值；做 CPU / 内存资源隔离。</td></tr>
+<tr><td>独立扩容阶段</td><td>4 台起步：2 台 C 网关 + 2 台 Go / Worker，再按负载分别增加；数据层与入口资源另计。</td><td>共享请求与账务状态，不依赖某台机器内存；Worker 可重复领取但最终结算必须幂等。</td></tr>
+</tbody></table></div>
+<p>网关扩容看活跃 SSE 流、文件描述符、内存、出口带宽与事件循环延迟；Go 看预占与结算延迟、吞吐和任务积压。数据库先优化索引、短事务、连接池与热钱包锁竞争，再评估规格升级、报表读副本；余额判断与扣费不得依赖有延迟的读副本。新增服务器不会提高上游账户配额。扩缩容阈值、机器规格、区域、价格和容量基线需压测与预算审批后确定，不在此虚构报价。</p>
+<h3>高可用的验收条件</h3>
+<ul><li>负载均衡健康检查与自动摘除、多可用区故障隔离、N−1 容量均需测试。Redis 如成为必需共享限流依赖，须有 HA 或经验证的保守降级路径，不能成为新单点。</li><li>发布先停止接收新请求，再等待连接排空并设置有界等待。节点宕机后，旧 SSE 流通常会中断，不能自动迁移续传；新请求可切至健康节点，不代表旧请求可安全重跑。</li><li>数据库故障切换需检测、旧主隔离与单写者保障。核实托管方案的同步持久化和已确认账务 RPO；异步复制可能丢失最近事务，同步复制也有延迟与可用性取舍。<sup><a href="#s9">[9]</a></sup></li><li>提交结果未知时先查询唯一凭证，再幂等重试本地事务；不得将数据库重试变成重新调用付费模型。缺失 usage、断流和不明结果进入差异单，不能直接当免费或立即解冻全部额度。</li><li>模拟网关、Go、数据库主节点、可用区与网络故障，检查请求状态、扣费、证据恢复和告警。只有实际通过约定的故障与恢复验收，才能宣称达到目标，不能凭两台机器承诺 SLA。</li></ul>
 <h3>备份、迁移和事故恢复</h3>
 <p>建议 PostgreSQL 采用可恢复的备份方案与连续 WAL 归档 / PITR，并验证完整恢复链。官方文档说明了基础备份结合 WAL 回放的恢复机制。<sup><a href="#s8">[8]</a></sup> Redis 可重建；凭证加密密钥需有独立、受控的恢复路径。</p>
-<ol><li>候选目标：RPO ≤ 15 分钟、RTO ≤ 2 小时；它们是待批准目标，不是现有保障。通过真实恢复演练量测。</li><li>事故期间暂停新的计费请求，保留请求与上游证据；切换前确保单一有效写入者，避免双主扣费。</li><li>恢复数据库后，对账本做余额重建与分录平衡检查；重放 Outbox 依靠幂等，不触发新的上游生成。</li><li>核对备份截止之后上游仍可能产生的费用、支付回调与撤销操作；未收敛差异先挂账。</li><li>数据库迁移先扩展兼容结构再切换，保留回滚预案；月度恢复演练及高风险升级前演练作为建议。</li></ol>
+<ol><li>历史候选灾难恢复目标：RPO ≤ 15 分钟、RTO ≤ 2 小时；仅适用于待评审的备份恢复场景，不是在线故障切换目标，也不等于可以接受丢失已确认账务。两类目标须分别审批并通过演练量测。</li><li>事故期间暂停新的计费请求，保留请求与上游证据；切换前确保单一有效写入者，避免双主扣费。</li><li>恢复数据库后，对账本做余额重建与分录平衡检查；重放 Outbox 依靠幂等，不触发新的上游生成。</li><li>核对备份截止之后上游仍可能产生的费用、支付回调与撤销操作；未收敛差异先挂账。</li><li>数据库迁移先扩展兼容结构再切换，保留回滚预案；月度恢复演练及高风险升级前演练作为建议。</li></ol>
 </section>
 
 <section id="stack">
 <div class="section-top"><span class="section-num">13 / TECH CHOICES</span><h2>技术选型：以团队能力与验证结果为准</h2></div>
-<p class="intro">下面是候选比较，不是最终选型。没有团队经验与流量数据时，不以语言标签代替压测。</p>
-<p class="table-hint">窄屏可横向滚动查看完整选型比较。</p>
-<div class="table-wrap" tabindex="0" aria-label="技术选型比较"><table class="wide"><thead><tr><th>领域</th><th>候选</th><th>适合条件 / 代价</th><th>当前建议</th></tr></thead><tbody><tr><td>后端</td><td>Go<br>TypeScript / Node.js<br>Python / FastAPI</td><td>Go 便于明确处理连接与取消，但团队需熟悉并发与错误；TypeScript 便于全栈共享类型，但避免阻塞事件循环；Python 适合已有经验团队，需验证异步、部署进程与长连接管理。</td><td>能力相当时优先评估 Go；若团队熟悉 TS，选 TS 也合理。先做同一 SSE / 取消 / 账务原型，不维护三套实现。</td></tr><tr><td>主存储</td><td>PostgreSQL<br>MySQL</td><td>两者均可用事务与约束实现账务。团队现有运维经验、锁模型、备份能力更关键。</td><td>无既有约束时建议 PostgreSQL；实施前固定受支持版本并记录升级策略。</td></tr><tr><td>缓存与限流</td><td>单实例内存<br>Redis</td><td>单实例内存易起步，重启丢失且多实例不能共享；Redis 增加运维但便于统一限流。</td><td>单机原型可内存；多实例或共享配额时加入 Redis。余额始终由数据库保障。</td></tr><tr><td>异步任务</td><td>数据库 Outbox + Worker<br>独立消息队列</td><td>前者部署简单、事务边界清晰；后者适合较大吞吐与多消费者，但需要投递、运维和幂等治理。</td><td>先数据库任务 / Outbox，基于积压和吞吐证据再引入队列。</td></tr><tr><td>管理前端</td><td>React / Vue<br>服务端渲染页面</td><td>依团队能力选择；核心难度在权限、账单状态和错误可解释性。</td><td>初期普通管理控制台即可，图表不先于账务一致性。</td></tr><tr><td>部署</td><td>单区域容器<br>托管平台 / Kubernetes</td><td>单区域便于故障排查；托管服务要验证流超时和连接限制；Kubernetes 增加运维成本。</td><td>先单区域容器 + 托管数据库（若预算允许）；不预设必须 Kubernetes。</td></tr></tbody></table></div>
+<p class="intro">当前讨论以 C + libevent 转发核心、Go 业务与账务、PostgreSQL 为分层示例；仍为提案，未批准开发或采购。用户进一步提出比较全 C、全 Go 与 C + Go，三种均待评估，尚未选择。逻辑职责不依赖语言绑定。</p>
+<div class="table-wrap" tabindex="0" aria-label="技术方案选择"><table><thead><tr><th>领域</th><th>当前提案</th><th>待验证与取舍</th></tr></thead><tbody>
+<tr><td>调用网关</td><td>C + libevent，参考 OES 事件驱动与状态机思路。</td><td>验证 SSE 解析、TLS、取消、背压、内存安全与工具链；不能因采用 C 就假定更快。</td></tr>
+<tr><td>业务 / 账务</td><td>Go 模块化业务服务及 Worker。</td><td>明确并发、内部契约与错误处理；每次预占是关键路径，不只是管理后台。</td></tr>
+<tr><td>全 C 对照</td><td>C 网关 + C 业务 / 账务，仍保留相同逻辑边界与 PostgreSQL 事务。</td><td>需要验证业务迭代、数据库与支付接口生态、内存安全和测试维护成本；不能以语言一致替代可靠账务设计。</td></tr>
+<tr><td>全 Go 对照</td><td>纯 Go 网关 + Go 业务，保留相同逻辑边界。</td><td>用相同硬件、模拟上游和负载比较长连接、慢客户端、尾延迟、CPU / 内存与开发维护成本，再决定是否采用双语言。</td></tr>
+<tr><td>主存储</td><td>PostgreSQL 权威账本、预占与 Outbox。</td><td>版本、主备持久化、切换及恢复能力待确定；内存和 Redis 不保存唯一余额。</td></tr>
+<tr><td>缓存 / 异步</td><td>Redis 按需；先数据库 Outbox + Worker。</td><td>依据共享限流、积压和吞吐证据引入组件，避免新的单点；投递重复依靠幂等收敛。</td></tr>
+<tr><td>前端 / 部署</td><td>普通管理控制台，React / Vue 或服务端渲染待定；初期容器化，不强制 Kubernetes。</td><td>两台业务机加托管 HA 数据层是部署建议，不是现有资源；选区、预算与长连接限制需确认。</td></tr>
+</tbody></table></div>
 <h3>多设备开发约定</h3>
 <p>GitHub 作为源代码与文档的同步点。每台设备开始前检查工作区并拉取，使用分支隔离较大任务；切换设备前提交并推送清晰的小步改动。不要同步生产数据库、真实密钥或本地凭证。依赖版本、数据库迁移、样例配置和本地启动步骤应入库；真实环境变量各设备独立配置。</p>
 <p>后续建议建立 ADR（架构决策记录）：记录问题、备选、选择、后果、验证方式与日期。首批 ADR 应覆盖 API 子集、后端语言、账务模型、流中断收费、未知用量处理和上游授权。</p>
@@ -211,7 +231,7 @@
 <div class="decision"><div class="priority">D03</div><div><h3>首版协议和功能子集是什么？</h3><p>建议先文本普通 / SSE；明确是否包含工具调用、缓存和推理维度。负责人：产品 + 后端，时间：P0。</p></div></div>
 <div class="decision"><div class="priority">D04</div><div><h3>未知用量、流中断和取消怎样收费？</h3><p>选择证据优先级、冻结期限、估计是否可入账、后补扣费与平台承担条件。负责人：产品 + 经营，时间：P0。</p></div></div>
 <div class="decision"><div class="priority">D05</div><div><h3>币种、余额、价格与退款政策怎样定义？</h3><p>确认记账精度、舍入、价格生效、预付模式与支付渠道。真实收费前完成；原型只用测试额度。</p></div></div>
-<div class="decision"><div class="priority">D06</div><div><h3>选择什么技术栈和部署区域？</h3><p>依据团队熟悉度、供应商地域、预算和 SSE 原型数据确定。负责人：技术，时间：P0–P1。</p></div></div>
+<div class="decision"><div class="priority">D06</div><div><h3>选择什么技术栈和部署区域？</h3><p>比较全 C、全 Go 与 C + Go 对照原型，依据团队熟悉度、供应商地域、预算、SSE 与故障测试确定。负责人：技术，时间：P0–P1。</p></div></div>
 <div class="decision"><div class="priority">D07</div><div><h3>需要多大容量、保留什么数据？</h3><p>确定并发、平均 / 长尾流长、日志与证据留存、客户数据限制、RPO / RTO。负责人：技术 + 产品，时间：P1 前。</p></div></div>
 <div class="decision"><div class="priority">D08</div><div><h3>谁处理故障、差异与客户争议？</h3><p>指定值守、调账复核、告警升级和上线签字角色；即使团队很小也需明确责任。时间：试点前。</p></div></div>
 <div class="callout"><strong>下一步建议</strong><p>先完成 D01–D04 和一个小型技术验证：一条真实授权的文本请求，在正常结束、断流、重复提交和进程重启四种情况下，都能得到可解释的调用与账务结果。再根据验证结果确认最终技术栈与开发计划。</p></div>
@@ -220,7 +240,7 @@
 <section id="references">
 <div class="section-top"><span class="section-num">16 / REFERENCES</span><h2>术语与官方来源</h2></div>
 <div class="grid2"><article class="card"><h3>核心术语</h3><p><strong>Token：</strong>模型处理的计量单位，不等同于字数。<br><strong>SSE：</strong>HTTP 事件流格式，用于逐步传输结果。<br><strong>Tenant：</strong>拥有独立权限、预算和数据边界的客户主体。<br><strong>Attempt：</strong>逻辑请求中的一次实际上游尝试。<br><strong>Reservation：</strong>预占 / 冻结额度，不是最终消费。</p></article><article class="card"><h3>工程术语</h3><p><strong>Outbox：</strong>在业务事务内记录待处理事件，再由后台可靠投递。<br><strong>Idempotency：</strong>重复处理同一业务动作不重复产生副作用。<br><strong>PITR：</strong>恢复到指定时间点。<br><strong>RPO / RTO：</strong>可接受数据损失窗口 / 恢复服务时长。<br><strong>ADR：</strong>记录架构选择及理由的决策文档。</p></article></div>
-<p>以下为技术行为的官方依据，访问日期均为 <strong>2026-10-30</strong>。文中架构、政策、阈值与路线是针对 TokenHarbor 的设计建议，并非这些来源对本项目的背书。在线文档可能更新，实施时应固定版本并再次核对。</p>
+<p>以下为技术行为的官方依据，原来源 [1]–[8] 访问日期为 <strong>2026-10-30</strong>；新增 [9] 为 2026-11-04 架构更新所附的实施核验入口。文中架构、政策、阈值与路线是针对 TokenHarbor 的设计建议，并非这些来源对本项目的背书。在线文档可能更新，实施时应固定版本并再次核对。</p>
 <ol class="sources">
 <li id="s1"><strong>[1]</strong> <a href="https://html.spec.whatwg.org/multipage/server-sent-events.html">WHATWG — Server-sent events</a><p>支持 SSE 事件格式、UTF-8、EventSource 连接与重连行为；不代表 POST 生成调用具备自动安全重试。</p></li>
 <li id="s2"><strong>[2]</strong> <a href="https://developers.openai.com/api/reference/resources/chat/subresources/completions/streaming-events">OpenAI — Chat Completions streaming events</a><p>支持 include_usage 与中断可能缺失最终 usage 的描述；只引用该端点，不扩大为所有 OpenAI API 的统一语义。</p></li>
@@ -230,10 +250,11 @@
 <li id="s6"><strong>[6]</strong> <a href="https://redis.io/docs/latest/commands/incr/">Redis — INCR / Rate limiter patterns</a><p>支持限流计数、过期与竞态处理的说明。</p></li>
 <li id="s7"><strong>[7]</strong> <a href="https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html">OWASP — Logging Cheat Sheet</a><p>支持敏感数据排除、日志访问保护与安全日志设计；具体留存期限由本项目另行确定。</p></li>
 <li id="s8"><strong>[8]</strong> <a href="https://www.postgresql.org/docs/current/continuous-archiving.html">PostgreSQL — Continuous Archiving and PITR</a><p>支持基础备份与 WAL 回放的恢复机制；RPO / RTO 需要实际演练，不能由机制本身保证。</p></li>
+<li id="s9"><strong>[9]</strong> <a href="https://www.postgresql.org/docs/current/warm-standby.html">PostgreSQL — Standby / Streaming Replication</a><p>同步与异步复制的持久化、延迟和故障切换取舍；实施时核实所选版本及托管服务保证，不能由副本数量推导 SLA。</p></li>
 </ol>
 <p class="small">本文件正文、图示和样式均内嵌，无 CDN、外部字体或联网读取依赖；点击参考链接才访问外部网站。可关闭 JavaScript 阅读全文，打印按钮和目录高亮是可选增强。</p>
 </section>
-<footer class="footer"><span>TokenHarbor · 项目规划 v0.1 · 2026-10-30<br>文档资产，随已批准的决策持续更新。</span><a href="#top">返回顶部 ↑</a></footer>
+<footer class="footer"><span>TokenHarbor · 项目规划 v0.2 · 2026-11-04<br>文档资产，随已批准的决策持续更新。</span><a href="#top">返回顶部 ↑</a></footer>
 </main>
 <script>
 if ('IntersectionObserver' in window) {
@@ -252,3 +273,4 @@ if ('IntersectionObserver' in window) {
 </script>
 </body>
 </html>
+
