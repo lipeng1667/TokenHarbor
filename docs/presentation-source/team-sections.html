@@ -1,223 +1,263 @@
-<section class="chapter" id="slide-1" data-title="团队技术背景">
-  <header class="section-heading"><span class="section-index">01</span><div><p class="eyebrow">团队技术背景</p><h2>通信系统与数据平台</h2></div></header>
+<!-- 团队历史项目 01–06：依照原始 PPT 的图文、层次和数据恢复。 -->
+<section class="chapter ppt-restored" id="slide-1" data-title="行业背景">
+  <header class="section-heading"><span class="section-index">01</span><div><p class="eyebrow">团队历史项目资料</p><h2>行业背景</h2></div></header>
   <div class="section-body">
-    <p class="lead">围绕通信能力开放、业务系统与数据服务，梳理团队既往项目中的系统工程经验。</p>
-    <div class="band"><h3>从接口接入，到持续运行</h3><p>统一业务入口，管理不同网络与服务之间的协议差异，并让状态、计量和运营过程能够被观察与解释。</p></div>
-    <div class="grid-3">
-      <article class="feature"><h3>通信系统</h3><p>短信网关、号码认证、网络服务与多媒体消息等技术方向，关注协议适配、路由与交付。</p></article>
-      <article class="feature"><h3>数据服务</h3><p>业务日志与通信话单的采集、加工、存储和分析，连接业务运营与能力开放。</p></article>
-      <article class="feature"><h3>运行保障</h3><p>分布式部署、关键节点冗余、连接与实例管理，以及统计和计费系统的协同。</p></article>
+    <div class="ppt-background-band">
+      <img src="media/industry-welding.png" alt="原稿中的工业焊接场景" width="283" height="283" loading="lazy">
+      <div class="ppt-background-copy"><h3>背景及需求</h3><p>原项目团队主营高性能计算与大数据服务</p><p>为电信运营商和互联网深度联合提供数据服务平台</p><p>解决行业发展痛点</p></div>
+      <img src="media/industry-city.png" alt="原稿中的城市街道与人群场景" width="283" height="283" loading="lazy">
     </div>
-    <p class="note">以下内容是团队既往技术经验的整理。具体项目归属与对外披露范围待确认，历史业务规模和性能数据不作为当前产品承诺。</p>
+    <div class="ppt-background-points">
+      <article><span class="ppt-number">01</span><p>团队深耕通信行业多年，精通电信运营商技术，对电信行业发展现状有深刻理解。</p></article>
+      <article><span class="ppt-number">02</span><p>伴随国企混改的浪潮，电信运营商与互联网行业进入深度合作阶段，诞生巨大的行业机会。</p></article>
+      <article><span class="ppt-number">03</span><p>针对行业痛点，研发高性能数据服务平台，提供低时延、高性能、高可用的数据服务。</p></article>
+    </div>
+    <p class="historical-note">本章保留原稿的行业背景与团队项目定位，描述对应原项目时期。</p>
   </div>
 </section>
 
-<section class="chapter" id="slide-2" data-title="短信网关">
-  <header class="section-heading"><span class="section-index">02</span><div><p class="eyebrow">通信能力接入</p><h2>短信网关</h2></div></header>
+<section class="chapter ppt-restored" id="slide-2" data-title="电信级产品 短信网关">
+  <header class="section-heading"><span class="section-index">02</span><div><p class="eyebrow">团队历史项目资料</p><h2><span class="ppt-title-unit">电信级产品</span> <span class="ppt-title-unit">短信网关</span></h2></div></header>
   <div class="section-body">
-    <p class="lead">在企业应用与运营商网络之间，建立清晰的接入、适配和消息交付边界。</p>
-    <figure class="diagram">
-      <div class="flow-row">
-        <div class="node"><strong>企业应用 / SP</strong><span>提交消息、接收状态</span></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node"><strong>统一接入网关</strong><span>身份校验、协议与业务规则</span></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node"><strong>运营商通道</strong><span>通道适配、路由与消息下发</span></div>
-      </div>
-      <figcaption>业务入口与网络通道分别管理，处理过程结合消息状态与计量记录追踪。</figcaption>
-    </figure>
-    <div class="grid-3">
-      <article class="feature"><h3>统一接入</h3><p>向业务应用提供一致的接入入口，减少应用分别维护多套通信协议的工作。</p></article>
-      <article class="feature"><h3>多协议适配</h3><p>将具体运营商与通道的协议差异放入适配层，保持业务处理与网络接入的职责边界。</p></article>
-      <article class="feature"><h3>状态与计量</h3><p>关联消息处理、业务管理和计费采集，为运行维护与结算提供依据。</p></article>
-    </div>
-  </div>
-</section>
-
-<section class="chapter" id="slide-3" data-title="号码认证平台">
-  <header class="section-heading"><span class="section-index">03</span><div><p class="eyebrow">身份与业务接入</p><h2>号码认证平台</h2></div></header>
-  <div class="section-body">
-    <p class="lead">让应用通过统一接口使用身份验证能力，并明确用户操作、网络条件与回退路径。</p>
-    <div class="table-wrap" tabindex="0" aria-label="身份验证方式与接入要点">
-      <table>
-        <caption>身份验证方式与接入要点</caption>
-        <thead><tr><th scope="col">验证方式</th><th scope="col">典型交互</th><th scope="col">接入关注点</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">密码验证</th><td data-label="典型交互">用户提交账号与密码</td><td data-label="接入关注点">凭证维护、登录流程与账号恢复</td></tr>
-          <tr><th scope="row">短信验证</th><td data-label="典型交互">接收并提交短信验证码</td><td data-label="接入关注点">消息交付状态、有效期和重复请求</td></tr>
-          <tr><th scope="row">号码认证</th><td data-label="典型交互">应用调用运营商号码验证能力</td><td data-label="接入关注点">用户授权、网络与终端条件、适用范围和失败回退</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="grid-2">
-      <article class="feature"><h3>统一验证入口</h3><p>将应用侧调用与运营商能力适配分开，集中处理协议、状态和错误反馈。</p></article>
-      <article class="feature"><h3>按场景选择交互</h3><p>根据应用环境与验证目标选择适用能力，不以单一方式替代所有身份校验场景。</p></article>
-    </div>
-    <p class="note">本表说明流程差异，不构成安全性、成本或体验的统一评级。实际能力范围以所接入服务及业务验证结果为准。</p>
-  </div>
-</section>
-
-<section class="chapter" id="slide-4" data-title="QoS 差异化服务">
-  <header class="section-heading"><span class="section-index">04</span><div><p class="eyebrow">网络服务</p><h2>QoS 差异化服务</h2></div></header>
-  <div class="section-body">
-    <p class="lead">围绕不同业务对网络体验的要求，讨论服务策略、能力接入与效果观察。</p>
-    <div class="grid-2">
-      <article class="feature"><h3>互动娱乐</h3><p>关注交互过程中的时延、波动与连续性，将业务场景与可用网络能力关联。</p></article>
-      <article class="feature"><h3>实时内容</h3><p>关注直播等内容服务的传输体验，以及应用侧策略与网络侧能力的配合。</p></article>
-      <article class="feature"><h3>终端体验</h3><p>结合终端应用入口与服务配置，管理能力的申请、使用和状态反馈。</p></article>
-      <article class="feature"><h3>使用规则</h3><p>围绕套餐与业务约定配置服务规则，明确适用对象、限制和用户可见状态。</p></article>
-    </div>
-    <figure class="diagram">
-      <div class="flow-row">
-        <div class="node"><strong>业务场景</strong><span>体验目标与使用条件</span></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node"><strong>服务策略</strong><span>授权范围与能力配置</span></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node"><strong>网络能力</strong><span>执行状态与效果观察</span></div>
-      </div>
-      <figcaption>以上为服务场景与职责示意，实际网络效果需要在具体接入环境中验证。</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="chapter" id="slide-5" data-title="通信防打扰服务">
-  <header class="section-heading"><span class="section-index">05</span><div><p class="eyebrow">用户通信体验</p><h2>通信防打扰服务</h2></div></header>
-  <div class="section-body">
-    <p class="lead">围绕来电处理、消息提醒与用户设置，组织可解释的通信服务流程。</p>
-    <div class="grid-2">
-      <article class="feature"><h3>处理不希望接收的来电</h3><ul class="capabilities"><li>按用户设置管理黑白名单</li><li>识别与处理骚扰类呼叫</li><li>向用户提供处理结果与状态</li></ul></article>
-      <article class="feature"><h3>保留必要的通信信息</h3><ul class="capabilities"><li>漏话提醒与来电记录</li><li>智能应答与语音信箱</li><li>通讯录与联系人管理</li></ul></article>
-    </div>
-    <figure class="diagram">
-      <div class="flow-row">
-        <div class="node"><strong>来电与用户设置</strong><span>输入服务规则</span></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node"><strong>规则处理</strong><span>放行、拦截或应答</span></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node"><strong>记录与提醒</strong><span>让处理过程可查看</span></div>
-      </div>
-      <figcaption>能力组合与处理规则应清晰可见，不能把所有未接通来电都等同于骚扰。</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="chapter" id="slide-6" data-title="商城类运营支撑">
-  <header class="section-heading"><span class="section-index">06</span><div><p class="eyebrow">业务运营系统</p><h2>商城类运营支撑</h2></div></header>
-  <div class="section-body">
-    <p class="lead">将权益供给、活动运营与用户服务连接起来，让业务配置和交付过程可以持续维护。</p>
-    <figure class="diagram">
-      <div class="flow-row">
-        <div class="node"><strong>权益与内容供给</strong><span>餐饮、视频、娱乐、阅读、音乐、教育</span></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node"><strong>商城与运营平台</strong><span>活动配置、权益组合与订单处理</span></div>
-        <span class="connector" aria-hidden="true">→</span>
-        <div class="node"><strong>用户服务</strong><span>领取、使用与状态反馈</span></div>
-      </div>
-      <figcaption>平台组织供给与服务流程；活动效果需要结合实际用户行为和运营数据评估。</figcaption>
-    </figure>
-    <div class="grid-3">
-      <article class="feature"><h3>用户维护</h3><p>围绕不同使用阶段设计权益与触达方案，支持用户维护和回流活动。</p></article>
-      <article class="feature"><h3>运营配置</h3><p>集中管理商品、权益和活动规则，降低重复配置与人工协调工作。</p></article>
-      <article class="feature"><h3>效果观察</h3><p>跟踪参与、订单与权益使用情况，为活动调整提供具体依据。</p></article>
-    </div>
-  </div>
-</section>
-
-<section class="chapter" id="slide-7" data-title="大数据服务">
-  <header class="section-heading"><span class="section-index">07</span><div><p class="eyebrow">数据工程</p><h2>大数据服务</h2></div></header>
-  <div class="section-body">
-    <p class="lead">将分散的业务数据整理为可分析、可使用、可追溯的数据服务。</p>
-    <figure class="diagram">
-      <div class="grid-3">
-        <div class="module"><h3>输入数据</h3><div class="flow-column"><div class="node"><strong>用户资料</strong><span>按业务授权使用</span></div><div class="node"><strong>通信话单</strong><span>CDR 与业务计量记录</span></div><div class="node"><strong>业务日志</strong><span>服务运行与业务事件</span></div></div></div>
-        <div class="module"><h3>加工与管理</h3><div class="flow-column"><div class="node"><strong>ETL</strong><span>采集、整理与转换</span></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>模型与存储</strong><span>Model / Store</span></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>数据输出</strong><span>Output</span></div></div></div>
-        <div class="module"><h3>服务输出</h3><div class="flow-column"><div class="node"><strong>数据平台</strong><span>面向业务的数据分析</span></div><div class="node"><strong>能力开放平台</strong><span>向应用提供数据能力</span></div><div class="node"><strong>业务安全平台</strong><span>支持规则与风险分析</span></div></div></div>
-      </div>
-      <figcaption>数据按采集、加工、管理和输出分层组织，使用范围与授权条件需要贯穿整个流程。</figcaption>
-    </figure>
-    <div class="callout"><strong>面向业务的分析方向</strong><p>产品推荐、业务安全、运营分析与营销服务等场景，分别定义数据范围、评价方式与实际使用边界。</p></div>
-  </div>
-</section>
-
-<section class="chapter" id="slide-8" data-title="互联网业务能力开放平台">
-  <header class="section-heading"><span class="section-index">08</span><div><p class="eyebrow">平台化能力</p><h2>互联网业务能力开放平台</h2></div></header>
-  <div class="section-body">
-    <p class="lead">把能力接入、业务分析与运营服务组织为可组合的平台职责。</p>
-    <div class="grid-3">
-      <article class="feature"><h3>能力接入</h3><ul class="capabilities"><li>短信、号码验证与网络服务</li><li>业务风控与规则服务</li><li>图像、语音、内容识别等 AI 能力接入方向</li></ul></article>
-      <article class="feature"><h3>业务分析</h3><ul class="capabilities"><li>用户与业务指标分析</li><li>业务流程与运行情况观察</li><li>异常行为与安全风险分析</li></ul></article>
-      <article class="feature"><h3>运营服务</h3><ul class="capabilities"><li>短信、语音与互联网渠道协同</li><li>业务规则与触达配置</li><li>活动结果与服务效果观察</li></ul></article>
-    </div>
-    <div class="band"><h3>应用连接能力，数据支持决策</h3><p>应用通过明确的接口使用服务，平台记录业务过程，再把分析结果用于规则配置与运营改进。</p></div>
-    <p class="note">这里展示能力组织方式，不表示所有服务均已由申行科技开放，也不表示新的 AI 平台已完成全部能力建设。</p>
-  </div>
-</section>
-
-<section class="chapter" id="slide-9" data-title="短信能力开放架构">
-  <header class="section-heading"><span class="section-index">09</span><div><p class="eyebrow">架构经验</p><h2>短信能力开放架构</h2></div></header>
-  <div class="section-body">
-    <p class="lead">把应用接入、消息通道和业务支撑分层，减少各系统之间的直接耦合。</p>
-    <figure class="diagram">
-      <div class="flow-column">
-        <div class="node"><strong>业务应用 / SP</strong><span>提交消息与接收业务状态</span></div>
-        <span class="connector" aria-hidden="true">↓</span>
-        <div class="node"><strong>行业网关</strong><span>面向业务的接入与消息处理</span></div>
-        <span class="connector" aria-hidden="true">↓</span>
-        <div class="branch-grid"><div class="node"><strong>能力开放接口模块 A</strong><span>协议接入</span></div><div class="node"><strong>能力开放接口模块 B</strong><span>协议接入</span></div></div>
-        <span class="connector" aria-hidden="true">↓</span>
-        <div class="side-support">
-          <div class="node"><strong>短信能力开放平台</strong><span>业务管理、网络管理、通道连接与计费采集</span></div>
-          <aside class="supporting-node" aria-label="BSS 与 C-BSS 业务支撑旁路"><strong>BSS / C-BSS</strong><span>业务支撑旁路</span><p>开户信息：BSS / C-BSS → 开放平台</p><p>计费话单：开放平台 → BSS / C-BSS</p></aside>
+    <div class="ppt-sms-layout">
+      <figure class="ppt-sms-figure"><img src="media/sms-partners-map.svg" alt="原稿短信业务示意图：淘宝网、中国农业银行、国家电网、支付宝、中国建设银行、海南航空、招商银行及12306标识汇入中国地图" loading="lazy"><figcaption>原稿保留的合作伙伴标识与短信业务地图<br><span class="history-tag">历史项目展示 关系与披露范围待核实</span></figcaption></figure>
+      <div class="ppt-sms-content">
+        <h3 class="ppt-centered-title">团队历史项目短信网关</h3>
+        <div class="ppt-sms-years" aria-label="原稿按年份展示的发送量">
+          <div><span class="ppt-year">2017</span><span class="ppt-year-bar" aria-hidden="true"></span><strong>34 <small>亿</small></strong></div>
+          <div><span class="ppt-year">2018</span><span class="ppt-year-bar" aria-hidden="true"></span><strong>260 <small>亿</small></strong></div>
+          <div><span class="ppt-year">2019</span><span class="ppt-year-bar" aria-hidden="true"></span><strong>1397 <small>亿</small></strong></div>
         </div>
-        <span class="connector" aria-hidden="true">↓</span>
-        <div class="branch-grid">
-          <div class="module"><h3>本网络内交付</h3><div class="flow-column"><div class="node"><strong>短消息中心</strong><span>提交、存储与转发</span></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>IMS / 终端接入</strong><span>消息交付至终端用户</span></div></div></div>
-          <div class="module"><h3>跨网络交付</h3><div class="flow-column"><div class="node"><strong>本方互通网关</strong><span>跨运营商消息互通</span></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>对方互通网关与短消息中心</strong><span>按目标网络路径交付至终端</span></div></div></div>
+        <p class="historical-note">原稿历史年份及发送量口径；横条保留原稿的视觉层次，不按数值比例绘制。</p>
+        <div class="ppt-history-statement"><p>原项目团队自主研发高性能短信网关，助力中国联通短信业务发展。</p><p>原稿记载：2019 年中国联通行业短信全部由该短信网关下发，截至原稿统计时发送量为 <strong>1397 亿</strong>。</p><span class="history-tag">原稿历史表述 统计范围待核实</span></div>
+        <div class="ppt-sms-metrics">
+          <article><div class="ppt-metric-bubble">1+7</div><p><strong>1</strong> 实现全联通行短一点接入</p><p><strong>7</strong> 支持 3 大运营商、7 种短信协议</p></article>
+          <article><div class="ppt-metric-bubble">6+10</div><p><strong>6</strong> 日均发送短信 6 亿条</p><p><strong>10</strong> 日最高发送短信 10 亿条</p></article>
+          <article><div class="ppt-metric-bubble">8209+200</div><p><strong>8209</strong> 累积接入用户 8209 家</p><p><strong>200</strong> 2019 年预计收益 200 亿</p><span class="history-tag">原稿预测 收益归属与口径待核实</span></article>
+        </div>
+        <p class="historical-note">以上为原项目历史资料中的能力、规模和预测数据，待核实统计周期及依据，不代表申行科技当前业绩。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter ppt-restored" id="slide-3" data-title="电信级产品 号码认证平台">
+  <header class="section-heading"><span class="section-index">03</span><div><p class="eyebrow">团队历史项目资料</p><h2><span class="ppt-title-unit">电信级产品</span> <span class="ppt-title-unit">号码认证平台</span></h2></div></header>
+  <div class="section-body">
+    <div class="ppt-auth-layout">
+      <div class="ppt-auth-evidence">
+        <figure class="ppt-market-chart">
+          <h3>中国号码验证市场规模及预测</h3>
+          <svg viewBox="0 0 560 200" role="img" aria-labelledby="auth-market-title auth-market-desc">
+            <title id="auth-market-title">原稿号码验证市场规模与预测趋势图</title><desc id="auth-market-desc">纵轴单位为亿元，范围0至80；横轴为2014至2019E，原图呈逐年上升趋势，2019E为预测。折线坐标从原 PPT 形状读取并按同一比例换算；原图没有标注逐点数值。</desc>
+            <g fill="none" stroke="#b6b6b6" stroke-width="1"><path d="M44 18H540V141.9045H44Z M44 48.9857H540 M44 79.9331H540 M44 110.9188H540"/></g>
+            <g fill="#555" font-size="14" text-anchor="end"><text x="33" y="23">80</text><text x="33" y="54">60</text><text x="33" y="85">40</text><text x="33" y="116">20</text><text x="33" y="147">0</text></g>
+            <!-- 折线来自 slide3.xml 的 5 条 4A7EBB 线段：统一缩放 496 / 4673520，保留原坐标与线段间微小间隙。 -->
+            <path d="M73.5720 118.9040L149.5652 99.6478 M149.5652 99.5714L232.6267 85.3203 M232.6649 85.2439L324.0937 60.2949 M324.1319 60.2949L420.2601 48.8711 M420.2601 48.7564L505.1554 28.2012" fill="none" stroke="#4a7ebb" stroke-width="2.2"/>
+            <circle cx="507.1995" cy="22.9478" r="15.4928" fill="none" stroke="#d73931" stroke-width="2.5" stroke-dasharray="7 4"/>
+            <g fill="#333" font-size="14" text-anchor="middle"><text x="64" y="169">2014</text><text x="149" y="169">2015</text><text x="235" y="169">2016</text><text x="328" y="169">2017</text><text x="419" y="169">2018</text><text x="505" y="169">2019E</text></g>
+          </svg>
+          <figcaption>原稿标注资料来源：华经产业研究院　单位：亿元<br><span class="history-tag">原稿历史预测图 2019E 为预测年份</span><br>折线坐标取自原 PPT 形状，原图未标注逐点数值；来源及预测依据待核实。</figcaption>
+        </figure>
+        <div class="ppt-rating-wrap">
+          <table class="ppt-rating-table"><caption>原稿验证方式比较</caption><thead><tr><th scope="col">比较维度</th><th scope="col">密码验证</th><th scope="col">短信验证</th><th scope="col" class="ppt-rating-highlight">取号产品</th></tr></thead><tbody>
+            <tr><th scope="row">用户体验</th><td><span class="ppt-rating quarter" role="img" aria-label="原稿评级四分之一"></span></td><td><span class="ppt-rating half" role="img" aria-label="原稿评级二分之一"></span></td><td class="ppt-rating-highlight"><span class="ppt-rating full" role="img" aria-label="原稿评级满格"></span></td></tr>
+            <tr><th scope="row">企业成本</th><td><span class="ppt-rating quarter" role="img" aria-label="原稿评级四分之一"></span></td><td><span class="ppt-rating full" role="img" aria-label="原稿评级满格"></span></td><td class="ppt-rating-highlight"><span class="ppt-rating half" role="img" aria-label="原稿评级二分之一"></span></td></tr>
+            <tr><th scope="row">接入难度</th><td><span class="ppt-rating quarter" role="img" aria-label="原稿评级四分之一"></span></td><td><span class="ppt-rating three-quarter" role="img" aria-label="原稿评级四分之三"></span></td><td class="ppt-rating-highlight"><span class="ppt-rating quarter" role="img" aria-label="原稿评级四分之一"></span></td></tr>
+            <tr><th scope="row">安全性</th><td><span class="ppt-rating quarter" role="img" aria-label="原稿评级四分之一"></span></td><td><span class="ppt-rating full" role="img" aria-label="原稿评级满格"></span></td><td class="ppt-rating-highlight"><span class="ppt-rating full" role="img" aria-label="原稿评级满格"></span></td></tr>
+          </tbody></table>
+          <p class="ppt-rating-legend"><span class="ppt-rating empty" aria-hidden="true"></span>低 <span class="ppt-rating full" aria-hidden="true"></span>高</p>
+          <p class="historical-note">忠实保留原稿的示意评级及高低图例；评级维度、方向和方法待核实，并非统一评测结论。</p>
         </div>
       </div>
-      <figcaption>展示主业务关系；具体部署、接口与消息路径依网络和业务配置确定。</figcaption>
-    </figure>
-    <div class="grid-2">
-      <article class="feature"><h3>BSS / C-BSS 业务支撑</h3><p>维护客户与开户信息，并向能力开放平台同步；接收平台采集的计费话单，用于业务统计与结算。</p></article>
-      <article class="feature"><h3>分工清晰的连接关系</h3><p>行业网关连接业务应用，能力开放平台组织通道和计量，短消息中心与互通网关处理不同交付路径。</p></article>
-    </div>
-  </div>
-</section>
-
-<section class="chapter" id="slide-10" data-title="OES 系统工程经验">
-  <header class="section-heading"><span class="section-index">10</span><div><p class="eyebrow">系统工程</p><h2>OES 系统工程经验</h2></div></header>
-  <div class="section-body">
-    <p class="lead">围绕可靠性、资源利用、吞吐与业务扩展，组织系统设计与验证工作。</p>
-    <div class="grid-2">
-      <article class="feature"><h3>可靠性设计</h3><ul class="capabilities"><li>分布式部署与节点职责划分</li><li>关键节点的主备架构</li><li>故障识别、切换与恢复</li></ul></article>
-      <article class="feature"><h3>资源与部署</h3><ul class="capabilities"><li>通用服务器部署</li><li>单节点多实例组织</li><li>按业务负载配置资源</li></ul></article>
-      <article class="feature"><h3>性能与容量</h3><ul class="capabilities"><li>并发连接与实例调度</li><li>吞吐、时延与资源占用观察</li><li>按实际负载进行容量验证</li></ul></article>
-      <article class="feature"><h3>业务扩展</h3><ul class="capabilities"><li>与既有通信网元连接</li><li>增加协议与业务功能</li><li>按项目边界支持定制需求</li></ul></article>
-    </div>
-    <div class="callout"><strong>技术经验需要在新负载下重新验证</strong><p>AI 流式响应、慢客户端和长时间异步任务具有不同的资源与恢复要求。既往系统的性能描述不能直接用作 TokenHarbor 的性能承诺。</p></div>
-  </div>
-</section>
-
-<section class="chapter" id="slide-11" data-title="MaaP 多媒体消息架构">
-  <header class="section-heading"><span class="section-index">11</span><div><p class="eyebrow">多媒体业务平台</p><h2>MaaP 多媒体消息架构</h2></div></header>
-  <div class="section-body">
-    <p class="lead">将业务管理、消息分发与终端归属分开，协同管理多媒体内容及其交付路径。</p>
-    <figure class="diagram">
-      <div class="flow-column">
-        <div class="branch-grid"><div class="node"><strong>Chatbot 业务接入</strong><span>提交业务消息</span></div><div class="node"><strong>业务管理平台</strong><span>创建、审批与信息维护</span></div></div>
-        <span class="connector" aria-hidden="true">↓</span>
-        <div class="branch-grid"><div class="node"><strong>MaaP 统一分发模块</strong><span>组织业务分发</span></div><div class="node"><strong>MaaP 管理模块</strong><span>向各平台同步管理命令</span></div></div>
-        <span class="connector" aria-hidden="true">↓</span>
-        <div class="branch-grid">
-          <div class="module"><h3>平台与接入域 A</h3><div class="flow-column"><div class="node"><strong>MaaP 平台 A</strong><span>Chatbot 信息、消息业务与多媒体文件</span><div class="supporting-node"><span>配套服务：目录与文件存储</span></div></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>RCS AS A</strong><span>按用户所属域处理业务</span></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>IMS 与终端用户</strong><span>VoLTE / 5G 消息接入</span></div></div></div>
-          <div class="module"><h3>平台与接入域 B</h3><div class="flow-column"><div class="node"><strong>MaaP 平台 B</strong><span>Chatbot 信息、消息业务与多媒体文件</span><div class="supporting-node"><span>配套服务：目录与文件存储</span></div></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>RCS AS B</strong><span>按用户所属域处理业务</span></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>IMS 与终端用户</strong><span>VoLTE / 5G 消息接入</span></div></div></div>
-        </div>
+      <div class="ppt-auth-copy">
+        <article><h3>用户鉴权验证的市场空间巨大</h3><p>随着移动互联网行业不断发展，用户鉴权验证（包括短信验证码等）的市场规模也随之扩大。</p></article>
+        <article><h3>取号网关产品拥有更强的产品力</h3><p>原稿将取号网关的产品特点概括为：用户体验好、安全性高、接入难度低、企业成本适中，并判断其将成为未来市场发展的主流技术。</p><p>原项目团队研发的取号网关采用第二代技术架构；“领先行业其他第一代产品”为原稿产品定位，比较依据待核实。</p></article>
+        <div class="ppt-down-chevron" aria-hidden="true"></div>
+        <p class="ppt-auth-positioning">原稿产品定位<br><strong>面向下一代用户鉴权系统的取号网关</strong></p>
+        <div class="ppt-auth-metrics"><div><strong>6000</strong><span>近 6000 家 APP 使用</span></div><div><strong>20 亿</strong><span>每天使用量超 20 亿次</span></div><div><strong>5G</strong><span>支持 5G 套餐用户</span></div></div>
+        <p>原稿记载：中国联通采购原项目团队提供的取号网关后，开始向客户提供取号服务；当时已有近 6000 家 APP 使用该服务，每天使用量超 20 亿次，并已支持 5G 套餐用户，原稿表述为“用户全覆盖”。</p>
+        <p class="historical-note">原稿历史口径；用户数、调用量、覆盖范围及采购关系待核实，不代表当前在用规模或现有合作承诺。</p>
       </div>
-      <figcaption>MaaP 平台管理业务侧 Chatbot 信息与相关多媒体内容；RCS AS 按终端所属域提供服务，并处理对应终端上传的多媒体内容。</figcaption>
-    </figure>
-    <div class="grid-2">
-      <article class="feature"><h3>目录与路由</h3><p>业务管理命令分发到各 MaaP 平台，原架构中各平台维护全量 Chatbot 目录，终端接入按所属域组织。</p></article>
-      <article class="feature"><h3>鉴权与内容管控</h3><p>BSF 承担 Chatbot 接入鉴权相关职责，安全管控系统在多媒体内容提交与业务下发过程中执行审核。</p></article>
     </div>
+  </div>
+</section>
+
+<section class="chapter ppt-restored" id="slide-4" data-title="电信级产品 QoS 差异化服务">
+  <header class="section-heading"><span class="section-index">04</span><div><p class="eyebrow">团队历史项目资料</p><h2><span class="ppt-title-unit">电信级产品</span> <span class="ppt-title-unit">QoS 差异化服务</span></h2></div></header>
+  <div class="section-body">
+    <div class="ppt-qos-grid">
+      <figure><h3><span class="ppt-qos-number">1</span>腾讯手游加速</h3><img src="media/qos-tencent-game.png" alt="原稿腾讯手游加速场景：游戏加速界面、王卡加速宝与游戏加速宝产品图片" loading="lazy"></figure>
+      <figure><h3><span class="ppt-qos-number">2</span>阿里宝卡直播加速</h3><img src="media/qos-alibaba-live.png" alt="原稿阿里宝卡直播加速场景中的直播加速宣传与服务界面" loading="lazy"></figure>
+      <figure><h3><span class="ppt-qos-number">3</span>黑鲨手机加速</h3><img src="media/qos-blackshark-game.png" alt="原稿黑鲨游戏手机与游戏加速界面" loading="lazy"></figure>
+      <figure><h3><span class="ppt-qos-number">4</span>学习王卡限速</h3><img src="media/qos-study-card.png" alt="原稿学习王卡限速控制界面与学习王卡产品宣传图" loading="lazy"></figure>
+    </div>
+    <p class="historical-note">保留原稿四象限产品场景与产品图片。图片中的品牌、套餐、价格及界面属于历史展示，合作关系与对外披露范围待核实。</p>
+  </div>
+</section>
+
+<section class="chapter ppt-restored" id="slide-5" data-title="电信级产品 防骚扰管家">
+  <header class="section-heading"><span class="section-index">05</span><div><p class="eyebrow">团队历史项目资料</p><h2><span class="ppt-title-unit">电信级产品</span> <span class="ppt-title-unit">防骚扰管家</span></h2></div></header>
+  <div class="section-body">
+    <div class="ppt-antiharassment-layout">
+      <div class="ppt-antiharassment-needs">
+        <h3 class="ppt-cloud-title">用户被骚扰现状</h3>
+        <ul class="ppt-word-cloud ppt-problem-cloud"><li>教育培训</li><li>保险理财</li><li>广告推销</li><li>房产中介</li><li>诈骗电话</li><li>“响一声”</li><li>招聘猎头</li></ul>
+        <div class="ppt-cycle-arrows" aria-hidden="true">↻<span>↺</span></div>
+        <ul class="ppt-word-cloud ppt-solution-cloud"><li>漏话提醒</li><li>智能应答</li><li>智能通讯录</li><li>骚扰拦截</li><li>语音信箱</li><li>黑白名单</li></ul>
+        <p class="ppt-cloud-conclusion">防骚扰产品解决用户痛点</p>
+      </div>
+      <div class="ppt-phone-gallery">
+        <figure><img src="media/antiharassment-manager-ui.png" alt="原稿手机管家尊享版产品界面，展示产品说明与主要功能" loading="lazy"><figcaption>手机管家尊享版历史产品界面</figcaption></figure>
+        <figure><img src="media/antiharassment-dashboard-public.png" alt="原稿防骚扰管理界面，展示骚扰来电统计、黑白名单、拦截记录、智能应答和漏接记录" loading="lazy"><figcaption>防骚扰统计与功能管理界面</figcaption></figure>
+      </div>
+    </div>
+    <p class="historical-note">原稿历史产品展示；套餐价格、服务规则与界面数据保留原貌，不作为当前服务说明。</p>
+  </div>
+</section>
+
+<section class="chapter ppt-restored" id="slide-6" data-title="增值产品 商城类运营支撑">
+  <header class="section-heading"><span class="section-index">06</span><div><p class="eyebrow">团队历史项目资料</p><h2><span class="ppt-title-unit">增值产品</span> <span class="ppt-title-unit">商城类运营支撑</span></h2></div></header>
+  <div class="section-body">
+    <div class="ppt-mall-diagram">
+      <div class="ppt-mall-rowlabel ppt-mall-role-label">角色</div><h3 class="ppt-mall-channel-title">下游渠道商</h3><h3 class="ppt-mall-platform-title">商城类运营</h3><h3 class="ppt-mall-users-title">用户</h3>
+      <div class="ppt-mall-rowlabel ppt-mall-composition-label">组成</div>
+      <ul class="ppt-mall-channels"><li>餐饮</li><li>视频</li><li>娱乐</li><li>阅读</li><li>音乐</li><li>教育</li></ul>
+      <div class="ppt-mall-platform"><p>原项目团队以平台建设及运营支撑的方式，为客户提供福利商城、砍价频道等多种技术和运营服务。</p><p>原稿记载：商城类技术服务为客户的用户维系、拉新促活和业绩提升提供助力。</p></div>
+      <ul class="ppt-mall-users"><li>高危用户</li><li>离网用户</li><li>充值用户</li></ul>
+      <div class="ppt-mall-rowlabel ppt-mall-effect-label">效果</div>
+      <div class="ppt-mall-customer-effects"><h4>为客户</h4><ul><li>降低用户离网率 <strong>4%</strong></li><li>提升用户 ARPU 值 <strong>12 元</strong></li><li>提升用户活跃度</li><li>提升用户满意度</li></ul><span class="history-tag">原稿历史效果 统计口径待核实</span></div>
+      <div class="ppt-mall-effect-arrows" aria-hidden="true"><span>← 为客户</span><span>为用户 →</span></div>
+      <div class="ppt-mall-user-effects"><h4>为用户</h4><ul><li><strong>数百种</strong>可选福利商品</li><li>日订单超 <strong>2 万单</strong></li><li>月补贴超 <strong>千万元</strong></li><li>价格低至市场价 <strong>5 折</strong></li></ul><span class="history-tag">原稿历史效果 统计口径待核实</span></div>
+    </div>
+    <p class="historical-note">原稿未标明上述效果的统计时间、样本、基线及归属。4% 的单位含义、ARPU 提升的统计周期和补贴范围仍待核实；此处保留历史资料，不作当前成效承诺。</p>
+  </div>
+</section>
+
+<section class="chapter ppt-restored" id="slide-7" data-title="大数据服务">
+  <header class="section-heading"><span class="section-index">07</span><div><p class="eyebrow">核心产品 · 团队历史项目</p><h2>大数据服务</h2></div></header>
+  <div class="section-body">
+    <div class="ppt-data-layout">
+      <div class="ppt-data-side"><h3>输入数据</h3><ul class="ppt-data-list"><li>用户资料</li><li>运营商 CDR 话单</li><li>业务日志</li></ul></div>
+      <figure class="ppt-visual ppt-gears"><div class="ppt-figure-art"><img src="media/big-data-gears-shapes.svg" alt="" loading="lazy"><span class="ppt-figure-label ppt-gear-label" style="left:28.9%;top:32.4%">ETL</span><span class="ppt-figure-label ppt-gear-label ppt-gear-model" style="left:57.1%;top:56.8%">Model</span><span class="ppt-figure-label ppt-gear-label" style="left:85.1%;top:39.3%">Output</span><span class="ppt-figure-label ppt-gear-label" style="left:15.5%;top:60.7%">Data</span><span class="ppt-figure-label ppt-gear-label" style="left:64.1%;top:89.4%">Store</span></div><figcaption>数据加工与管理</figcaption></figure>
+      <div class="ppt-data-side"><h3>输出成果</h3><ul class="ppt-data-list"><li>运营商大数据平台</li><li>ToI 能力开放平台</li><li>业务安全平台</li></ul></div>
+    </div>
+    <div class="ppt-data-footer">
+      <div class="history-data"><span class="history-tag">原稿历史口径</span><p><strong>每日处理数据超过千亿条，精准描绘用户画像</strong></p><p>成果用于产品推荐、金融风控、业务安全、精准营销</p></div>
+      <div class="ppt-client-group"><h3>服务数十家大型互联网公司 <span class="history-tag">原稿历史口径</span></h3><div class="ppt-client-logos"><img src="media/brand-didi.jpeg" alt="原稿展示的滴滴标识" loading="lazy"><img src="media/brand-toutiao.jpeg" alt="原稿展示的今日头条标识" loading="lazy"><img src="media/brand-ant-financial.jpeg" alt="原稿展示的蚂蚁金服标识" loading="lazy"><img src="media/brand-tencent.jpeg" alt="原稿展示的 Tencent 腾讯标识" loading="lazy"></div></div>
+    </div>
+    <p class="historical-note">本页保留原项目团队的历史业务描述与原稿标识。数据规模、统计周期、客户关系及标识对外使用权限待核实，不表示申行科技或 TokenHarbor 当前的客户关系与交付规模。</p>
+  </div>
+</section>
+
+<section class="chapter ppt-restored" id="slide-8" data-title="互联网业务智能服务云平台">
+  <header class="section-heading"><span class="section-index">08</span><div><p class="eyebrow">核心产品 · 团队历史项目</p><h2><span class="ppt-title-unit">互联网业务</span> <span class="ppt-title-unit">智能服务云平台</span></h2></div></header>
+  <div class="section-body">
+    <p class="lead"><strong>目标：</strong>伴随 5G 应用变革，基于大数据和人工智能技术赋能互联网企业，助力构建安全繁盛新时代。</p>
+    <div class="ppt-capability-layout">
+      <article class="ppt-capability-copy ppt-capability-access"><h3>面向开发者的能力接入服务</h3><ul class="capabilities"><li><strong>身份校验：</strong>提供短信、取号、加速等服务</li><li><strong>业务风控：</strong>用户评分、欺诈检测、防刷防盗</li><li><strong>AI 辅助：</strong>人脸识别、语音识别、内容识别</li></ul></article>
+      <figure class="ppt-visual ppt-capability-triangle"><div class="ppt-figure-art"><img src="media/cloud-capabilities-shapes.svg" alt="" loading="lazy"><span class="ppt-figure-label ppt-capability-label ppt-label-white" style="left:50.6%;top:13.3%">开放<br>能力</span><span class="ppt-figure-label ppt-capability-label ppt-label-white" style="left:11.2%;top:86.3%">精准<br>营销</span><span class="ppt-figure-label ppt-capability-label ppt-label-white" style="left:88.8%;top:86.3%">业务<br>分析</span><span class="ppt-figure-label ppt-capability-inner-label" style="left:35.8%;top:61.3%">连接</span><span class="ppt-figure-label ppt-capability-inner-label" style="left:58.4%;top:49.5%">应用</span><span class="ppt-figure-label ppt-capability-inner-label" style="left:55.6%;top:77.8%">分析</span></div><figcaption>业务体系结构</figcaption></figure>
+      <article class="ppt-capability-copy ppt-capability-analysis"><h3>全视角深层次业务分析服务</h3><ul class="capabilities"><li><strong>用户分析：</strong>精准用户画像</li><li><strong>业务分析：</strong>指标计算、业务流分析、产品脆弱分析</li><li><strong>安全分析：</strong>黑客攻击、羊毛党危害、虚假交易</li></ul></article>
+      <article class="ppt-capability-copy ppt-capability-marketing"><h3>全渠道一站式精准营销服务</h3><ul class="capabilities"><li><strong>短信营销：</strong>普通短信、彩信、数字短信</li><li><strong>语音营销：</strong>机器人语音、隐私号呼叫</li><li><strong>互联网广告：</strong>联合主流媒体精准投放</li></ul></article>
+    </div>
+    <p class="historical-note"><span class="history-tag">原稿历史方案</span> 保留原项目的目标、服务内容及三角业务关系；各项能力当时的建设与交付状态待核实，不作为申行科技或 TokenHarbor 当前已开放能力的说明。</p>
+  </div>
+</section>
+
+<section class="chapter ppt-restored" id="slide-9" data-title="中国联通集中短信行业网关整体架构">
+  <header class="section-heading"><span class="section-index">09</span><div><p class="eyebrow">团队历史项目 · 短信行业网关</p><h2><span class="ppt-title-unit">中国联通</span> <span class="ppt-title-unit">集中短信行业网关</span> <span class="ppt-title-unit">— 整体架构</span></h2></div></header>
+  <div class="section-body">
+    <div class="ppt-architecture-layout">
+      <figure class="diagram ppt-architecture-diagram ppt-sms-diagram">
+        <div class="ppt-sms-network" aria-label="两条短信接入路径、BSS支撑和两条下行链路">
+          <div class="node ppt-blue-node ppt-sp-node" style="grid-area:1/1"><img class="ppt-node-icon" src="media/architecture-service-provider.png" alt="" loading="lazy"><strong>SP</strong></div>
+          <span class="connector" style="grid-area:1/2" aria-hidden="true">→</span>
+          <div class="node ppt-blue-node" style="grid-area:1/3"><strong>行业网关</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div>
+          <span class="connector" style="grid-area:2/1" aria-hidden="true">↓</span><span class="connector" style="grid-area:2/3" aria-hidden="true">↓</span>
+          <div class="node ppt-blue-node" style="grid-area:3/1"><strong>能力开放平台接口模块</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div>
+          <div class="node ppt-blue-node" style="grid-area:3/3"><strong>能力开放平台接口模块</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div>
+          <span class="connector" style="grid-area:3/4" aria-label="BSS开户信息同步到接口模块">←</span>
+          <aside class="node ppt-blue-node ppt-sms-bss" style="grid-area:3/5/6/6"><strong>BSS<br>C-BSS</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"><span>开户信息<br>← 同步接口</span><span>计费话单<br>→ 回传结算</span></aside>
+          <span class="connector" style="grid-area:4/1" aria-hidden="true">↓</span><span class="connector" style="grid-area:4/3" aria-hidden="true">↓</span>
+          <div class="node ppt-blue-node" style="grid-area:5/1/6/4"><strong>短信能力开放平台</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div>
+          <span class="connector" style="grid-area:5/4" aria-label="短信平台计费话单回传C-BSS">→</span>
+          <span class="connector" style="grid-area:6/1" aria-hidden="true">↓</span><span class="connector" style="grid-area:6/3" aria-hidden="true">↓</span>
+          <div class="node ppt-orange-node" style="grid-area:7/1"><strong>短消息中心</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div>
+          <div class="node ppt-orange-node" style="grid-area:7/3"><strong>联通互通网关</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div>
+          <span class="connector" style="grid-area:7/4" aria-hidden="true">→</span>
+          <div class="node ppt-orange-node" style="grid-area:7/5"><strong>目的运营商互通网关</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div>
+          <span class="connector" style="grid-area:8/1" aria-hidden="true">↓</span><span class="connector" style="grid-area:8/5" aria-hidden="true">↓</span>
+          <div class="node ppt-ims-node" style="grid-area:9/1"><strong>IMS</strong></div>
+          <div class="node ppt-ims-node" style="grid-area:9/3"><strong>IMS</strong></div>
+          <span class="connector" style="grid-area:9/4" aria-hidden="true">←</span>
+          <div class="node ppt-orange-node" style="grid-area:9/5"><strong>对方短消息中心</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div>
+          <span class="connector" style="grid-area:10/1" aria-hidden="true">↓</span><span class="connector" style="grid-area:10/3" aria-hidden="true">↓</span>
+          <div class="ppt-terminal" style="grid-area:11/1"><img src="media/architecture-phone.png" alt="" loading="lazy"><span>终端用户</span></div>
+          <div class="ppt-terminal" style="grid-area:11/3"><img src="media/architecture-phone.png" alt="" loading="lazy"><span>终端用户</span></div>
+        </div>
+        <figcaption>保留原架构的 SP 直连接口、经行业网关接入两条路径，以及 BSS / C-BSS 支撑关系；下行分别进入短消息中心或跨运营商互通链路。</figcaption>
+      </figure>
+      <div class="ppt-architecture-copy">
+        <h3 class="ppt-architecture-heading">整体架构</h3>
+        <article><h4>行业网关</h4><ul><li>功能：提供接口，为 SP 与短消息中心提供一条安全、快捷的通道，以便手机用户采用短信方式与 SP 双向通信。</li></ul></article>
+        <article><h4>短信能力开放平台</h4><ul><li>功能：开放面向 SP 的业务接口，实现 SP 短信业务的业务管理、网络管理、计费采集等功能。</li><li>作为行业网关到短信中心、互通网关的连接枢纽，为行业网关提供便捷、稳定的下发渠道，减轻行业网关的对接工作。</li></ul></article>
+        <article><h4>BSS / C-BSS</h4><ul><li>功能：维护 SP 客户信息，并对客户的业务数据进行统计和结算。</li><li>用户开户后将数据同步到短信能力开放平台；客户使用业务后，短信能力开放平台提供计费话单给 C-BSS 进行计费和结算。</li></ul></article>
+        <article><h4>短消息中心</h4><ul><li>功能：分省建设，主要功能是提交、存储和转发短消息。</li><li>鉴权短信网关提交的消息，并将消息下发到信令网关。</li></ul></article>
+        <article><h4>互通网关</h4><ul><li>功能：分省建设，实现运营商之间短消息业务的互通。</li><li>携出用户的短消息业务经由联通互通网关，发送至目的运营商的互通网关，再通过对方短消息中心进行短消息业务下发。</li></ul></article>
+      </div>
+    </div>
+    <p class="historical-note"><span class="history-tag">原稿历史案例</span> 本页按原稿保留案例名称、节点与职责；项目归属、参与范围及对外披露权限待核实，不表示中国联通是申行科技或 TokenHarbor 当前客户。</p>
+  </div>
+</section>
+
+<section class="chapter ppt-restored" id="slide-10" data-title="自研高性能系统 OES">
+  <header class="section-heading"><span class="section-index">10</span><div><p class="eyebrow">核心技术 · 团队历史项目</p><h2>自研高性能系统（OES）</h2></div></header>
+  <div class="section-body">
+    <div class="ppt-oes-layout">
+      <article class="ppt-oes-feature ppt-oes-reliability"><h3><span>01</span> 高可靠</h3><ol><li>分布式部署</li><li>关键节点主从架构</li><li>硬件故障自动切换</li></ol></article>
+      <figure class="ppt-visual ppt-oes-cycle"><div class="ppt-figure-art"><img src="media/oes-cycle-shapes.svg" alt="" loading="lazy"><span class="ppt-figure-label ppt-oes-label ppt-label-white" style="left:26.1%;top:24.7%">高可靠</span><span class="ppt-figure-label ppt-oes-label ppt-label-white" style="left:78%;top:30%">低成本</span><span class="ppt-figure-label ppt-oes-label ppt-label-white" style="left:21.6%;top:68.8%">高吞吐</span><span class="ppt-figure-label ppt-oes-label ppt-label-white" style="left:75.8%;top:74.9%">互联网<br>化</span></div><figcaption>OES 系统能力结构</figcaption></figure>
+      <article class="ppt-oes-feature ppt-oes-cost"><h3><span>02</span> 低成本</h3><ol><li>X86 服务器部署</li><li>单节点多实例部署</li><li>硬件投入远低于传统电信设备</li></ol></article>
+      <article class="ppt-oes-feature ppt-oes-throughput"><h3><span>03</span> 高吞吐</h3><ol class="history-data"><li>百万级别并发在线</li><li>万级别吞吐能力</li><li>毫秒级响应延时</li></ol><span class="history-tag">原稿历史性能描述</span></article>
+      <article class="ppt-oes-feature ppt-oes-internet"><h3><span>04</span> 互联网化</h3><ol><li>与现有电信网元设备无缝接合</li><li>灵活扩展新功能</li><li>满足定制化业务</li></ol></article>
+    </div>
+    <p class="historical-note">本页保留原项目团队的 OES 技术与性能描述。测试环境、吞吐单位、业务负载及成本比较依据待核实；上述数据属于历史口径，不是 TokenHarbor 的性能指标或当前交付承诺。</p>
+  </div>
+</section>
+
+<section class="chapter ppt-restored" id="slide-11" data-title="5G 消息 MaaP 平台整体架构">
+  <header class="section-heading"><span class="section-index">11</span><div><p class="eyebrow">团队历史项目 · 多媒体消息平台</p><h2><span class="ppt-title-unit">5G 消息</span> <span class="ppt-title-unit">MaaP 平台</span> <span class="ppt-title-unit">— 整体架构</span></h2></div></header>
+  <div class="section-body">
+    <div class="ppt-architecture-layout">
+      <figure class="diagram ppt-architecture-diagram ppt-maap-diagram">
+        <div class="ppt-maap-ingress">
+          <div class="node ppt-blue-node ppt-sp-node"><img class="ppt-node-icon" src="media/architecture-service-provider.png" alt="" loading="lazy"><strong>Chatbot</strong></div><span class="connector ppt-inline-arrow" aria-hidden="true">→</span><div class="node ppt-blue-node"><strong>业务管理平台</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div>
+          <span class="connector" aria-hidden="true">↓</span><span></span><span class="connector" aria-hidden="true">↓</span>
+          <div class="node ppt-blue-node"><strong>MaaP 平台统一分发模块</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div><span></span><div class="node ppt-pink-node"><strong>MaaP 平台管理模块</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div>
+        </div>
+        <div class="ppt-cross-links" aria-label="统一分发模块和管理模块分别连接两个 MaaP 平台"><svg viewBox="0 0 600 70" aria-hidden="true"><defs><marker id="maap-arrow-restored" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#4d89c2"/></marker></defs><g fill="none" stroke="#4d89c2" stroke-width="2" marker-end="url(#maap-arrow-restored)"><path d="M150 3L150 65"/><path d="M150 3L450 65"/><path d="M450 3L150 65"/><path d="M450 3L450 65"/></g></svg><span>统一分发与管理模块分别连接各 MaaP 平台</span></div>
+        <div class="branch-grid ppt-maap-domains">
+          <div class="flow-column ppt-maap-domain">
+            <div class="ppt-maap-platform-group"><div class="node ppt-blue-node"><strong>MaaP 平台</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div><aside class="ppt-directory-side"><span class="ppt-support-label">MaaP 平台连接的配套服务</span><div><img class="ppt-node-icon" src="media/architecture-database.png" alt="" loading="lazy"><strong>MaaP 目录平台</strong></div><div><img class="ppt-node-icon" src="media/architecture-database.png" alt="" loading="lazy"><strong>文件存储服务器</strong></div></aside></div>
+            <span class="connector" aria-hidden="true">↓</span><div class="node ppt-orange-node"><strong>RCS AS</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div><span class="connector" aria-hidden="true">↓</span><div class="node ppt-ims-node"><strong>IMS</strong></div><span class="connector" aria-hidden="true">↙　↘</span>
+            <div class="ppt-terminal-pair"><div class="ppt-terminal"><img src="media/maap-phone-1.png" alt="" loading="lazy"><span>VoLTE 用户</span></div><div class="ppt-terminal"><img src="media/maap-phone-2.png" alt="" loading="lazy"><span>5G 用户</span></div></div>
+          </div>
+          <div class="flow-column ppt-maap-domain">
+            <div class="ppt-maap-platform-group"><div class="node ppt-blue-node"><strong>MaaP 平台</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div><aside class="ppt-directory-side"><span class="ppt-support-label">MaaP 平台连接的配套服务</span><div><img class="ppt-node-icon" src="media/architecture-database.png" alt="" loading="lazy"><strong>MaaP 目录平台</strong></div><div><img class="ppt-node-icon" src="media/architecture-database.png" alt="" loading="lazy"><strong>文件存储服务器</strong></div></aside></div>
+            <span class="connector" aria-hidden="true">↓</span><div class="node ppt-orange-node"><strong>RCS AS</strong><img class="ppt-node-icon" src="media/architecture-gateway.png" alt="" loading="lazy"></div><span class="connector" aria-hidden="true">↓</span><div class="node ppt-ims-node"><strong>IMS</strong></div><span class="connector" aria-hidden="true">↙　↘</span>
+            <div class="ppt-terminal-pair"><div class="ppt-terminal"><img src="media/maap-phone-3.png" alt="" loading="lazy"><span>VoLTE 用户</span></div><div class="ppt-terminal"><img src="media/maap-phone-4.png" alt="" loading="lazy"><span>5G 用户</span></div></div>
+          </div>
+        </div>
+        <figcaption>保留原稿的双 MaaP 平台、双 RCS AS / IMS 接入域及两类终端。目录与文件存储属于 MaaP 的配套服务，终端分别按所属域连接对应 RCS AS。</figcaption>
+      </figure>
+      <div class="ppt-architecture-copy">
+        <h3 class="ppt-architecture-heading">整体架构</h3>
+        <article><h4>业务管理平台</h4><ul><li>功能：Chatbot 管理、创建、审批等功能，并同步给 MaaP 平台管理模块，由其分发到不同的 MaaP 平台。</li></ul></article>
+        <article><h4>MaaP 平台管理模块</h4><ul><li>功能：路由分发，将业务管理平台命令转发给各个 MaaP 平台，由各个 MaaP 平台更新 Chatbot 信息。</li></ul></article>
+        <article><h4>MaaP 平台</h4><ul><li>功能：除 Chatbot 信息维护、5G 消息下发等功能外，Chatbot 的多媒体文件存储也在 MaaP 平台。</li><li>MaaP 平台有多个，且 MaaP 平台 Chatbot 目录为全量目录。</li></ul></article>
+        <article><h4>RCS AS</h4><ul><li>功能：RCS AS 平台也有多个，按照用户归属不同的域，每个终端用户对应的 AS 平台不一样。</li><li>A2P 终端用户上传的多媒体文件由 RCS AS 平台存储。</li></ul></article>
+        <article><h4>BSF 和安全管控系统</h4><ul><li>BSF 主要是 Chatbot 接入时鉴权。</li><li>安全管控主要是对 Chatbot 提交的多媒体内容进行审核；实时业务下发时，审核多媒体内容。</li></ul></article>
+      </div>
+    </div>
+    <p class="historical-note"><span class="history-tag">原稿历史方案</span> 本页保留原稿架构与功能说明；原稿对 BSF、A2P 及终端上传存储的表述、实际建设范围和对外披露权限待核实，不作为 TokenHarbor 的现有能力声明。</p>
   </div>
 </section>

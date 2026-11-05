@@ -1,0 +1,656 @@
+{
+  "version": 1,
+  "source_document": "docs/团队技术项目背景.ppt",
+  "source_sha256": "aeb2e1e3cddcf53611b7293b9eacf47026af87cf1fd0aa66d192f9f714bab2ca",
+  "source_conversion": "Direct PPT to PPTX/PDF conversion; picture IDs refer to the converted PPTX media package. SVG groups extracted from same-source rendering.",
+  "purpose": "Faithful, maintainable restoration of the original team and historical-project visuals. Only figure components are retained; page text is authored in HTML.",
+  "historical_scope": "Original logos, product interfaces and promotion artwork are historical materials. They do not assert current partnerships, current tariffs or present product availability.",
+  "assets": [
+    {
+      "file": "antiharassment-dashboard-public.png",
+      "sha256": "dff6b771cff86ed0c8daa660e425a7eb3aba39f0f6812222a429e35c2f2ade30",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        5
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image20.png"
+      ],
+      "title": "防骚扰管家历史业务界面；仅裁去含手机号及旧日期的顶栏",
+      "method": "crop original embedded picture; no repainting or replacement text",
+      "embedded_text": true,
+      "crop_pixels": [
+        0,
+        36,
+        424,
+        791
+      ],
+      "original_dimensions": [
+        424,
+        791
+      ],
+      "source_contained_outdated_year": true,
+      "source_contained_phone_number": true,
+      "removed_content": "36px top account/date bar; all functional UI retained",
+      "dimensions": {
+        "width": 424,
+        "height": 755,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "antiharassment-manager-ui.png",
+      "sha256": "c8d1460f7fc0df0f4e9384e2ca921ed0aee5f28a672d393a31b2f87ae40a4283",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        5
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image19.png"
+      ],
+      "title": "手机管家尊享版历史产品界面",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": true,
+      "dimensions": {
+        "width": 420,
+        "height": 818,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "architecture-database.png",
+      "sha256": "f12832750c5e58eb599eab2e19dbe8e4e03b4e05420a2b287211b8df006a8b1b",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        11
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image34.png"
+      ],
+      "title": "MaaP数据库图标",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": "Icon or photograph; no editable body text.",
+      "dimensions": {
+        "width": 42,
+        "height": 43,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "architecture-gateway.png",
+      "sha256": "4ccc7117b2c8c3e55c6d19987b584a3f13e830969cd409d7ae3fbc85ed7f2ae1",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        9,
+        11
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image27.png"
+      ],
+      "title": "短信与MaaP网元图标",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": "Icon or photograph; no editable body text.",
+      "dimensions": {
+        "width": 52,
+        "height": 64,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "architecture-phone.png",
+      "sha256": "e7d65f2a67a8c352c6fc753632b6523105bad91411644aff096fdeca115bc909",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        9
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image28.png"
+      ],
+      "title": "移动终端图标",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": "Icon or photograph; no editable body text.",
+      "dimensions": {
+        "width": 66,
+        "height": 91,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "architecture-service-provider.png",
+      "sha256": "52de74e68a05749a78de3818734d7cb2d5e62be268667f32d8242d0e828cff15",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        9,
+        11
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image29.png"
+      ],
+      "title": "SP服务方图标",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": "Icon or photograph; no editable body text.",
+      "dimensions": {
+        "width": 48,
+        "height": 48,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "big-data-gears-shapes.svg",
+      "sha256": "bd724e85c3e7b04058df2b5280370be3809ba52c8c5b53fca34f0d237a8d8dca",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        7
+      ],
+      "source_native_shapes": "原中央9个齿轮及装饰矢量路径",
+      "title": "大数据处理齿轮图形",
+      "embedded_text": false,
+      "method": "extract original vector/image groups only; prune unused definitions; no full-slide screenshot",
+      "viewBox": [
+        315.0,
+        42.0,
+        329.0,
+        407.0
+      ],
+      "dimensions": {
+        "width": 329.0,
+        "height": 407.0,
+        "unit": "SVG user units"
+      },
+      "editable_semantic_labels_in_html": true
+    },
+    {
+      "file": "brand-ant-financial.jpeg",
+      "sha256": "f8a08a8e5bfe49a3b109e256c35e33719d897deb874977721d5302fc38cef8ff",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        7
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image25.jpeg"
+      ],
+      "title": "蚂蚁金服历史标识",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": true,
+      "dimensions": {
+        "width": 177,
+        "height": 94,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "brand-didi.jpeg",
+      "sha256": "108b228042ac7eef732867bf3f83d85fa67450788cfcf1e3597592edce758445",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        7
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image23.jpeg"
+      ],
+      "title": "滴滴标识",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": true,
+      "dimensions": {
+        "width": 215,
+        "height": 73,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "brand-tencent.jpeg",
+      "sha256": "2d6f3cf1fa29599fd3942122f0772daaa8942d79001fd4523992cc200b65186f",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        7
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image26.jpeg"
+      ],
+      "title": "腾讯标识",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": true,
+      "dimensions": {
+        "width": 182,
+        "height": 88,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "brand-toutiao.jpeg",
+      "sha256": "ab5290baa2cd3a61d1abb4273ab37a61e9517a9d2e2f43a1f2e1288cefe06efc",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        7
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image24.jpeg"
+      ],
+      "title": "今日头条标识",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": true,
+      "dimensions": {
+        "width": 181,
+        "height": 87,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "cloud-capabilities-shapes.svg",
+      "sha256": "3e058402e68811965ec6499d16a5e5e106e6a6e29a8aee1455e9c6834702701c",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        8
+      ],
+      "source_native_shapes": "原能力三角、三色节点、循环箭头矢量组与局部透明蒙版",
+      "title": "智能服务云能力三角图形",
+      "embedded_text": false,
+      "method": "extract original vector/image groups only; prune unused definitions; no full-slide screenshot",
+      "viewBox": [
+        300.0,
+        122.0,
+        385.0,
+        315.0
+      ],
+      "dimensions": {
+        "width": 385.0,
+        "height": 315.0,
+        "unit": "SVG user units"
+      },
+      "editable_semantic_labels_in_html": true
+    },
+    {
+      "file": "industry-city.png",
+      "sha256": "ff3cddb7f1dd162d45414fad3584c0d59e16542fc75674610c3b97ec41e567ed",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        1
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image2.png"
+      ],
+      "title": "城市街景照片",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": "Icon or photograph; no editable body text.",
+      "dimensions": {
+        "width": 435,
+        "height": 435,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "industry-welding.png",
+      "sha256": "e9283c0139400ca2c4c9bcbaefbf780f00a46ba8c72883fb19f43313d53db82f",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        1
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image1.png"
+      ],
+      "title": "工业焊接照片",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": "Icon or photograph; no editable body text.",
+      "dimensions": {
+        "width": 437,
+        "height": 435,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "maap-phone-1.png",
+      "sha256": "640f95ee677feabe92d75fd32fb1b46e569333f5954ee9beec05281a88217002",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        11
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image35.png"
+      ],
+      "title": "MaaP移动终端1",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": "Icon or photograph; no editable body text.",
+      "dimensions": {
+        "width": 68,
+        "height": 91,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "maap-phone-2.png",
+      "sha256": "b853df081a03f5d42e1603716ca24608c4824ecf43e6a96aff32da7cf3e6dc55",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        11
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image36.png"
+      ],
+      "title": "MaaP移动终端2",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": "Icon or photograph; no editable body text.",
+      "dimensions": {
+        "width": 66,
+        "height": 91,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "maap-phone-3.png",
+      "sha256": "4b5e3d2e5fdfb3bd26accffd4fdddd01891b903f0c2386bfd6510512e8ddbe7f",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        11
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image37.png"
+      ],
+      "title": "MaaP移动终端3",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": "Icon or photograph; no editable body text.",
+      "dimensions": {
+        "width": 66,
+        "height": 91,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "maap-phone-4.png",
+      "sha256": "c5e28e4a45c105001ed5275a12a48bea9c1ac26b2207bcef5a8774d2008a627f",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        11
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image38.png"
+      ],
+      "title": "MaaP移动终端4",
+      "method": "extract original embedded picture bytes",
+      "embedded_text": "Icon or photograph; no editable body text.",
+      "dimensions": {
+        "width": 66,
+        "height": 91,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "oes-cycle-shapes.svg",
+      "sha256": "8630c4ef64aa23e9528726227437716deeaf3e652c53b51399e5cbcf8cda04b1",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        10
+      ],
+      "source_native_shapes": "原OES四象限循环环的4条原生路径",
+      "title": "OES四象限环图形",
+      "embedded_text": false,
+      "method": "extract original vector/image groups only; prune unused definitions; no full-slide screenshot",
+      "viewBox": [
+        324.0,
+        143.0,
+        264.0,
+        263.0
+      ],
+      "dimensions": {
+        "width": 264.0,
+        "height": 263.0,
+        "unit": "SVG user units"
+      },
+      "editable_semantic_labels_in_html": true
+    },
+    {
+      "file": "qos-alibaba-live.png",
+      "sha256": "b4c6b2b30ea2227467d7a62c2e5c47bedb7ad389e4298113d6c1b3f996a377dc",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        4
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image18.png"
+      ],
+      "title": "阿里宝卡直播加速原产品图",
+      "method": "crop original product pictures and composite on white; remove only exterior quadrant headings, axes and numbers",
+      "original_dimensions": [
+        1567,
+        785
+      ],
+      "crop_bounds": [
+        950,
+        105,
+        1315,
+        440
+      ],
+      "retained_regions": [
+        [
+          958,
+          109,
+          1168,
+          439
+        ],
+        [
+          1137,
+          145,
+          1307,
+          407
+        ]
+      ],
+      "embedded_text": "Original product/promotion and screenshot text remains inside images; editable quadrant headings live in HTML.",
+      "dimensions": {
+        "width": 365,
+        "height": 335,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "qos-blackshark-game.png",
+      "sha256": "162e92318614d187202a52786b547040052b2feee6283ae436f70cec8518eefd",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        4
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image18.png"
+      ],
+      "title": "黑鲨手机加速原产品图",
+      "method": "crop original product pictures and composite on white; remove only exterior quadrant headings, axes and numbers",
+      "original_dimensions": [
+        1567,
+        785
+      ],
+      "crop_bounds": [
+        25,
+        520,
+        680,
+        785
+      ],
+      "retained_regions": [
+        [
+          33,
+          525,
+          674,
+          784
+        ]
+      ],
+      "embedded_text": "Original product/promotion and screenshot text remains inside images; editable quadrant headings live in HTML.",
+      "dimensions": {
+        "width": 655,
+        "height": 265,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "qos-study-card.png",
+      "sha256": "fed0f453db89e806e121af5d66a4f300c386f0f56723182a35a90790cd94b504",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        4
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image18.png"
+      ],
+      "title": "学习王卡限速原产品图",
+      "method": "crop original product pictures and composite on white; remove only exterior quadrant headings, axes and numbers",
+      "original_dimensions": [
+        1567,
+        785
+      ],
+      "crop_bounds": [
+        985,
+        450,
+        1420,
+        775
+      ],
+      "retained_regions": [
+        [
+          994,
+          512,
+          1152,
+          758
+        ],
+        [
+          1245,
+          455,
+          1411,
+          769
+        ]
+      ],
+      "embedded_text": "Original product/promotion and screenshot text remains inside images; editable quadrant headings live in HTML.",
+      "dimensions": {
+        "width": 435,
+        "height": 325,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "qos-tencent-game.png",
+      "sha256": "274a0364e7a3785c9be4d7b7e7b40bbdc4fdbd44eeeb129666dab248c42ad992",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        4
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image18.png"
+      ],
+      "title": "腾讯手游加速原产品图",
+      "method": "crop original product pictures and composite on white; remove only exterior quadrant headings, axes and numbers",
+      "original_dimensions": [
+        1567,
+        785
+      ],
+      "crop_bounds": [
+        80,
+        25,
+        675,
+        430
+      ],
+      "retained_regions": [
+        [
+          89,
+          158,
+          319,
+          348
+        ],
+        [
+          264,
+          170,
+          452,
+          413
+        ],
+        [
+          489,
+          30,
+          665,
+          428
+        ]
+      ],
+      "embedded_text": "Original product/promotion and screenshot text remains inside images; editable quadrant headings live in HTML.",
+      "dimensions": {
+        "width": 595,
+        "height": 405,
+        "unit": "pixels"
+      }
+    },
+    {
+      "file": "sms-partners-map.svg",
+      "sha256": "349cce629f40f4c27ade0840e1ad3121edf528af447dc925f3b1acbb18b5ac9d",
+      "whole_slide_capture": false,
+      "embedded_old_company_name": false,
+      "embedded_outdated_year": false,
+      "source_pages": [
+        2
+      ],
+      "source_embedded_assets": [
+        "ppt/media/image3.png",
+        "ppt/media/image4.jpeg",
+        "ppt/media/image5.png",
+        "ppt/media/image6.jpeg",
+        "ppt/media/image7.png",
+        "ppt/media/image8.png",
+        "ppt/media/image9.png",
+        "ppt/media/image10.png",
+        "ppt/media/image11.png"
+      ],
+      "source_native_shapes": "原渐变漏斗矢量组",
+      "title": "短信合作伙伴漏斗与中国地图",
+      "embedded_text": "原8个品牌标识，不包含正文、公司名、业绩数字、年份。",
+      "method": "extract original vector/image groups only; prune unused definitions; no full-slide screenshot",
+      "viewBox": [
+        12.0,
+        115.0,
+        376.0,
+        363.0
+      ],
+      "dimensions": {
+        "width": 376.0,
+        "height": 363.0,
+        "unit": "SVG user units"
+      },
+      "editable_semantic_labels_in_html": false
+    }
+  ]
+}

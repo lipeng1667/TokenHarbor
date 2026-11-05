@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Assemble self-contained, editable HTML communication pages from native HTML fragments."""
+"""Assemble editable HTML text and original presentation artwork into offline pages."""
 from pathlib import Path
 from html import escape
 from html.parser import HTMLParser
+import base64
+import mimetypes
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +19,20 @@ class ChapterIndex(HTMLParser):
         if tag == 'section' and 'chapter' in attrs.get('class', '').split():
             self.chapters.append((attrs['id'], attrs['data-title']))
 
+def embed_media(content):
+    """Keep editable source paths; package original artwork for single-file delivery."""
+    media_root = (SRC / 'media').resolve()
+    def replace(match):
+        relative = match.group(1)
+        path = (SRC / relative).resolve()
+        assert path.is_relative_to(media_root), relative
+        assert path.is_file(), f'Missing presentation artwork: {relative}'
+        mime = mimetypes.guess_type(path.name)[0]
+        assert mime in ('image/png', 'image/jpeg', 'image/webp', 'image/svg+xml'), relative
+        encoded = base64.b64encode(path.read_bytes()).decode('ascii')
+        return f'src="data:{mime};base64,{encoded}" data-source="{escape(relative)}"'
+    return re.sub(r'src="(media/[^"<>]+)"', replace, content)
+
 def build(filename, include_platform):
     content = (SRC / 'team-sections.html').read_text()
     if include_platform:
@@ -25,7 +41,8 @@ def build(filename, include_platform):
     parser.feed(content)
     expected = 21 if include_platform else 11
     assert [i for i, _ in parser.chapters] == [f'slide-{i}' for i in range(1, expected + 1)]
-    assert not re.search(r'<(?:img|canvas|svg|iframe)\b|data:image|小悟|201[0-9]', content)
+    assert not re.search(r'<(?:canvas|iframe)\b|data:image|小悟', content)
+    content = embed_media(content)
     toc = []
     for i, (anchor, title) in enumerate(parser.chapters, 1):
         if i in (1, 12):
