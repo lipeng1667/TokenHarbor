@@ -85,6 +85,11 @@
 .thv-story-takeaway span { color: var(--muted); font-size: var(--text-14); line-height: var(--leading-body); }
 .thv-story-takeaway a { margin-left: auto; color: var(--teal); font-size: var(--text-14); white-space: nowrap; }
 /* 10 — desktop architecture retained; compact mobile overview with native detail disclosure */
+/* Extend the two entry layers across unused space above the support column. */
+.thv-architecture .th-node-wide { width: calc(200% + 28px); }
+@media screen and (min-width:761px) and (max-width:1100px) {
+  .thv-architecture .th-node-wide { width: calc(200% + 17px); }
+}
 .thv-compact-architecture { display: none; }
 /* 11 — a receipt, not a generic flow diagram */
 .thv-bill-layout { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); gap: 60px; align-items: center; }
