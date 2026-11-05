@@ -1,0 +1,223 @@
+<section class="chapter" id="slide-1" data-title="团队技术背景">
+  <header class="section-heading"><span class="section-index">01</span><div><p class="eyebrow">团队技术背景</p><h2>通信系统与数据平台</h2></div></header>
+  <div class="section-body">
+    <p class="lead">围绕通信能力开放、业务系统与数据服务，梳理团队既往项目中的系统工程经验。</p>
+    <div class="band"><h3>从接口接入，到持续运行</h3><p>统一业务入口，管理不同网络与服务之间的协议差异，并让状态、计量和运营过程能够被观察与解释。</p></div>
+    <div class="grid-3">
+      <article class="feature"><h3>通信系统</h3><p>短信网关、号码认证、网络服务与多媒体消息等技术方向，关注协议适配、路由与交付。</p></article>
+      <article class="feature"><h3>数据服务</h3><p>业务日志与通信话单的采集、加工、存储和分析，连接业务运营与能力开放。</p></article>
+      <article class="feature"><h3>运行保障</h3><p>分布式部署、关键节点冗余、连接与实例管理，以及统计和计费系统的协同。</p></article>
+    </div>
+    <p class="note">以下内容是团队既往技术经验的整理。具体项目归属与对外披露范围待确认，历史业务规模和性能数据不作为当前产品承诺。</p>
+  </div>
+</section>
+
+<section class="chapter" id="slide-2" data-title="短信网关">
+  <header class="section-heading"><span class="section-index">02</span><div><p class="eyebrow">通信能力接入</p><h2>短信网关</h2></div></header>
+  <div class="section-body">
+    <p class="lead">在企业应用与运营商网络之间，建立清晰的接入、适配和消息交付边界。</p>
+    <figure class="diagram">
+      <div class="flow-row">
+        <div class="node"><strong>企业应用 / SP</strong><span>提交消息、接收状态</span></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node"><strong>统一接入网关</strong><span>身份校验、协议与业务规则</span></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node"><strong>运营商通道</strong><span>通道适配、路由与消息下发</span></div>
+      </div>
+      <figcaption>业务入口与网络通道分别管理，处理过程结合消息状态与计量记录追踪。</figcaption>
+    </figure>
+    <div class="grid-3">
+      <article class="feature"><h3>统一接入</h3><p>向业务应用提供一致的接入入口，减少应用分别维护多套通信协议的工作。</p></article>
+      <article class="feature"><h3>多协议适配</h3><p>将具体运营商与通道的协议差异放入适配层，保持业务处理与网络接入的职责边界。</p></article>
+      <article class="feature"><h3>状态与计量</h3><p>关联消息处理、业务管理和计费采集，为运行维护与结算提供依据。</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="slide-3" data-title="号码认证平台">
+  <header class="section-heading"><span class="section-index">03</span><div><p class="eyebrow">身份与业务接入</p><h2>号码认证平台</h2></div></header>
+  <div class="section-body">
+    <p class="lead">让应用通过统一接口使用身份验证能力，并明确用户操作、网络条件与回退路径。</p>
+    <div class="table-wrap" tabindex="0" aria-label="身份验证方式与接入要点">
+      <table>
+        <caption>身份验证方式与接入要点</caption>
+        <thead><tr><th scope="col">验证方式</th><th scope="col">典型交互</th><th scope="col">接入关注点</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">密码验证</th><td data-label="典型交互">用户提交账号与密码</td><td data-label="接入关注点">凭证维护、登录流程与账号恢复</td></tr>
+          <tr><th scope="row">短信验证</th><td data-label="典型交互">接收并提交短信验证码</td><td data-label="接入关注点">消息交付状态、有效期和重复请求</td></tr>
+          <tr><th scope="row">号码认证</th><td data-label="典型交互">应用调用运营商号码验证能力</td><td data-label="接入关注点">用户授权、网络与终端条件、适用范围和失败回退</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid-2">
+      <article class="feature"><h3>统一验证入口</h3><p>将应用侧调用与运营商能力适配分开，集中处理协议、状态和错误反馈。</p></article>
+      <article class="feature"><h3>按场景选择交互</h3><p>根据应用环境与验证目标选择适用能力，不以单一方式替代所有身份校验场景。</p></article>
+    </div>
+    <p class="note">本表说明流程差异，不构成安全性、成本或体验的统一评级。实际能力范围以所接入服务及业务验证结果为准。</p>
+  </div>
+</section>
+
+<section class="chapter" id="slide-4" data-title="QoS 差异化服务">
+  <header class="section-heading"><span class="section-index">04</span><div><p class="eyebrow">网络服务</p><h2>QoS 差异化服务</h2></div></header>
+  <div class="section-body">
+    <p class="lead">围绕不同业务对网络体验的要求，讨论服务策略、能力接入与效果观察。</p>
+    <div class="grid-2">
+      <article class="feature"><h3>互动娱乐</h3><p>关注交互过程中的时延、波动与连续性，将业务场景与可用网络能力关联。</p></article>
+      <article class="feature"><h3>实时内容</h3><p>关注直播等内容服务的传输体验，以及应用侧策略与网络侧能力的配合。</p></article>
+      <article class="feature"><h3>终端体验</h3><p>结合终端应用入口与服务配置，管理能力的申请、使用和状态反馈。</p></article>
+      <article class="feature"><h3>使用规则</h3><p>围绕套餐与业务约定配置服务规则，明确适用对象、限制和用户可见状态。</p></article>
+    </div>
+    <figure class="diagram">
+      <div class="flow-row">
+        <div class="node"><strong>业务场景</strong><span>体验目标与使用条件</span></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node"><strong>服务策略</strong><span>授权范围与能力配置</span></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node"><strong>网络能力</strong><span>执行状态与效果观察</span></div>
+      </div>
+      <figcaption>以上为服务场景与职责示意，实际网络效果需要在具体接入环境中验证。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="chapter" id="slide-5" data-title="通信防打扰服务">
+  <header class="section-heading"><span class="section-index">05</span><div><p class="eyebrow">用户通信体验</p><h2>通信防打扰服务</h2></div></header>
+  <div class="section-body">
+    <p class="lead">围绕来电处理、消息提醒与用户设置，组织可解释的通信服务流程。</p>
+    <div class="grid-2">
+      <article class="feature"><h3>处理不希望接收的来电</h3><ul class="capabilities"><li>按用户设置管理黑白名单</li><li>识别与处理骚扰类呼叫</li><li>向用户提供处理结果与状态</li></ul></article>
+      <article class="feature"><h3>保留必要的通信信息</h3><ul class="capabilities"><li>漏话提醒与来电记录</li><li>智能应答与语音信箱</li><li>通讯录与联系人管理</li></ul></article>
+    </div>
+    <figure class="diagram">
+      <div class="flow-row">
+        <div class="node"><strong>来电与用户设置</strong><span>输入服务规则</span></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node"><strong>规则处理</strong><span>放行、拦截或应答</span></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node"><strong>记录与提醒</strong><span>让处理过程可查看</span></div>
+      </div>
+      <figcaption>能力组合与处理规则应清晰可见，不能把所有未接通来电都等同于骚扰。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="chapter" id="slide-6" data-title="商城类运营支撑">
+  <header class="section-heading"><span class="section-index">06</span><div><p class="eyebrow">业务运营系统</p><h2>商城类运营支撑</h2></div></header>
+  <div class="section-body">
+    <p class="lead">将权益供给、活动运营与用户服务连接起来，让业务配置和交付过程可以持续维护。</p>
+    <figure class="diagram">
+      <div class="flow-row">
+        <div class="node"><strong>权益与内容供给</strong><span>餐饮、视频、娱乐、阅读、音乐、教育</span></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node"><strong>商城与运营平台</strong><span>活动配置、权益组合与订单处理</span></div>
+        <span class="connector" aria-hidden="true">→</span>
+        <div class="node"><strong>用户服务</strong><span>领取、使用与状态反馈</span></div>
+      </div>
+      <figcaption>平台组织供给与服务流程；活动效果需要结合实际用户行为和运营数据评估。</figcaption>
+    </figure>
+    <div class="grid-3">
+      <article class="feature"><h3>用户维护</h3><p>围绕不同使用阶段设计权益与触达方案，支持用户维护和回流活动。</p></article>
+      <article class="feature"><h3>运营配置</h3><p>集中管理商品、权益和活动规则，降低重复配置与人工协调工作。</p></article>
+      <article class="feature"><h3>效果观察</h3><p>跟踪参与、订单与权益使用情况，为活动调整提供具体依据。</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="slide-7" data-title="大数据服务">
+  <header class="section-heading"><span class="section-index">07</span><div><p class="eyebrow">数据工程</p><h2>大数据服务</h2></div></header>
+  <div class="section-body">
+    <p class="lead">将分散的业务数据整理为可分析、可使用、可追溯的数据服务。</p>
+    <figure class="diagram">
+      <div class="grid-3">
+        <div class="module"><h3>输入数据</h3><div class="flow-column"><div class="node"><strong>用户资料</strong><span>按业务授权使用</span></div><div class="node"><strong>通信话单</strong><span>CDR 与业务计量记录</span></div><div class="node"><strong>业务日志</strong><span>服务运行与业务事件</span></div></div></div>
+        <div class="module"><h3>加工与管理</h3><div class="flow-column"><div class="node"><strong>ETL</strong><span>采集、整理与转换</span></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>模型与存储</strong><span>Model / Store</span></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>数据输出</strong><span>Output</span></div></div></div>
+        <div class="module"><h3>服务输出</h3><div class="flow-column"><div class="node"><strong>数据平台</strong><span>面向业务的数据分析</span></div><div class="node"><strong>能力开放平台</strong><span>向应用提供数据能力</span></div><div class="node"><strong>业务安全平台</strong><span>支持规则与风险分析</span></div></div></div>
+      </div>
+      <figcaption>数据按采集、加工、管理和输出分层组织，使用范围与授权条件需要贯穿整个流程。</figcaption>
+    </figure>
+    <div class="callout"><strong>面向业务的分析方向</strong><p>产品推荐、业务安全、运营分析与营销服务等场景，分别定义数据范围、评价方式与实际使用边界。</p></div>
+  </div>
+</section>
+
+<section class="chapter" id="slide-8" data-title="互联网业务能力开放平台">
+  <header class="section-heading"><span class="section-index">08</span><div><p class="eyebrow">平台化能力</p><h2>互联网业务能力开放平台</h2></div></header>
+  <div class="section-body">
+    <p class="lead">把能力接入、业务分析与运营服务组织为可组合的平台职责。</p>
+    <div class="grid-3">
+      <article class="feature"><h3>能力接入</h3><ul class="capabilities"><li>短信、号码验证与网络服务</li><li>业务风控与规则服务</li><li>图像、语音、内容识别等 AI 能力接入方向</li></ul></article>
+      <article class="feature"><h3>业务分析</h3><ul class="capabilities"><li>用户与业务指标分析</li><li>业务流程与运行情况观察</li><li>异常行为与安全风险分析</li></ul></article>
+      <article class="feature"><h3>运营服务</h3><ul class="capabilities"><li>短信、语音与互联网渠道协同</li><li>业务规则与触达配置</li><li>活动结果与服务效果观察</li></ul></article>
+    </div>
+    <div class="band"><h3>应用连接能力，数据支持决策</h3><p>应用通过明确的接口使用服务，平台记录业务过程，再把分析结果用于规则配置与运营改进。</p></div>
+    <p class="note">这里展示能力组织方式，不表示所有服务均已由申行科技开放，也不表示新的 AI 平台已完成全部能力建设。</p>
+  </div>
+</section>
+
+<section class="chapter" id="slide-9" data-title="短信能力开放架构">
+  <header class="section-heading"><span class="section-index">09</span><div><p class="eyebrow">架构经验</p><h2>短信能力开放架构</h2></div></header>
+  <div class="section-body">
+    <p class="lead">把应用接入、消息通道和业务支撑分层，减少各系统之间的直接耦合。</p>
+    <figure class="diagram">
+      <div class="flow-column">
+        <div class="node"><strong>业务应用 / SP</strong><span>提交消息与接收业务状态</span></div>
+        <span class="connector" aria-hidden="true">↓</span>
+        <div class="node"><strong>行业网关</strong><span>面向业务的接入与消息处理</span></div>
+        <span class="connector" aria-hidden="true">↓</span>
+        <div class="branch-grid"><div class="node"><strong>能力开放接口模块 A</strong><span>协议接入</span></div><div class="node"><strong>能力开放接口模块 B</strong><span>协议接入</span></div></div>
+        <span class="connector" aria-hidden="true">↓</span>
+        <div class="side-support">
+          <div class="node"><strong>短信能力开放平台</strong><span>业务管理、网络管理、通道连接与计费采集</span></div>
+          <aside class="supporting-node" aria-label="BSS 与 C-BSS 业务支撑旁路"><strong>BSS / C-BSS</strong><span>业务支撑旁路</span><p>开户信息：BSS / C-BSS → 开放平台</p><p>计费话单：开放平台 → BSS / C-BSS</p></aside>
+        </div>
+        <span class="connector" aria-hidden="true">↓</span>
+        <div class="branch-grid">
+          <div class="module"><h3>本网络内交付</h3><div class="flow-column"><div class="node"><strong>短消息中心</strong><span>提交、存储与转发</span></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>IMS / 终端接入</strong><span>消息交付至终端用户</span></div></div></div>
+          <div class="module"><h3>跨网络交付</h3><div class="flow-column"><div class="node"><strong>本方互通网关</strong><span>跨运营商消息互通</span></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>对方互通网关与短消息中心</strong><span>按目标网络路径交付至终端</span></div></div></div>
+        </div>
+      </div>
+      <figcaption>展示主业务关系；具体部署、接口与消息路径依网络和业务配置确定。</figcaption>
+    </figure>
+    <div class="grid-2">
+      <article class="feature"><h3>BSS / C-BSS 业务支撑</h3><p>维护客户与开户信息，并向能力开放平台同步；接收平台采集的计费话单，用于业务统计与结算。</p></article>
+      <article class="feature"><h3>分工清晰的连接关系</h3><p>行业网关连接业务应用，能力开放平台组织通道和计量，短消息中心与互通网关处理不同交付路径。</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="slide-10" data-title="OES 系统工程经验">
+  <header class="section-heading"><span class="section-index">10</span><div><p class="eyebrow">系统工程</p><h2>OES 系统工程经验</h2></div></header>
+  <div class="section-body">
+    <p class="lead">围绕可靠性、资源利用、吞吐与业务扩展，组织系统设计与验证工作。</p>
+    <div class="grid-2">
+      <article class="feature"><h3>可靠性设计</h3><ul class="capabilities"><li>分布式部署与节点职责划分</li><li>关键节点的主备架构</li><li>故障识别、切换与恢复</li></ul></article>
+      <article class="feature"><h3>资源与部署</h3><ul class="capabilities"><li>通用服务器部署</li><li>单节点多实例组织</li><li>按业务负载配置资源</li></ul></article>
+      <article class="feature"><h3>性能与容量</h3><ul class="capabilities"><li>并发连接与实例调度</li><li>吞吐、时延与资源占用观察</li><li>按实际负载进行容量验证</li></ul></article>
+      <article class="feature"><h3>业务扩展</h3><ul class="capabilities"><li>与既有通信网元连接</li><li>增加协议与业务功能</li><li>按项目边界支持定制需求</li></ul></article>
+    </div>
+    <div class="callout"><strong>技术经验需要在新负载下重新验证</strong><p>AI 流式响应、慢客户端和长时间异步任务具有不同的资源与恢复要求。既往系统的性能描述不能直接用作 TokenHarbor 的性能承诺。</p></div>
+  </div>
+</section>
+
+<section class="chapter" id="slide-11" data-title="MaaP 多媒体消息架构">
+  <header class="section-heading"><span class="section-index">11</span><div><p class="eyebrow">多媒体业务平台</p><h2>MaaP 多媒体消息架构</h2></div></header>
+  <div class="section-body">
+    <p class="lead">将业务管理、消息分发与终端归属分开，协同管理多媒体内容及其交付路径。</p>
+    <figure class="diagram">
+      <div class="flow-column">
+        <div class="branch-grid"><div class="node"><strong>Chatbot 业务接入</strong><span>提交业务消息</span></div><div class="node"><strong>业务管理平台</strong><span>创建、审批与信息维护</span></div></div>
+        <span class="connector" aria-hidden="true">↓</span>
+        <div class="branch-grid"><div class="node"><strong>MaaP 统一分发模块</strong><span>组织业务分发</span></div><div class="node"><strong>MaaP 管理模块</strong><span>向各平台同步管理命令</span></div></div>
+        <span class="connector" aria-hidden="true">↓</span>
+        <div class="branch-grid">
+          <div class="module"><h3>平台与接入域 A</h3><div class="flow-column"><div class="node"><strong>MaaP 平台 A</strong><span>Chatbot 信息、消息业务与多媒体文件</span><div class="supporting-node"><span>配套服务：目录与文件存储</span></div></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>RCS AS A</strong><span>按用户所属域处理业务</span></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>IMS 与终端用户</strong><span>VoLTE / 5G 消息接入</span></div></div></div>
+          <div class="module"><h3>平台与接入域 B</h3><div class="flow-column"><div class="node"><strong>MaaP 平台 B</strong><span>Chatbot 信息、消息业务与多媒体文件</span><div class="supporting-node"><span>配套服务：目录与文件存储</span></div></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>RCS AS B</strong><span>按用户所属域处理业务</span></div><span class="connector" aria-hidden="true">↓</span><div class="node"><strong>IMS 与终端用户</strong><span>VoLTE / 5G 消息接入</span></div></div></div>
+        </div>
+      </div>
+      <figcaption>MaaP 平台管理业务侧 Chatbot 信息与相关多媒体内容；RCS AS 按终端所属域提供服务，并处理对应终端上传的多媒体内容。</figcaption>
+    </figure>
+    <div class="grid-2">
+      <article class="feature"><h3>目录与路由</h3><p>业务管理命令分发到各 MaaP 平台，原架构中各平台维护全量 Chatbot 目录，终端接入按所属域组织。</p></article>
+      <article class="feature"><h3>鉴权与内容管控</h3><p>BSF 承担 Chatbot 接入鉴权相关职责，安全管控系统在多媒体内容提交与业务下发过程中执行审核。</p></article>
+    </div>
+  </div>
+</section>

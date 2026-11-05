@@ -1,0 +1,97 @@
+<section class="chapter platform-start" id="slide-12" data-title="TokenHarbor 平台定位">
+  <header class="section-heading"><span class="section-index">12</span><div><p class="eyebrow">TokenHarbor 产品规划</p><h2>让 AI 调用的成本与交付更清晰</h2></div></header>
+  <div class="section-body">
+    <div class="platform-intro"><p class="platform-name">TokenHarbor</p><p class="lead">多模型统一 API 与按量计费平台</p><p>把不同供应商的能力接入、执行状态和用量管理连起来，帮助客户减少集成与维护工作，并用实际数据检验优化收益。</p></div>
+    <div class="grid-3 pillars"><article class="feature"><span class="feature-index">01</span><h3>统一能力接入</h3><p>面向文本、图片与视频，提供明确的能力接口和交付方式。</p></article><article class="feature"><span class="feature-index">02</span><h3>透明计量与交付</h3><p>追踪每次真实调用，关联任务状态、供应商用量与结算依据。</p></article><article class="feature"><span class="feature-index">03</span><h3>持续优化成本</h3><p>在约定的模型、质量和时延要求内，识别并验证可减少的开销。</p></article></div>
+    <p class="note">当前为产品与技术规划，尚未形成已上线的业务实现或生产计费能力。以下描述的是目标设计与验证路径。</p>
+  </div>
+</section>
+<section class="chapter" id="slide-13" data-title="客户痛点与平台价值">
+  <header class="section-heading"><span class="section-index">13</span><div><p class="eyebrow">TokenHarbor 客户价值</p><h2>客户需要结果与清晰的成本</h2></div></header>
+  <div class="section-body"><p class="lead">客户保持正常 API 调用，由平台承担可以自动化的管理工作。</p>
+    <div class="table-wrap"><table><caption>客户问题与拟议平台能力</caption><thead><tr><th scope="col">客户问题</th><th scope="col">平台能力</th><th scope="col">预期价值</th></tr></thead><tbody>
+      <tr><th scope="row">接入分散<span>不同协议、模型与交付方式</span></th><td data-label="平台能力">能力适配与统一入口</td><td data-label="预期价值">减少重复集成与接口维护</td></tr>
+      <tr><th scope="row">成本不清<span>重试、缓存与计量单位各异</span></th><td data-label="平台能力">统一用量与成本证据</td><td data-label="预期价值">核查每次尝试与费用来源</td></tr>
+      <tr><th scope="row">交付不稳<span>断线、超时与回调丢失</span></th><td data-label="平台能力">任务恢复与通知管理</td><td data-label="预期价值">明确结果状态和后续处理</td></tr>
+      <tr><th scope="row">优化费力<span>规则变化与额外数据维护</span></th><td data-label="平台能力">自动技术追踪与策略验证</td><td data-label="预期价值">减少非必要输入和管理工作</td></tr>
+    </tbody></table></div><p class="note">广告与内容制作公司、AI 应用团队是候选服务对象，具体需求与收益需通过试点验证。</p>
+  </div>
+</section>
+<section class="chapter" id="slide-14" data-title="TokenHarbor 技术架构">
+  <header class="section-heading"><span class="section-index">14</span><div><p class="eyebrow">TokenHarbor 技术规划</p><h2>分层处理接入决策与执行</h2></div></header>
+  <div class="section-body"><div class="architecture-layout">
+    <figure class="diagram platform-architecture"><div class="flow-column">
+      <div class="node client"><strong>客户 API / 可选 SDK</strong><span>正常请求与客户侧交付</span></div><span class="connector" aria-hidden="true">↓</span>
+      <div class="node"><strong>Nginx</strong><span>HTTPS 接入、代理与入口限制</span></div><span class="connector" aria-hidden="true">↓</span>
+      <div class="node"><strong>Portal</strong><span>身份校验、客户连接、SSE 与任务入口</span></div><span class="connector" aria-hidden="true">↓</span>
+      <div class="node core"><strong>Kernel</strong><span>权限、预算、策略与状态协调</span></div><span class="connector" aria-hidden="true">↓</span>
+      <div class="branch-grid"><div class="branch"><div class="node"><strong>文本 Dispatcher</strong><span>文本协议与用量适配</span></div><span class="connector" aria-hidden="true">↓</span><div class="node provider"><strong>文本能力</strong></div></div><div class="branch"><div class="node"><strong>图片 Dispatcher</strong><span>图片协议与任务适配</span></div><span class="connector" aria-hidden="true">↓</span><div class="node provider"><strong>图片能力</strong></div></div><div class="branch"><div class="node"><strong>视频 Dispatcher</strong><span>视频协议与任务适配</span></div><span class="connector" aria-hidden="true">↓</span><div class="node provider"><strong>视频能力</strong></div></div></div>
+    </div><figcaption>逻辑调用关系示意。每类 Dispatcher 按明确能力适配，可部署多个实例。</figcaption></figure>
+    <div class="architecture-notes"><article class="feature"><h3>职责清楚</h3><p>Portal 管理客户连接，Kernel 协调规则与状态，Dispatcher 处理供应商协议。Nginx 不决定余额或业务扣费。</p></article><article class="feature"><h3>持久化支撑</h3><p>任务、用量证据、价格版本、预占和账本统一关联，恢复与通知具备可追溯依据。</p></article><article class="feature"><h3>独立运营后台</h3><p>配置、报表与审计由独立后台提供，核心调用不依赖管理页面是否在线。</p></article><article class="feature"><h3>技术选型待验证</h3><p>核心倾向 C + libevent，PostgreSQL 为建议持久化方案。进程划分、内部通信和响应数据路径通过原型确定。</p></article></div>
+  </div></div>
+</section>
+<section class="chapter" id="slide-15" data-title="最少输入的智能管理">
+  <header class="section-heading"><span class="section-index">15</span><div><p class="eyebrow">TokenHarbor 接入体验</p><h2>少做非必要的数据维护</h2></div></header>
+  <div class="section-body"><p class="lead">基础管理不要求客户额外填写业务任务编号。</p>
+    <ol class="steps"><li><span class="step-index">01</span><h3>正常发起请求</h3><p>客户提供凭证、模型与请求内容，保持原有调用习惯。</p></li><li><span class="step-index">02</span><h3>平台自动关联</h3><p>生成技术标识，关联请求、异步任务、供应商尝试、用量和费用。</p></li><li><span class="step-index">03</span><h3>管理状态与优化</h3><p>提供查询与异常解释，在可观测范围内识别优化机会。</p></li></ol>
+    <div class="grid-2"><article class="feature"><h3>可选 SDK 封装</h3><p>在首次发送前生成幂等键，重试时自动复用，并封装任务查询与结果接收。</p></article><article class="feature"><h3>必要意图再确认</h3><p>换模型、压缩正文或延后交付可能改变结果，需要客户约定，不能仅凭平台推断。</p></article></div>
+    <div class="band"><strong>基础技术追踪与管理默认包含</strong><span>拟不单列收费，模型调用与约定的增值费用按相应规则计收。</span></div>
+    <p class="note">相同输入也可能代表客户主动再次生成。平台自动编号和分析分组不直接作为语义去重、扣费或拼接客户上下文的依据。</p>
+  </div>
+</section>
+<section class="chapter" id="slide-16" data-title="任务成本证据">
+  <header class="section-heading"><span class="section-index">16</span><div><p class="eyebrow">技术亮点一</p><h2>每笔成本都有可追溯依据</h2></div></header>
+  <div class="section-body"><p class="lead">把一次调用的所有尝试与最终费用放在同一条证据链上。</p>
+    <figure class="diagram"><ol class="evidence-flow"><li><strong>请求与任务</strong><span>明确技术边界</span></li><li><strong>真实尝试</strong><span>包含失败与重试</span></li><li><strong>用量证据</strong><span>保留来源与状态</span></li><li><strong>价格版本</strong><span>区分采购与销售</span></li><li><strong>结算凭证</strong><span>记录结算与调整</span></li></ol><figcaption>通过 request_id、task_id 与 attempt_id 关联，技术标识由平台生成。</figcaption></figure>
+    <div class="grid-4 record-grid"><article class="feature"><h3>用量</h3><p>Token、张数、时长等按真实计量规则记录，缺失用量不补零。</p></article><article class="feature"><h3>成本</h3><p>覆盖所有供应商尝试与额外处理开销，未知费用明确标记。</p></article><article class="feature"><h3>价格</h3><p>记录客户适用的计价版本，使费用能够复算。</p></article><article class="feature"><h3>账本</h3><p>关联预占、结算、释放与后续调整，避免重复结算。</p></article></div>
+    <div class="callout"><strong>执行未知先核对</strong><p>网络超时不能证明生成未发生。确认未发送或具备已验证的幂等保证后，才在总预算内安排重试。</p></div>
+    <p class="measure-line"><strong>拟议验收指标</strong>证据覆盖率、对账差异、未确认成本占比、重复结算情况</p>
+  </div>
+</section>
+<section class="chapter" id="slide-17" data-title="自适应成本优化">
+  <header class="section-heading"><span class="section-index">17</span><div><p class="eyebrow">技术亮点二</p><h2>用实际效果选择优化策略</h2></div></header>
+  <div class="section-body"><p class="lead">先观察，再验证。在客户约定的能力和交付要求内逐步调整。</p>
+    <ol class="steps"><li><span class="step-index">01</span><h3>观察调用特征</h3><p>稳定前缀、缓存命中、输入规模、时延、错误及真实费用。</p></li><li><span class="step-index">02</span><h3>形成候选策略</h3><p>缓存参数、适用渠道、连接与配额调度、异步查询与恢复。</p></li><li><span class="step-index">03</span><h3>验证与回滚</h3><p>建立基线，进行小流量验证，保留有效策略并撤回无收益策略。</p></li></ol>
+    <div class="grid-2"><article class="feature"><h3>优先保持模型与内容</h3><p>先验证缓存和执行效率的收益。前缀缓存依赖实际命中，不能预先把全部输入算成缓存价。</p></article><article class="feature"><h3>内容处理按需启用</h3><p>摘要、裁剪、检索、模型替换和延迟交付，需要约定和评测。减少 Token 不必然降低总成本。</p></article></div>
+    <p class="measure-line"><strong>拟议验收指标</strong>实际净节省、成功交付率、约定质量指标、P95 时延</p>
+  </div>
+</section>
+<section class="chapter" id="slide-18" data-title="可恢复多模态交付">
+  <header class="section-heading"><span class="section-index">18</span><div><p class="eyebrow">技术亮点三</p><h2>让长任务与异常交付有据可查</h2></div></header>
+  <div class="section-body"><p class="lead">客户连接、内容生成、账务和通知分别管理，避免把一种失败误判为全部失败。</p>
+    <figure class="diagram"><div class="lifecycles">
+      <div class="lifecycle"><h3>生成状态</h3><ol><li>已接收</li><li>执行中</li><li>成功 / 失败 / 待核对</li></ol></div>
+      <div class="lifecycle"><h3>账务状态</h3><ol><li>预占</li><li>等待证据</li><li>结算 / 释放 / 调整</li></ol></div>
+      <div class="lifecycle"><h3>通知状态</h3><ol><li>待投递</li><li>投递中</li><li>送达 / 重试 / 待处理</li></ol></div>
+    </div><figcaption>三条状态线独立推进，已交付内容不代表最终用量已确认。</figcaption></figure>
+    <div class="grid-3"><article class="feature"><h3>文本流式交付</h3><p>通常通过 SSE 返回生成内容，管理慢连接、缓冲与断线状态。</p></article><article class="feature"><h3>图片与视频任务</h3><p>持久化任务与结果，按供应商能力通过查询或回调获得更新。</p></article><article class="feature"><h3>通知可靠投递</h3><p>重复投递同一通知不触发再次生成，也不因此增加生成费用。</p></article></div>
+    <p class="note">断线不等于供应商取消成功。结果重放受留存与协议约定限制，不承诺跨供应商网络绝对只执行一次。</p>
+  </div>
+</section>
+<section class="chapter" id="slide-19" data-title="降本收益验证">
+  <header class="section-heading"><span class="section-index">19</span><div><p class="eyebrow">TokenHarbor 效果验证</p><h2>相同价格下比较完整成本</h2></div></header>
+  <div class="section-body"><p class="lead">使用同一任务集和验收口径，同时观察质量、成功率与时延。</p>
+    <div class="grid-3 comparison"><article class="feature"><span class="comparison-letter">A</span><h3>客户当前直连</h3><p>纳入客户已有缓存和重试策略，建立当前使用基线。</p></article><article class="feature emphasized"><span class="comparison-letter">B</span><h3>通过 TokenHarbor</h3><p>统计平台方案的效果，包含平台费用与额外处理费用。</p></article><article class="feature"><span class="comparison-letter">C</span><h3>直连做同等优化</h3><p>检查成熟客户采用相同策略后，平台还提供多少增量价值。</p></article></div>
+    <div class="cost-formula"><p>完整费用口径</p><div><strong>全部模型调用费用<small>包含缓存、摘要与重试</small></strong><span aria-hidden="true">+</span><strong>其他处理费用</strong><span aria-hidden="true">+</span><strong>平台费用</strong></div></div>
+    <div class="grid-2"><p>费用项目互不重复，额外检索、评测和回退均应计入。只有在验收通过的任务数量相同、质量与时延达标时，才以两组完整费用之差衡量净节省。</p><p>若客户直连已做到相同优化，平台不天然具有调用成本优势。其价值还需要结合集成、维护和排障工作衡量。</p></div>
+    <p class="note">有明确业务验收时，同步计算单位成功任务成本：完整费用 ÷ 验收通过任务数。没有业务验收反馈时，仅报告技术交付指标。以上为拟议验证方法，并非已完成的降本实验。</p>
+  </div>
+</section>
+<section class="chapter" id="slide-20" data-title="技术积累与持续改进">
+  <header class="section-heading"><span class="section-index">20</span><div><p class="eyebrow">TokenHarbor 技术积累</p><h2>把运行经验沉淀为可复用能力</h2></div></header>
+  <div class="section-body"><div class="grid-3"><article class="feature"><span class="feature-index">01</span><h3>供应商能力与协议库</h3><p>记录接入、计量、限额与失败语义，缩短新能力适配和排障过程。</p></article><article class="feature"><span class="feature-index">02</span><h3>策略效果记录</h3><p>记录适用条件、实测收益和回退原因，复用经过验证的策略。</p></article><article class="feature"><span class="feature-index">03</span><h3>异常恢复案例库</h3><p>沉淀未知执行、连接中断与结算补偿的处理依据。</p></article></div>
+    <figure class="diagram"><ol class="evidence-flow"><li><strong>测量</strong></li><li><strong>发现模式</strong></li><li><strong>影子决策</strong></li><li><strong>小流量验证</strong></li><li><strong>扩大或回滚</strong></li></ol><figcaption>先记录与模拟策略效果，再逐步引入真实流量验证。</figcaption></figure>
+    <p class="note">这些能力尚待建设。按租户隔离，不默认留存正文或跨客户复用内容。没有供应商硬件遥测时，不以 Token 数或时延宣称精确能耗或碳排。</p>
+  </div>
+</section>
+<section class="chapter" id="slide-21" data-title="实施路径与验收">
+  <header class="section-heading"><span class="section-index">21</span><div><p class="eyebrow">TokenHarbor 实施规划</p><h2>以验证结果推进产品</h2></div></header>
+  <div class="section-body"><p class="lead">先建立可靠的调用与账务流程，再证明优化收益，随后扩大覆盖。</p>
+    <div class="table-wrap"><table><caption>实施阶段与进入下一阶段的依据</caption><thead><tr><th scope="col">阶段</th><th scope="col">交付重点</th><th scope="col">验收依据</th></tr></thead><tbody>
+      <tr><th scope="row">P0 确认边界</th><td data-label="交付重点">首批场景、供应商、能力范围、计费与留存规则</td><td data-label="验收依据">关键决策明确，供应商能力有证据</td></tr>
+      <tr><th scope="row">P1 技术闭环</th><td data-label="交付重点">文本 SSE、异步任务、模拟额度、持久化与恢复</td><td data-label="验收依据">断线、重启和重复回调后，任务与账务可解释</td></tr>
+      <tr><th scope="row">P2 验证增量</th><td data-label="交付重点">第二供应商、对账、成本对照与小流量试点</td><td data-label="验收依据">全费用口径下收益成立，质量与时延达标</td></tr>
+      <tr><th scope="row">P3 生产运营</th><td data-label="交付重点">正式支付、退款、运营工具与经过验证的能力扩展</td><td data-label="验收依据">适配、恢复、对账和客户体验可重复验证</td></tr>
+    </tbody></table></div><p class="note">当前处于规划阶段，尚未承诺降本比例、生产性能指标或上线日期。</p>
+  </div>
+</section>
