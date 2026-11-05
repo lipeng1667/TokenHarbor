@@ -3,9 +3,9 @@
   <div class="section-body">
     <p class="thv-opening-lead">为企业应用与内容团队统一管理多种 AI 能力</p>
     <div class="thv-values">
-      <a href="#slide-9"><svg viewBox="0 0 56 48" aria-hidden="true"><path d="M25 7h24v34H25M5 24h29m-8-8 8 8-8 8"/></svg><div><h3>接入更简单</h3><p>无需额外必填业务编号</p></div><span aria-hidden="true">↗</span></a>
-      <a href="#slide-10"><svg viewBox="0 0 56 48" aria-hidden="true"><path d="M13 5h30v38l-5-3-5 3-5-3-5 3-5-3-5 3zM21 15h14M21 23h14M21 31h8"/></svg><div><h3>成本更清楚</h3><p>调用与重试费用有据可查</p></div><span aria-hidden="true">↗</span></a>
-      <a href="#slide-12"><svg viewBox="0 0 56 48" aria-hidden="true"><path d="M11 20a18 18 0 1 1 2 17M11 8v12h12M21 26l6 6 12-14"/></svg><div><h3>交付可恢复</h3><p>核对状态后恢复可用结果</p></div><span aria-hidden="true">↗</span></a>
+      <a href="#slide-10"><svg viewBox="0 0 56 48" aria-hidden="true"><path d="M25 7h24v34H25M5 24h29m-8-8 8 8-8 8"/></svg><div><h3>接入更简单</h3><p>无需额外必填业务编号</p></div><span aria-hidden="true">↗</span></a>
+      <a href="#slide-11"><svg viewBox="0 0 56 48" aria-hidden="true"><path d="M13 5h30v38l-5-3-5 3-5-3-5 3-5-3-5 3zM21 15h14M21 23h14M21 31h8"/></svg><div><h3>成本更清楚</h3><p>调用与重试费用有据可查</p></div><span aria-hidden="true">↗</span></a>
+      <a href="#slide-13"><svg viewBox="0 0 56 48" aria-hidden="true"><path d="M11 20a18 18 0 1 1 2 17M11 8v12h12M21 26l6 6 12-14"/></svg><div><h3>交付可恢复</h3><p>核对状态后恢复可用结果</p></div><span aria-hidden="true">↗</span></a>
     </div>
     <div class="thc-case" id="project-cost-scene">
       <div class="thv-example-heading"><span>假设客户场景</span><p>广告公司同时服务多个品牌，跨模型制作文案、图片与视频，修改持续增加。</p></div>
@@ -22,8 +22,36 @@
     <details class="thv-scope-details"><summary>少输入与项目归集如何兼顾</summary><p>普通 API 即可记录调用，平台管理自身任务与尝试；项目归集需有可靠关联。共用 API Key 或相似提示词不能证明属于同一项目。项目利润还需结合收入、人力等其他成本。</p></details>
   </div>
 </section>
-<section class="chapter th-platform thv-section thv-architecture" id="slide-9" data-title="TokenHarbor 总体架构">
-  <header class="section-heading"><span class="section-index">09</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>一个平台 统筹接入 成本与交付</h2></div></header>
+<section class="chapter th-platform thv-section th-bridge" id="slide-9" data-title="明星项目与 OES 工程基础">
+  <header class="section-heading"><span class="section-index">09</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2><span class="type-phrase">从明星项目</span><span class="type-phrase">与 OES 基础</span> <span class="type-phrase">走向 TokenHarbor</span></h2></div></header>
+  <div class="section-body">
+    <figure class="th-bridge-path" aria-label="团队明星项目提炼工程方法，OES工程体系面向AI需求扩展为TokenHarbor平台规划">
+      <div class="th-bridge-stage th-bridge-projects">
+        <p class="th-bridge-step">01 <span>项目实践</span></p><h3>团队明星项目</h3>
+        <div class="th-bridge-project-grid"><span><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 10h36v25H19L9 42v-7H6zM13 18h22M13 25h15"/></svg>短信网关</span><span><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="12" y="4" width="24" height="40" rx="4"/><path d="M19 10h10M21 38h6m-9-14 5 5 9-11"/></svg>号码认证</span><span><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 39V25h7v14M21 39V17h7v22M34 39V8h7v31M5 40h39"/></svg>大数据服务</span><span><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="17" y="16" width="14" height="16" rx="2"/><path d="M6 5h8v8H6zM34 5h8v8h-8zM6 35h8v8H6zM34 35h8v8h-8zM14 13l5 5m10 0 5-5M14 35l5-5m10 0 5 5"/></svg>5G 消息 MaaP</span></div>
+        <p class="th-bridge-caption">异构系统接入与业务处理经验</p>
+      </div>
+      <div class="th-bridge-arrow"><span>提炼<br>工程方法</span><b aria-hidden="true">→</b></div>
+      <div class="th-bridge-stage th-bridge-oes">
+        <p class="th-bridge-step">02 <span>体系沉淀</span></p><h3>OES 工程体系</h3>
+        <div class="th-bridge-oes-core"><span>接入</span><b>OES</b><span>调度</span><span>适配</span></div>
+        <div class="th-bridge-records"><span>订单</span><i aria-hidden="true">↔</i><span>回执</span><i aria-hidden="true">↔</i><span>费用</span></div>
+        <p class="th-bridge-caption">分层协作与可追踪的业务处理</p>
+      </div>
+      <div class="th-bridge-arrow"><span>面向 AI<br>需求扩展</span><b aria-hidden="true">→</b></div>
+      <div class="th-bridge-stage th-bridge-harbor">
+        <p class="th-bridge-step">03 <span>平台方向</span></p><h3>TokenHarbor</h3>
+        <div class="th-bridge-capabilities"><span>文本</span><span>图片</span><span>视频</span></div>
+        <div class="th-bridge-platform"><strong>统一管理多种 AI 能力</strong><span>接入更简单</span><span>成本更清楚</span><span>交付可恢复</span></div>
+        <p class="th-bridge-caption">把工程积累延伸到 AI 服务</p>
+      </div>
+    </figure>
+    <div class="th-bridge-needs"><strong>AI 服务的新需求</strong><span>多模型接入</span><span>多模态交付</span><span>用量计费</span><span>异常恢复</span></div>
+    <p class="th-bridge-takeaway">复用成熟的工程方法，围绕 AI 服务的新需求建立平台能力。</p>
+  </div>
+</section>
+<section class="chapter th-platform thv-section thv-architecture" id="slide-10" data-title="TokenHarbor 总体架构">
+  <header class="section-heading"><span class="section-index">10</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>一个平台 统筹接入 成本与交付</h2></div></header>
   <div class="section-body">
     <div class="thv-compact-architecture" aria-label="手机端简明架构：客户接入、平台管理、并列模型能力">
       <div class="thv-compact-client"><strong>客户应用 / SDK</strong><span>企业应用、业务系统、AI Agent<br>通过统一接口接入</span></div><b class="thv-compact-down" aria-hidden="true">↓</b>
@@ -44,17 +72,17 @@
     </div>
   </div>
 </section>
-<section class="chapter th-platform thv-section" id="slide-10" data-title="技术亮点 成本证据">
-  <header class="section-heading"><span class="section-index">10</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>让每一笔 AI 支出都有依据</h2></div></header>
+<section class="chapter th-platform thv-section" id="slide-11" data-title="技术亮点 成本证据">
+  <header class="section-heading"><span class="section-index">11</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>让每一笔 AI 支出都有依据</h2></div></header>
   <div class="section-body">
     <div class="th-highlight-title"><span>技术亮点 01</span><p>把有可靠关联的跨模型支出，归入同一份项目记录。</p></div>
     <div class="thv-bill-layout"><figure class="thv-receipt"><figcaption><div><span>项目 AI 费用明细</span><strong>品牌甲新品推广</strong></div><span class="thv-example-tag">账单示意</span></figcaption><div class="thv-receipt-rule"></div><div class="thv-bill-row"><span>01</span><div><strong>文案 图片 视频</strong><small>首次调用与供应商用量依据</small></div><b>按实际证据核算</b></div><div class="thv-bill-row"><span>02</span><div><strong>重试与额外处理</strong><small>重试 · 传输 · 存储</small></div><b>按实际发生</b></div><div class="thv-bill-row"><span>03</span><div><strong>平台服务</strong><small>客户适用的服务规则</small></div><b>按约定核算</b></div><div class="thv-bill-row thv-bill-pending"><span>…</span><div><strong>尚未确认的用量</strong><small>等待供应商证据或对账</small></div><b>单列待核</b></div><div class="thv-receipt-total"><span>已归属项目的费用</span><strong>已确认金额与待核金额分开显示</strong></div><p class="presentation-note">账单结构示意，归属不明的调用另列待归属。</p></figure>
-      <div class="thv-bill-story"><p class="thv-overline">客户看到什么</p><h3>项目花在哪里<br>费用有据可查</h3><details class="thv-bill-notes"><summary>查看费用记录规则</summary><ul><li><span>01</span><div><strong>调用有据 归集有因</strong><p>项目汇总可回到原始调用、用量和关联依据。</p></div></li><li><span>02</span><div><strong>重试与额外处理单列</strong><p>每次实际发生的调用、传输和处理均有依据。</p></div></li><li><span>03</span><div><strong>金额与归属分开核对</strong><p>金额未定保留待核，归属不明不混入项目合计。</p></div></li></ul></details></div></div>
+      <div class="thv-bill-story"><p class="thv-overline">客户看到什么</p><h3>项目花在哪里<br>费用有据可查</h3><details class="thv-bill-notes" open><summary>查看费用记录规则</summary><ul><li><span>01</span><div><strong>调用有据 归集有因</strong><p>项目汇总可回到原始调用、用量和关联依据。</p></div></li><li><span>02</span><div><strong>重试与额外处理单列</strong><p>每次实际发生的调用、传输和处理均有依据。</p></div></li><li><span>03</span><div><strong>金额与归属分开核对</strong><p>金额未定保留待核，归属不明不混入项目合计。</p></div></li></ul></details></div></div>
 
   </div>
 </section>
-<section class="chapter th-platform thv-section" id="slide-11" data-title="技术亮点 成本优化">
-  <header class="section-heading"><span class="section-index">11</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>识别重复计算 验证真实节省</h2></div></header>
+<section class="chapter th-platform thv-section" id="slide-12" data-title="技术亮点 成本优化">
+  <header class="section-heading"><span class="section-index">12</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>识别重复计算 验证真实节省</h2></div></header>
   <div class="section-body">
     <div class="th-highlight-title"><span>技术亮点 02</span><p>同一品牌项目中的文本任务，先验证固定资料的计算复用。</p></div>
     <div class="thv-example-heading"><span>优化前后流程示意</span><p>同一模型、完整输入和验收要求；基线纳入客户已有缓存。</p></div>
@@ -71,27 +99,12 @@
 
   </div>
 </section>
-<section class="chapter th-platform thv-section" id="slide-12" data-title="技术亮点 任务恢复">
-  <header class="section-heading"><span class="section-index">12</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>核对异常调用 避免盲目重复花费</h2></div></header>
+<section class="chapter th-platform thv-section" id="slide-13" data-title="技术亮点 任务恢复">
+  <header class="section-heading"><span class="section-index">13</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>核对异常调用 避免盲目重复花费</h2></div></header>
   <div class="section-body">
     <div class="th-highlight-title"><span>技术亮点 03</span><p>一次生成请求响应中断，先查清执行状态与费用，再决定是否重试。</p></div>
     <figure class="thv-recovery-figure"><figcaption><span class="thv-example-tag">恢复时间线示意</span><span>示例分支：核对后确认生成成功且结果可取</span></figcaption><ol class="thv-recovery-timeline"><li><b>→</b><h3>调用发出</h3><p>保留本次尝试与任务关联</p></li><li class="thv-timeline-fail"><b>?</b><h3>响应中断</h3><p>此时不能认定生成失败</p></li><li><b>⌕</b><h3>核对执行</h3><p>查询供应商状态<br>与用量证据</p></li><li class="thv-timeline-done"><b>↻</b><h3>恢复结果</h3><p>确认成功且可取后<br>交付已有结果</p></li><li class="thv-timeline-done"><b>✓</b><h3>补齐记录</h3><p>更新任务状态；<br>费用有据才确认</p></li></ol><div class="thv-same-result"><span>本例处理结果</span><strong>复用已有结果 保留原调用费用</strong><span>本例无新增生成调用</span></div><p class="presentation-note">费用记录持续保留，传输、存储与平台服务按实际规则核算。</p></figure>
     <p class="presentation-note is-pending"><strong>仍无法确认执行结果</strong><span>保留待核，按约定决定后续处理。</span></p>
 
-  </div>
-</section>
-<section class="chapter th-platform thv-section thc-foundation" id="slide-13" data-title="团队基础与平台积累">
-  <header class="section-heading"><span class="section-index">13</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>以工程经验 支撑新的平台积累</h2></div></header>
-  <div class="section-body">
-    <div class="thc-foundation-band"><div><span class="th-status th-status-core">已有工程基础</span><h3>OES 订单处理与能力接入经验</h3><p>接入与连接管理 · 订单调度与计价 · 异构能力适配</p></div><div class="thc-verified"><strong>核心订单流程已完成隔离验证</strong><span>模拟下游 · 功能验证</span></div></div>
-    <figure class="thc-accumulation"><figcaption><strong>TokenHarbor <span class="type-phrase">需要建立的新积累</span></strong><span>从既有方法出发 在 AI 场景中重新验证</span></figcaption><div class="thc-accumulation-grid"><article><span class="th-moat-symbol" aria-hidden="true">⇄</span><h3>供应商规则</h3><p>统一接口与计价口径<br>持续适配规则变化</p></article><article><span class="th-moat-symbol" aria-hidden="true">◎</span><h3>策略效果</h3><p>建立场景质量基线<br>验证完整成本与回退</p></article><article><span class="th-moat-symbol" aria-hidden="true">↻</span><h3>异常恢复</h3><p>积累真实异常案例<br>核对费用与恢复结果</p></article></div><div class="thc-accumulation-result"><span>场景验证</span><b aria-hidden="true">→</b><strong>保留有效规则 持续修正与复用</strong></div></figure>
-    <p class="presentation-note"><strong>潜在门槛</strong><span>复制这层服务需要持续覆盖多家供应商、建立评测并验证异常恢复；实际优势仍需客户试点证明。</span></p>
-  </div>
-</section>
-<section class="chapter th-platform thv-section thc-roadmap-section" id="slide-14" data-title="实施路径与验收关口">
-  <header class="section-heading"><span class="section-index">14</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>先跑通服务 再用客户结果证明价值</h2></div></header>
-  <div class="section-body">
-    <ol class="thc-roadmap"><li><span>01</span><div><h3>确认客户场景</h3><p>选定任务、模型能力与供应商契约。</p><strong>验收：接口与费用规则明确</strong></div></li><li><span>02</span><div><h3>形成产品闭环</h3><p>先真实调用，再完善交付与恢复。</p><strong>验收：状态与账务可解释</strong></div></li><li><span>03</span><div><h3>验证客户增量</h3><p>用同一任务集开展三组成本对照。</p><strong>验收：质量时延达标且收益成立</strong></div></li><li><span>04</span><div><h3>扩大服务覆盖</h3><p>按实测负载扩展接入与执行。</p><strong>验收：对账、容量与恢复通过</strong></div></li></ol>
-    <div class="thc-closing"><strong>以实际客户任务为起点</strong><span>让成本、质量与交付都有可核验的依据</span><a href="#slide-11">回看优化验证 ↗</a></div>
   </div>
 </section>

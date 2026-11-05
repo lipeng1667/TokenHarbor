@@ -570,7 +570,7 @@
     },
     {
       "file": "sms-partners-map.svg",
-      "sha256": "349cce629f40f4c27ade0840e1ad3121edf528af447dc925f3b1acbb18b5ac9d",
+      "sha256": "b3e7c54d34813c645fb3b6dee4b1713823c23d87e7a0940e583a9dd3b202bdce",
       "whole_slide_capture": false,
       "embedded_old_company_name": false,
       "embedded_outdated_year": false,
@@ -591,7 +591,7 @@
       "source_native_shapes": "原渐变漏斗矢量组",
       "title": "短信合作伙伴漏斗与中国地图",
       "embedded_text": "原8个品牌标识，不包含正文、公司名、业绩数字、年份。",
-      "method": "extract original vector/image groups only; prune unused definitions; no full-slide screenshot",
+      "method": "原PPT渐变漏斗矢量组与 Pictures 流原始 PNG/JPEG 字节；移除转换损坏的色键蒙版，保留原始浅色标识底与位置；非整页截图",
       "viewBox": [
         12.0,
         115.0,
@@ -603,7 +603,150 @@
         "height": 363.0,
         "unit": "SVG user units"
       },
-      "editable_semantic_labels_in_html": false
+      "editable_semantic_labels_in_html": false,
+      "source_native_pictures": [
+        {
+          "brand": "中国地图",
+          "original_ppt_asset": "blip-04.png",
+          "width": 470,
+          "height": 377,
+          "format": "PNG",
+          "sha256": "4b9a0057c06f612c141d372f14845ce06f7a24ec0c3d0f43e79e354cd66ad5f8"
+        },
+        {
+          "brand": "12306",
+          "original_ppt_asset": "blip-05.jpeg",
+          "width": 84,
+          "height": 84,
+          "format": "JPEG",
+          "sha256": "ec8c29d94bb2a64a921412fbe2123e2b88ab61cb602adee607be3e69a17b8b45"
+        },
+        {
+          "brand": "中国农业银行",
+          "original_ppt_asset": "blip-06.png",
+          "width": 375,
+          "height": 121,
+          "format": "PNG",
+          "sha256": "976878c98345010a752d65a86ebeee8a8dfd794ecf21bb66847ec6d2052a5a8c"
+        },
+        {
+          "brand": "淘宝网",
+          "original_ppt_asset": "blip-07.jpeg",
+          "width": 173,
+          "height": 77,
+          "format": "JPEG",
+          "sha256": "83bffaaf31589ff95896c20a1221b941210ce0da20bf847fc1e1e150d2ee4424"
+        },
+        {
+          "brand": "中国建设银行",
+          "original_ppt_asset": "blip-08.jpeg",
+          "width": 240,
+          "height": 93,
+          "format": "JPEG",
+          "sha256": "1beb6ef88516573ebbc7dea92edc50310e8fa0e606fc61fffa7fc267633e4cb8"
+        },
+        {
+          "brand": "海南航空",
+          "original_ppt_asset": "blip-09.jpeg",
+          "width": 210,
+          "height": 59,
+          "format": "JPEG",
+          "sha256": "77af1b87d66a76d7b97ff9ef7b491727c9f2ebfeb151c9b4dd31e0348723fec1"
+        },
+        {
+          "brand": "国家电网",
+          "original_ppt_asset": "blip-10.jpeg",
+          "width": 195,
+          "height": 171,
+          "format": "JPEG",
+          "sha256": "4311b8967897ff61062aa964ae1bf18423e78979c8d021e233891a56c40f61f1"
+        },
+        {
+          "brand": "招商银行",
+          "original_ppt_asset": "blip-11.jpeg",
+          "width": 136,
+          "height": 112,
+          "format": "JPEG",
+          "sha256": "f960ba4315ef8cf886d5d73669ae9a4fc77e44d957e9e723f69f521eaed09590"
+        },
+        {
+          "brand": "支付宝",
+          "original_ppt_asset": "blip-12.jpeg",
+          "width": 191,
+          "height": 106,
+          "format": "JPEG",
+          "sha256": "c7ee2b771aa6a1d0aedb98e7588c458166dd54e1b3eeae765ddb204e6c150970"
+        }
+      ]
+    },
+    {
+      "file": "brand-toutiao-framed.svg",
+      "sha256": "eb9d59f1ee8c422f79a6139b18ea83937671382e97c7b32fde390472878750e4",
+      "title": "今日头条标识（视觉边界包装）",
+      "source_file": "brand-toutiao.jpeg",
+      "source_sha256": "ab5290baa2cd3a61d1abb4273ab37a61e9517a9d2e2f43a1f2e1288cefe06efc",
+      "source_pages": [
+        7
+      ],
+      "method": "SVG viewBox 去除显示时的空白边缘，嵌入原始 JPEG 字节，未修改标识像素。",
+      "viewBox": [
+        25,
+        30,
+        121,
+        33
+      ],
+      "dimensions": {
+        "width": 121,
+        "height": 33,
+        "unit": "SVG user units"
+      },
+      "whole_slide_capture": false
+    },
+    {
+      "file": "brand-ant-financial-framed.svg",
+      "sha256": "1c0324ea22f3cd8c28b18d7dfc62038be9708c1e948b735046f774fad9c95a47",
+      "title": "蚂蚁金服历史标识（视觉边界包装）",
+      "source_file": "brand-ant-financial.jpeg",
+      "source_sha256": "f8a08a8e5bfe49a3b109e256c35e33719d897deb874977721d5302fc38cef8ff",
+      "source_pages": [
+        7
+      ],
+      "method": "SVG viewBox 去除显示时的空白边缘，嵌入原始 JPEG 字节，未修改标识像素。",
+      "viewBox": [
+        26,
+        15,
+        120,
+        63
+      ],
+      "dimensions": {
+        "width": 120,
+        "height": 63,
+        "unit": "SVG user units"
+      },
+      "whole_slide_capture": false
+    },
+    {
+      "file": "brand-tencent-framed.svg",
+      "sha256": "bff284f19edb7e9a507640db5ec84566ec9f09ebe61961fe1e3aef9b9737acf1",
+      "title": "腾讯标识（视觉边界包装）",
+      "source_file": "brand-tencent.jpeg",
+      "source_sha256": "2d6f3cf1fa29599fd3942122f0772daaa8942d79001fd4523992cc200b65186f",
+      "source_pages": [
+        7
+      ],
+      "method": "SVG viewBox 去除显示时的空白边缘，嵌入原始 JPEG 字节，未修改标识像素。",
+      "viewBox": [
+        15,
+        30,
+        152,
+        24
+      ],
+      "dimensions": {
+        "width": 152,
+        "height": 24,
+        "unit": "SVG user units"
+      },
+      "whole_slide_capture": false
     }
   ]
 }

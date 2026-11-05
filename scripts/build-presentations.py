@@ -39,7 +39,7 @@ def build(filename, include_platform):
         content += '\n' + (SRC / 'platform-sections.html').read_text()
     parser = ChapterIndex()
     parser.feed(content)
-    expected = 14 if include_platform else 7
+    expected = 13 if include_platform else 7
     assert [i for i, _ in parser.chapters] == [f'slide-{i}' for i in range(1, expected + 1)]
     assert not re.search(r'<(?:canvas|iframe)\b|data:image|小悟', content)
     content = embed_media(content)
@@ -53,8 +53,8 @@ def build(filename, include_platform):
     intro = ('围绕能力开放、数据处理与可靠交付，展示团队既往技术经验，以及 TokenHarbor 的产品与技术方向。' if include_platform else '梳理通信网关、身份校验、数据服务与高可用系统的核心设计，展示业务系统背后的工程思路。')
     secondary = '<a class="text-link" href="#slide-8">了解 TokenHarbor</a>' if include_platform else '<a class="text-link" href="#slide-6">查看架构设计</a>'
     platform_nav = '<a class="nav-platform" href="#slide-8">TokenHarbor</a>' if include_platform else ''
-    final_anchor = parser.chapters[-1][0]
-    footer_text = ('团队历史项目与 TokenHarbor 产品技术规划。' if include_platform else '团队历史项目与系统工程经验。')
+    final_anchor = 'slide-10' if include_platform else parser.chapters[-1][0]
+    footer_text = ('团队明星项目与 TokenHarbor 产品技术规划。' if include_platform else '团队明星项目与系统工程经验。')
     css = (SRC / 'typography.css').read_text() + '\n' + (SRC / 'viewer.css').read_text()
     if include_platform:
         css += '\n' + (SRC / 'platform-visuals.css').read_text()
@@ -85,7 +85,7 @@ def build(filename, include_platform):
 </div></div><p class="cover-foot">通信系统经验　 /　 数据工程　 /　 平台化设计{'　 /　 AI 服务规划' if include_platform else ''}</p>
 </div></section>
 <main id="content">{content}</main>
-<footer class="page-footer"><div class="wrap"><div class="footer-top"><div><h2>申行科技</h2><p>{footer_text}</p></div><a href="#{final_anchor}">{'回顾实施路径' if include_platform else '回顾系统工程设计'} <span aria-hidden="true">↗</span></a></div><div class="footer-bottom"><span>企业技术交流资料</span><span>团队经验与产品规划分别说明</span></div></div></footer>
+<footer class="page-footer"><div class="wrap"><div class="footer-top"><div><h2>申行科技</h2><p>{footer_text}</p></div><a href="#{final_anchor}">{'回看平台架构' if include_platform else '回顾系统工程设计'} <span aria-hidden="true">↗</span></a></div><div class="footer-bottom"><span>企业技术交流资料</span><span>团队经验与产品规划分别说明</span></div></div></footer>
 <a class="back-top" href="#top" aria-label="返回页首">↑</a>
 <script>{js}</script>
 </body></html>
