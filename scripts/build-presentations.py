@@ -46,10 +46,10 @@ def build(filename, include_platform):
     toc = []
     for i, (anchor, title) in enumerate(parser.chapters, 1):
         if i in (1, 8):
-            toc.append('<li class="toc-group">' + ('团队技术背景' if i == 1 else 'TokenHarbor 产品与技术规划') + '</li>')
+            toc.append('<li class="toc-group">' + ('团队技术背景' if i == 1 else 'TokenHarbor 统一接入与智能管理') + '</li>')
         toc.append(f'<li><a href="#{anchor}"><span>{i:02}</span>{escape(title)}</a></li>')
-    title = '团队技术背景与 TokenHarbor 规划' if include_platform else '团队技术背景与工程能力'
-    heading = '团队技术背景<br><span>与 AI 服务规划</span>' if include_platform else '团队技术背景<br><span>与工程能力</span>'
+    title = '从运营商平台到 AI 能力平台' if include_platform else '团队技术背景与工程能力'
+    heading = '从运营商平台<br><span>到 AI 能力平台</span>' if include_platform else '团队技术背景<br><span>与工程能力</span>'
     intro = ('围绕能力开放、数据处理与可靠交付，展示团队既往技术经验，以及 TokenHarbor 的产品与技术方向。' if include_platform else '梳理通信网关、身份校验、数据服务与高可用系统的核心设计，展示业务系统背后的工程思路。')
     secondary = '<a class="text-link" href="#slide-8">了解 TokenHarbor</a>' if include_platform else '<a class="text-link" href="#slide-6">查看架构设计</a>'
     platform_nav = '<a class="nav-platform" href="#slide-8">TokenHarbor</a>' if include_platform else ''
