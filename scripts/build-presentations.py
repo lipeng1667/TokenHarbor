@@ -58,6 +58,7 @@ def build(filename, include_platform):
     css = (SRC / 'viewer.css').read_text()
     if include_platform:
         css += '\n' + (SRC / 'platform-visuals.css').read_text()
+        css += '\n' + (SRC / 'platform-story.css').read_text()
     js = (SRC / 'viewer.js').read_text()
     output = f'''<!doctype html>
 <html lang="zh-CN">
