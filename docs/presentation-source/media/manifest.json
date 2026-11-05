@@ -105,27 +105,6 @@
       }
     },
     {
-      "file": "architecture-phone.png",
-      "sha256": "e7d65f2a67a8c352c6fc753632b6523105bad91411644aff096fdeca115bc909",
-      "whole_slide_capture": false,
-      "embedded_old_company_name": false,
-      "embedded_outdated_year": false,
-      "source_pages": [
-        9
-      ],
-      "source_embedded_assets": [
-        "ppt/media/image28.png"
-      ],
-      "title": "移动终端图标",
-      "method": "extract original embedded picture bytes",
-      "embedded_text": "Icon or photograph; no editable body text.",
-      "dimensions": {
-        "width": 66,
-        "height": 91,
-        "unit": "pixels"
-      }
-    },
-    {
       "file": "architecture-service-provider.png",
       "sha256": "52de74e68a05749a78de3818734d7cb2d5e62be268667f32d8242d0e828cff15",
       "whole_slide_capture": false,
@@ -256,32 +235,6 @@
         "height": 87,
         "unit": "pixels"
       }
-    },
-    {
-      "file": "cloud-capabilities-shapes.svg",
-      "sha256": "3e058402e68811965ec6499d16a5e5e106e6a6e29a8aee1455e9c6834702701c",
-      "whole_slide_capture": false,
-      "embedded_old_company_name": false,
-      "embedded_outdated_year": false,
-      "source_pages": [
-        8
-      ],
-      "source_native_shapes": "原能力三角、三色节点、循环箭头矢量组与局部透明蒙版",
-      "title": "智能服务云能力三角图形",
-      "embedded_text": false,
-      "method": "extract original vector/image groups only; prune unused definitions; no full-slide screenshot",
-      "viewBox": [
-        300.0,
-        122.0,
-        385.0,
-        315.0
-      ],
-      "dimensions": {
-        "width": 385.0,
-        "height": 315.0,
-        "unit": "SVG user units"
-      },
-      "editable_semantic_labels_in_html": true
     },
     {
       "file": "industry-city.png",

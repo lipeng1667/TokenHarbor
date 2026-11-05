@@ -39,21 +39,21 @@ def build(filename, include_platform):
         content += '\n' + (SRC / 'platform-sections.html').read_text()
     parser = ChapterIndex()
     parser.feed(content)
-    expected = 21 if include_platform else 11
+    expected = 17 if include_platform else 7
     assert [i for i, _ in parser.chapters] == [f'slide-{i}' for i in range(1, expected + 1)]
     assert not re.search(r'<(?:canvas|iframe)\b|data:image|小悟', content)
     content = embed_media(content)
     toc = []
     for i, (anchor, title) in enumerate(parser.chapters, 1):
-        if i in (1, 12):
+        if i in (1, 8):
             toc.append('<li class="toc-group">' + ('团队技术背景' if i == 1 else 'TokenHarbor 产品与技术规划') + '</li>')
         toc.append(f'<li><a href="#{anchor}"><span>{i:02}</span>{escape(title)}</a></li>')
     title = '团队技术背景与 TokenHarbor 规划' if include_platform else '团队技术背景与工程能力'
     heading = '团队技术背景<br><span>与 AI 服务规划</span>' if include_platform else '团队技术背景<br><span>与工程能力</span>'
     intro = ('围绕能力开放、数据处理与可靠交付，展示团队既往技术经验，以及 TokenHarbor 的产品与技术方向。' if include_platform else '梳理通信网关、身份校验、数据服务与高可用系统的核心设计，展示业务系统背后的工程思路。')
-    secondary = '<a class="text-link" href="#slide-12">了解 TokenHarbor</a>' if include_platform else '<a class="text-link" href="#slide-9">查看架构设计</a>'
-    platform_nav = '<a class="nav-platform" href="#slide-12">TokenHarbor</a>' if include_platform else ''
-    final_anchor = 'slide-21' if include_platform else 'slide-10'
+    secondary = '<a class="text-link" href="#slide-8">了解 TokenHarbor</a>' if include_platform else '<a class="text-link" href="#slide-6">查看架构设计</a>'
+    platform_nav = '<a class="nav-platform" href="#slide-8">TokenHarbor</a>' if include_platform else ''
+    final_anchor = 'slide-17' if include_platform else 'slide-7'
     footer_text = ('团队背景按技术主题整理。TokenHarbor 为产品与技术规划，能力范围、收益与交付时间以具体验证结果为准。' if include_platform else '本文围绕团队既往技术经验说明系统设计。具体项目归属、可披露范围与业绩口径需另行核实。')
     css = (SRC / 'viewer.css').read_text()
     js = (SRC / 'viewer.js').read_text()
@@ -71,7 +71,7 @@ def build(filename, include_platform):
 <a class="skip-link" href="#content">跳转正文</a>
 <header class="masthead"><div class="wrap masthead-inner">
 <a class="wordmark" href="#top" aria-label="申行科技 返回页首">申行科技</a><span class="brand-context">企业技术交流<br>能力与架构</span>
-<nav class="nav" aria-label="主要导航"><a href="#slide-1">团队背景</a><a class="nav-architecture" href="#slide-9">架构设计</a>{platform_nav}<details class="contents"><summary>目录</summary><div class="toc-panel"><p class="toc-label">{escape(title)}</p><ol class="toc">{''.join(toc)}</ol></div></details><button class="print-button" type="button" aria-label="打印完整页面">打印</button></nav>
+<nav class="nav" aria-label="主要导航"><a href="#slide-1">团队背景</a><a class="nav-architecture" href="#slide-6">架构设计</a>{platform_nav}<details class="contents"><summary>目录</summary><div class="toc-panel"><p class="toc-label">{escape(title)}</p><ol class="toc">{''.join(toc)}</ol></div></details><button class="print-button" type="button" aria-label="打印完整页面">打印</button></nav>
 </div></header>
 <section class="cover" aria-labelledby="page-title"><div class="wrap">
 <div class="cover-meta"><p class="eyebrow">申行科技 企业技术交流</p><span>技术背景 / 架构 / 产品方向</span></div>
