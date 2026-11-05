@@ -4,13 +4,15 @@
 
 ## 项目文档
 
-[打开团队背景与 TokenHarbor 技术方案](docs/tokenharbor-presentation.html)
+[查看官网交流演示](https://shenxingkeji.cn/assets/presentations/tokenharbor-c8f144f.html)
+
+[打开本地团队背景与 TokenHarbor 技术方案](docs/tokenharbor-presentation.html)
 
 [打开团队技术背景](docs/team-background.html)
 
 两份文档均为面向申行科技企业交流的连续滚动 HTML，分别包含 17 个和 7 个内容章节。标题、正文、表格及架构节点均为原生 HTML，可搜索、复制与维护，手机端会重新排版。支持目录锚点和打印，单文件可离线打开。
 
-历史项目部分包含行业背景、短信网关、号码认证、QoS 与防骚扰、大数据、MaaP、OES 七章，保留短信地图、伙伴标识和产品图片。短信与号码认证以原项目历史数字为主：短信展示 34／260／1397 亿条三条发送记录，以及日均 600,000,000 条、日最高 1,000,000,000 条、累计接入 8,000+ 家用户（按原稿 8,209 家简写）；取号展示近 6,000 家 APP、每天超 20 亿次及支持 5G 套餐用户，并复原原稿四项定性比较。页面使用相对年度，不把首个记录年度当作上线年，不计算口径未明的年度增幅，也不将收益预测列为实绩。数字不代表当前规模，比较图不是性能测评；简短技术能力与详细 NIS 依据分别保留在页面和[项目证据说明](docs/presentation-source/project-evidence.md)，不以行业统计替代团队成果。TokenHarbor 后十章以可编辑架构图、调用树、状态泳道和对照图重做，沿用 MaaP 的网元配色；突出少输入接入、成本证据、优化验证与可恢复交付。OES 已验证基础和 TokenHarbor 拟建能力分别表达，依据见[平台证据说明](docs/presentation-source/platform-evidence.md)。用户已授权将完整版发布到申行科技官网独立路径，发布信息以完成后的线上验收记录为准。
+历史项目部分包含行业背景、短信网关、号码认证、QoS 与防骚扰、大数据、MaaP、OES 七章，保留短信地图、伙伴标识和产品图片。短信与号码认证以原项目历史数字为主：短信展示 34／260／1397 亿条三条发送记录，以及日均 600,000,000 条、日最高 1,000,000,000 条、累计接入 8,000+ 家用户（按原稿 8,209 家简写）；取号展示近 6,000 家 APP、每天超 20 亿次及支持 5G 套餐用户，并复原原稿四项定性比较。页面使用相对年度，不把首个记录年度当作上线年，不计算口径未明的年度增幅，也不将收益预测列为实绩。数字不代表当前规模，比较图不是性能测评；简短技术能力与详细 NIS 依据分别保留在页面和[项目证据说明](docs/presentation-source/project-evidence.md)，不以行业统计替代团队成果。TokenHarbor 后十章以可编辑架构图、调用树、状态泳道和对照图重做，沿用 MaaP 的网元配色；突出少输入接入、成本证据、优化验证与可恢复交付。OES 已验证基础和 TokenHarbor 拟建能力分别表达，依据见[平台证据说明](docs/presentation-source/platform-evidence.md)。完整版已发布到官网独立版本路径，PC/手机、资源、交互与正文哈希验收通过，详见[发布记录](docs/presentation-source/publication.md)。
 
 文案分别维护在 `docs/presentation-source/team-sections.html` 和 `platform-sections.html`，运行 `python3 scripts/build-presentations.py` 生成交付文件。完整维护方式见 [源文件说明](docs/presentation-source/README.md)。
 
