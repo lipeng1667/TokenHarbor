@@ -4,7 +4,7 @@
 
 ## 项目文档
 
-[查看官网交流演示](https://shenxingkeji.cn/assets/presentations/tokenharbor-0462324.html)
+[查看官网交流演示](https://shenxingkeji.cn/assets/presentations/tokenharbor-f420777.html)
 
 [打开本地团队背景与 TokenHarbor 技术方案](docs/tokenharbor-presentation.html)
 
