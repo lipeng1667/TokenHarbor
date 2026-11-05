@@ -54,7 +54,7 @@ def build(filename, include_platform):
     secondary = '<a class="text-link" href="#slide-8">了解 TokenHarbor</a>' if include_platform else '<a class="text-link" href="#slide-6">查看架构设计</a>'
     platform_nav = '<a class="nav-platform" href="#slide-8">TokenHarbor</a>' if include_platform else ''
     final_anchor = 'slide-17' if include_platform else 'slide-7'
-    footer_text = ('团队背景按技术主题整理。TokenHarbor 为产品与技术规划，能力范围、收益与交付时间以具体验证结果为准。' if include_platform else '本文围绕团队既往技术经验说明系统设计。具体项目归属、可披露范围与业绩口径需另行核实。')
+    footer_text = ('团队历史项目与 TokenHarbor 产品技术规划。' if include_platform else '团队历史项目与系统工程经验。')
     css = (SRC / 'viewer.css').read_text()
     js = (SRC / 'viewer.js').read_text()
     output = f'''<!doctype html>
