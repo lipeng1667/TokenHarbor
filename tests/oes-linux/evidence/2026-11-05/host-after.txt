@@ -1,0 +1,36 @@
+2026-11-05T13:49:56+08:00
+Id=nginx.service
+ActiveState=active
+SubState=running
+NRestarts=0
+ExecMainStartTimestamp=Tue 2026-09-29 16:55:34 CST
+
+Id=jianzhang-platform-api.service
+ActiveState=active
+SubState=running
+NRestarts=0
+ExecMainStartTimestamp=Wed 2026-10-07 16:41:17 CST
+
+Id=jianzhang-platform-notification-worker.service
+ActiveState=active
+SubState=running
+NRestarts=0
+ExecMainStartTimestamp=Wed 2026-10-07 16:41:17 CST
+
+Id=jianzhang-platform-wechat-gateway.service
+ActiveState=active
+SubState=running
+NRestarts=0
+ExecMainStartTimestamp=Wed 2026-10-07 16:41:17 CST
+HOST_TEST_LISTENERS
+TEST_PROCESS_CHECK
+TEST_UNIT_CHECK
+RESOURCE_SNAPSHOT
+               total        used        free      shared  buff/cache   available
+Mem:            3654        1515         299          10        2139        2139
+Swap:           2047        1512         535
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda3        79G   22G   53G  30% /
+RETAINED_TEST_SIZE
+109M	/srv/tokenharbor-oes-test/20261105
+259M	/var/lib/private/tokenharbor-oes-test

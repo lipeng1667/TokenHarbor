@@ -1,0 +1,194 @@
+Running as unit: tokenharbor-oes-functional.service; invocation ID: 2ce82c50e80b4ddf8c90d179e6b163cf
+RUN_DIR=/var/lib/tokenharbor-oes-test/runs/20261105-134804-54c3b3
+Dynamic dependencies: PASS (three executables)
+Isolated database initialized; synthetic fixture loaded
+Topology and database connections: PASS
+{
+  "started_unix": 1793857689,
+  "status": "PASS",
+  "account_before": {
+    "result": "0",
+    "balance": "1000.000",
+    "credit": "0.000"
+  },
+  "invalid_signature": {
+    "result": "11",
+    "balance": "0.000",
+    "credit": "0.000"
+  },
+  "synchronous_order": {
+    "result": "0",
+    "custom_order_id": "the2343fda2dc44fbbs",
+    "order_id": "15583284350000",
+    "service": "0",
+    "function": "0",
+    "order_time": "1793857689",
+    "done_time": "1793857689",
+    "resp_type": "1",
+    "resp_code": "1",
+    "resp_desc": "Order response error test",
+    "m": "18600007689",
+    "t": "Test tag in order response"
+  },
+  "order_query": {
+    "result": "0",
+    "custom_order_id": "the2343fda2dc44fbbs",
+    "order_id": "15583284350000",
+    "service": "0",
+    "function": "0",
+    "order_time": "1793857689",
+    "done_time": "1793857689",
+    "resp_type": "1",
+    "resp_code": "1",
+    "resp_desc": "Order response error test",
+    "m": "18600007689",
+    "t": "Test tag in order response"
+  },
+  "duplicate_order": {
+    "result": "-3",
+    "custom_order_id": "the2343fda2dc44fbbs",
+    "order_id": "15583284350000",
+    "service": "0",
+    "function": "0",
+    "order_time": "1793857689",
+    "done_time": "1793857689",
+    "resp_type": "1",
+    "resp_code": "1",
+    "resp_desc": "Order response error test",
+    "m": "18600007689",
+    "t": "Test tag in order response"
+  },
+  "asynchronous_acceptance": {
+    "result": "-1",
+    "custom_order_id": "the2343fda2dc44fbba",
+    "order_id": "15583284350001",
+    "service": "0",
+    "function": "1",
+    "order_time": "1793857689",
+    "done_time": "1793857689"
+  },
+  "asynchronous_callback": {
+    "result": "0",
+    "custom_order_id": "the2343fda2dc44fbba",
+    "order_id": "15583284350001",
+    "service": "0",
+    "function": "1",
+    "order_time": "1793857689",
+    "done_time": "1793857689",
+    "resp_type": "1",
+    "resp_code": "1",
+    "resp_desc": "Order response error test",
+    "m": "18600007689",
+    "t": "Test tag in order response"
+  },
+  "account_after": {
+    "result": "0",
+    "balance": "999.960",
+    "credit": "0.000"
+  },
+  "balance_debit": "0.040",
+  "successful_orders_submitted": 2,
+  "distinct_completed_orders": [
+    "the2343fda2dc44fbbs",
+    "the2343fda2dc44fbba"
+  ],
+  "expected_balance_milliunits": 999960,
+  "checks": [
+    "portal_kernel_account",
+    "invalid_signature_rejected",
+    "portal_kernel_dispatcher_sync",
+    "order_query",
+    "duplicate_rejected",
+    "async_callback",
+    "exact_balance_debit"
+  ],
+  "finished_unix": 1793857690
+}
+
+Waiting for the normal database statistics flush (no extra orders)
+{
+  "status": "PASS",
+  "started_unix": 1793857684,
+  "run_dir": "/var/lib/tokenharbor-oes-test/runs/20261105-134804-54c3b3",
+  "uid": 63933,
+  "network_namespace": "net:[4026532342]",
+  "ipc_namespace": "ipc:[4026532395]",
+  "shutdown": {
+    "httpportal": {
+      "returncode": 0,
+      "forced": false
+    },
+    "dispatcher": {
+      "returncode": 0,
+      "forced": false
+    },
+    "okernel": {
+      "returncode": 0,
+      "forced": false
+    },
+    "database": {
+      "returncode": 0,
+      "forced": false
+    }
+  },
+  "dynamic_dependencies": "PASS",
+  "database_version": "11.8.6-MariaDB-5ubuntu0.1 from Ubuntu",
+  "topology": {
+    "portal": 1,
+    "dispatcher": 1
+  },
+  "database_user_loads": [
+    "okernel",
+    "httpportal"
+  ],
+  "functional_checks": [
+    "portal_kernel_account",
+    "invalid_signature_rejected",
+    "portal_kernel_dispatcher_sync",
+    "order_query",
+    "duplicate_rejected",
+    "async_callback",
+    "exact_balance_debit"
+  ],
+  "database_balance": 999960,
+  "database_statistics": {
+    "rows": 1,
+    "orders": 2,
+    "failed_orders": 0
+  },
+  "process_memory": {
+    "database": [
+      "VmHWM:\t  123472 kB",
+      "VmRSS:\t  123472 kB"
+    ],
+    "okernel": [
+      "VmHWM:\t   62000 kB",
+      "VmRSS:\t   62000 kB"
+    ],
+    "dispatcher": [
+      "VmHWM:\t    2316 kB",
+      "VmRSS:\t    2316 kB"
+    ],
+    "httpportal": [
+      "VmHWM:\t   16084 kB",
+      "VmRSS:\t   16084 kB"
+    ]
+  },
+  "dispatcher_log_order_ids": [
+    "the2343fda2dc44fbbs",
+    "the2343fda2dc44fbba"
+  ],
+  "written_files": {
+    "httpportal/portal_log_20261105134809_00000000.txt": 1151,
+    "okernel/kernel_log_20261105134808_00000000.txt": 146,
+    "okernel/kernel_cdr_20261105134809_00000000.dat": 448,
+    "okernel/order_of_user_0.dat": 4432
+  },
+  "finished_unix": 1793857741
+}
+
+          Finished with result: success
+Main processes terminated with: code=exited, status=0/SUCCESS
+               Service runtime: 57.759s
+             CPU time consumed: 3.458s
+                   Memory peak: 184.8M (swap: 0B)

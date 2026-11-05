@@ -1,0 +1,2 @@
+# The patch matches legacy CRLF source byte-for-byte; preserve its line endings.
+patches/*.patch -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

@@ -1,0 +1,19 @@
+{
+  "source_errors": 0,
+  "warnings_by_category": {
+    "-Wunused-result": 5,
+    "-Wunused-parameter": 90,
+    "-Wunterminated-string-initialization": 5,
+    "-Wsign-compare": 47,
+    "-Wswitch-unreachable": 2,
+    "-Wmaybe-uninitialized": 3,
+    "-Wstringop-truncation": 5,
+    "-Wrestrict": 2,
+    "-Wtype-limits": 7,
+    "-Wdeprecated-declarations": 13,
+    "-Wabsolute-value": 4,
+    "-Wformat-security": 8,
+    "-Wold-style-declaration": 3,
+    "-Wformat-overflow=": 6
+  }
+}

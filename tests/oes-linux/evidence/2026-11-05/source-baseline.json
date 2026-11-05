@@ -1,0 +1,14 @@
+{
+  "oes_source": {
+    "commit": "b4d84744e5402fdb32d020f06dbd00860ed329d2",
+    "source_file_count": 17
+  },
+  "module": {
+    "commit": "1f3561e86d1c2301645b27fb5612d2c87d7a1b39",
+    "source_file_count": 103
+  },
+  "module-unstable": {
+    "commit": "0e8c6e2b6497db61b1d31764fba31d889a42ce45",
+    "source_file_count": 3
+  }
+}

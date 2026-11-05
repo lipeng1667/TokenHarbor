@@ -1,0 +1,117 @@
+{
+  "started_unix": 1793857597,
+  "status": "PASS",
+  "account_before": {
+    "result": "0",
+    "balance": "1000.000",
+    "credit": "0.000"
+  },
+  "invalid_signature": {
+    "result": "11",
+    "balance": "0.000",
+    "credit": "0.000"
+  },
+  "synchronous_order": {
+    "result": "0",
+    "custom_order_id": "tha4e4d16235ea49b8s",
+    "order_id": "15583279750000",
+    "service": "0",
+    "function": "0",
+    "order_time": "1793857597",
+    "done_time": "1793857597",
+    "resp_type": "0",
+    "resp_code": "2",
+    "resp_desc": "Order report error test",
+    "a": "c",
+    "b": "-12345",
+    "c": "1234567890",
+    "d": "-1234567890123456789",
+    "e": "123456789012345678901234567890",
+    "r": "Test tag in report"
+  },
+  "order_query": {
+    "result": "0",
+    "custom_order_id": "tha4e4d16235ea49b8s",
+    "order_id": "15583279750000",
+    "service": "0",
+    "function": "0",
+    "order_time": "1793857597",
+    "done_time": "1793857597",
+    "resp_type": "0",
+    "resp_code": "2",
+    "resp_desc": "Order report error test",
+    "a": "c",
+    "b": "-12345",
+    "c": "1234567890",
+    "d": "-1234567890123456789",
+    "e": "123456789012345678901234567890",
+    "r": "Test tag in report"
+  },
+  "duplicate_order": {
+    "result": "-3",
+    "custom_order_id": "tha4e4d16235ea49b8s",
+    "order_id": "15583279750000",
+    "service": "0",
+    "function": "0",
+    "order_time": "1793857597",
+    "done_time": "1793857597",
+    "resp_type": "0",
+    "resp_code": "2",
+    "resp_desc": "Order report error test",
+    "a": "c",
+    "b": "-12345",
+    "c": "1234567890",
+    "d": "-1234567890123456789",
+    "e": "123456789012345678901234567890",
+    "r": "Test tag in report"
+  },
+  "asynchronous_acceptance": {
+    "result": "-1",
+    "custom_order_id": "tha4e4d16235ea49b8a",
+    "order_id": "15583279750001",
+    "service": "0",
+    "function": "1",
+    "order_time": "1793857597",
+    "done_time": "1793857597"
+  },
+  "asynchronous_callback": {
+    "result": "0",
+    "custom_order_id": "tha4e4d16235ea49b8a",
+    "order_id": "15583279750001",
+    "service": "0",
+    "function": "1",
+    "order_time": "1793857597",
+    "done_time": "1793857597",
+    "resp_type": "0",
+    "resp_code": "2",
+    "resp_desc": "Order report error test",
+    "a": "c",
+    "b": "-12345",
+    "c": "1234567890",
+    "d": "-1234567890123456789",
+    "e": "123456789012345678901234567890",
+    "r": "Test tag in report"
+  },
+  "account_after": {
+    "result": "0",
+    "balance": "999.960",
+    "credit": "0.000"
+  },
+  "balance_debit": "0.040",
+  "successful_orders_submitted": 2,
+  "distinct_completed_orders": [
+    "tha4e4d16235ea49b8s",
+    "tha4e4d16235ea49b8a"
+  ],
+  "expected_balance_milliunits": 999960,
+  "checks": [
+    "portal_kernel_account",
+    "invalid_signature_rejected",
+    "portal_kernel_dispatcher_sync",
+    "order_query",
+    "duplicate_rejected",
+    "async_callback",
+    "exact_balance_debit"
+  ],
+  "finished_unix": 1793857598
+}

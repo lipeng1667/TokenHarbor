@@ -1,0 +1,8 @@
+--- a/oes_source/okernel/orderproc.c
++++ b/oes_source/okernel/orderproc.c
+@@ -29 +29 @@
+-inline int check_http_key(unsigned int user_id, long key, unsigned int timetick)
++static inline int check_http_key(unsigned int user_id, long key, unsigned int timetick)
+@@ -58 +58 @@
+-inline int check_price(unsigned int user_id, unsigned int service_id, unsigned int function_id, order_info_t *i)
++static inline int check_price(unsigned int user_id, unsigned int service_id, unsigned int function_id, order_info_t *i)

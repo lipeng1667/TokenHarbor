@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "started_unix": 1793857684,
+  "run_dir": "/var/lib/tokenharbor-oes-test/runs/20261105-134804-54c3b3",
+  "uid": 63933,
+  "network_namespace": "net:[4026532342]",
+  "ipc_namespace": "ipc:[4026532395]",
+  "shutdown": {
+    "httpportal": {
+      "returncode": 0,
+      "forced": false
+    },
+    "dispatcher": {
+      "returncode": 0,
+      "forced": false
+    },
+    "okernel": {
+      "returncode": 0,
+      "forced": false
+    },
+    "database": {
+      "returncode": 0,
+      "forced": false
+    }
+  },
+  "dynamic_dependencies": "PASS",
+  "database_version": "11.8.6-MariaDB-5ubuntu0.1 from Ubuntu",
+  "topology": {
+    "portal": 1,
+    "dispatcher": 1
+  },
+  "database_user_loads": [
+    "okernel",
+    "httpportal"
+  ],
+  "functional_checks": [
+    "portal_kernel_account",
+    "invalid_signature_rejected",
+    "portal_kernel_dispatcher_sync",
+    "order_query",
+    "duplicate_rejected",
+    "async_callback",
+    "exact_balance_debit"
+  ],
+  "database_balance": 999960,
+  "database_statistics": {
+    "rows": 1,
+    "orders": 2,
+    "failed_orders": 0
+  },
+  "process_memory": {
+    "database": [
+      "VmHWM:\t  123472 kB",
+      "VmRSS:\t  123472 kB"
+    ],
+    "okernel": [
+      "VmHWM:\t   62000 kB",
+      "VmRSS:\t   62000 kB"
+    ],
+    "dispatcher": [
+      "VmHWM:\t    2316 kB",
+      "VmRSS:\t    2316 kB"
+    ],
+    "httpportal": [
+      "VmHWM:\t   16084 kB",
+      "VmRSS:\t   16084 kB"
+    ]
+  },
+  "dispatcher_log_order_ids": [
+    "the2343fda2dc44fbbs",
+    "the2343fda2dc44fbba"
+  ],
+  "written_files": {
+    "httpportal/portal_log_20261105134809_00000000.txt": 1151,
+    "okernel/kernel_log_20261105134808_00000000.txt": 146,
+    "okernel/kernel_cdr_20261105134809_00000000.dat": 448,
+    "okernel/order_of_user_0.dat": 4432
+  },
+  "finished_unix": 1793857741
+}
