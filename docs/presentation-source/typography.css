@@ -1,0 +1,46 @@
+/* Shared typography for editable text in both presentation documents. */
+:root {
+  --font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", system-ui, sans-serif;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --leading-symbol: 1;
+  --leading-number: 1.2;
+  --leading-heading: 1.4;
+  --leading-compact: 1.5;
+  --leading-body: 1.75;
+  --tracking-text: 0;
+  --tracking-label: .04em;
+  --text-12: 12px;
+  --text-14: 14px;
+  --text-16: 16px;
+  --text-20: 20px;
+  --text-24: 24px;
+  --text-28: 28px;
+  --text-32: 32px;
+  --text-36: 36px;
+  --text-40: 40px;
+  --text-48: 48px;
+  --text-56: 56px;
+  --text-64: 64px;
+  --text-72: 72px;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: var(--weight-regular);
+  font-variant-numeric: lining-nums;
+}
+
+input, button, select, textarea { font-family: inherit; }
+h4, b { font-weight: var(--weight-semibold); }
+h1, h2 { word-break: keep-all; overflow-wrap: anywhere; }
+.type-phrase { display: inline-block; white-space: nowrap; }
+
+/* Comparable numbers retain a stable width without using a separate font. */
+.section-index, .path-number, .feature-index, .step-index,
+.th-number, .thv-story-steps li > b, .thv-bill-row > span,
+.thv-bill-story li > span, .results-bar-value, .results-sms-metrics strong,
+.results-number-circle strong, .results-capabilities strong {
+  font-variant-numeric: lining-nums tabular-nums;
+}

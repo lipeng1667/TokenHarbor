@@ -55,7 +55,7 @@ def build(filename, include_platform):
     platform_nav = '<a class="nav-platform" href="#slide-8">TokenHarbor</a>' if include_platform else ''
     final_anchor = 'slide-17' if include_platform else 'slide-7'
     footer_text = ('团队历史项目与 TokenHarbor 产品技术规划。' if include_platform else '团队历史项目与系统工程经验。')
-    css = (SRC / 'viewer.css').read_text()
+    css = (SRC / 'typography.css').read_text() + '\n' + (SRC / 'viewer.css').read_text()
     if include_platform:
         css += '\n' + (SRC / 'platform-visuals.css').read_text()
         css += '\n' + (SRC / 'platform-story.css').read_text()
