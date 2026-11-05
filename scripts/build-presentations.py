@@ -56,6 +56,8 @@ def build(filename, include_platform):
     final_anchor = 'slide-17' if include_platform else 'slide-7'
     footer_text = ('团队历史项目与 TokenHarbor 产品技术规划。' if include_platform else '团队历史项目与系统工程经验。')
     css = (SRC / 'viewer.css').read_text()
+    if include_platform:
+        css += '\n' + (SRC / 'platform-visuals.css').read_text()
     js = (SRC / 'viewer.js').read_text()
     output = f'''<!doctype html>
 <html lang="zh-CN">
