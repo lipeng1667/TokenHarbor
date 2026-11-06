@@ -105,3 +105,20 @@ html { scroll-padding-top: var(--header-offset,128px); }
   .thc-opening .thv-values h3 { font-size: 14pt; }
   .thc-case-action li p { font-size: 9pt; }
 }
+/* Clear text in the authentication comparison and bilingual data-processing label. */
+.results-auth-methods td { font-size: var(--text-14); line-height: var(--leading-body); overflow-wrap: anywhere; }
+.results-method-note { margin-top: 16px; color: var(--muted); font-size: var(--text-12); line-height: var(--leading-body); }
+.ppt-gear-label { font-size: clamp(9px,1.15vw,16px)!important; line-height: 1.15; white-space: nowrap; }
+.ppt-gear-label small { display: block; font-size: .72em; }
+.ppt-number { font-size: var(--text-14); }
+@media screen and (max-width:760px) {
+  .results-auth-methods td { font-size: var(--text-12); }
+  .ppt-gear-label { font-size: clamp(9px,2.5vw,14px)!important; }
+}
+.results-auth-methods th:first-child { width: 20%!important; }
+.ppt-architecture-diagram .node.ppt-ims-node { color: #512b0d; }
+@media screen and (max-width:760px) {
+  .ppt-gear-label { font-size: clamp(11px,2.5vw,14px)!important; }
+}
+#slide-10 .th-arch-support .th-node-pink > span { color: #506268; }
+.ppt-oes-label.ppt-label-dark { color: #123e47; }

@@ -46,7 +46,7 @@ def build(filename, include_platform):
     toc = []
     for i, (anchor, title) in enumerate(parser.chapters, 1):
         if i in (1, 8):
-            toc.append('<li class="toc-group">' + ('团队技术背景' if i == 1 else 'TokenHarbor 统一接入与智能管理') + '</li>')
+            toc.append('<li class="toc-group">' + ('团队技术背景' if i == 1 else 'TokenHarbor 平台') + '</li>')
         toc.append(f'<li><a href="#{anchor}"><span>{i:02}</span>{escape(title)}</a></li>')
     title = '从运营商平台到 AI 能力平台' if include_platform else '团队技术背景与工程能力'
     heading = '从运营商平台<br><span>到 AI 能力平台</span>' if include_platform else '团队技术背景<br><span>与工程能力</span>'

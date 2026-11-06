@@ -1,5 +1,5 @@
-<section class="chapter th-platform th-platform-opening thv-section thv-opening thc-opening" id="slide-8" data-title="TokenHarbor 统一接入与智能管理">
-  <header class="section-heading"><span class="section-index">08</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2><span class="th-title-phrase">TokenHarbor</span> <span class="th-title-phrase"><span class="type-phrase">统一接入</span><span class="type-phrase">与智能管理</span></span></h2></div></header>
+<section class="chapter th-platform th-platform-opening thv-section thv-opening thc-opening" id="slide-8" data-title="TokenHarbor">
+  <header class="section-heading"><span class="section-index">08</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>TokenHarbor</h2></div></header>
   <div class="section-body">
     <p class="thv-opening-lead">为企业应用与内容团队统一管理多种 AI 能力</p>
     <div class="thv-values">
@@ -16,7 +16,7 @@
         <div class="thv-bill-scatter" aria-label="费用分散在多个供应商账单中"><svg viewBox="0 0 480 42" preserveAspectRatio="none" aria-hidden="true"><path d="M40 3 240 39M240 3 440 39M440 3 40 39"/></svg><div><span>模型服务 A<i>调用 · 用量</i></span><span>模型服务 B<i>重试 · 用量</i></span><span>模型服务 C<i>生成 · 处理</i></span></div></div>
         <p class="thv-board-question">总账能查到 <strong>项目成本难对上</strong></p>
       </figure>
-      <div class="thc-case-action"><p class="thv-overline">项目成本看不清</p><h3>报价已经确定<br>AI 成本还在累加</h3><ol><li><span>01</span><div><strong>统一记录</strong><p>调用、重试与额外处理费用有据可查。</p></div></li><li><span>02</span><div><strong>可靠关联后归集</strong><p>依据任务、批次或明确项目映射，形成项目 AI 成本视图。</p></div></li><li><span>03</span><div><strong>验证优化机会</strong><p>从实际费用出发，核对优化是否有效。</p></div></li></ol></div>
+      <div class="thc-case-action"><p class="thv-overline">项目成本看不清</p><h3>报价已经确定<br>AI 成本还在累加</h3><ol><li><span>01</span><div><strong>统一记录</strong><p>调用、重试与额外处理费用有据可查。</p></div></li><li><span>02</span><div><strong>确认项目归属后，再汇总费用</strong><p>依据任务、批次或明确项目映射，形成项目 AI 成本视图。</p></div></li><li><span>03</span><div><strong>验证优化机会</strong><p>从实际费用出发，核对优化是否有效。</p></div></li></ol></div>
     </div>
     <p class="presentation-note on-dark"><strong>关联不足单列待归属</strong><span>基础追踪与状态管理拟不单列收费。</span></p>
     <details class="thv-scope-details"><summary>少输入与项目归集如何兼顾</summary><p>普通 API 即可记录调用，平台管理自身任务与尝试；项目归集需有可靠关联。共用 API Key 或相似提示词不能证明属于同一项目。项目利润还需结合收入、人力等其他成本。</p></details>
@@ -58,7 +58,7 @@
       <div class="thv-compact-core"><strong>平台统一管理</strong><div><span>统一接入<small>Portal</small></span><span>任务与费用<small>Kernel</small></span><span>能力适配<small>Dispatcher</small></span></div></div><b class="thv-compact-down" aria-hidden="true">↓</b>
       <div class="thv-compact-models"><strong>按任务选择模型能力</strong><div><span>文本</span><span>图片</span><span>视频</span></div></div>
       <p>配套支撑：任务记录 · 用量费用 · 通知与对账</p>
-      <details class="thv-scope-details"><summary>查看分层职责</summary><dl><dt>接入与负载均衡</dt><dd>接收并分发请求，管理连接与接入流量。</dd><dt>Portal</dt><dd>客户身份、连接与结果交付。</dd><dt>Kernel</dt><dd>协调任务、规则、预算和状态。</dd><dt>Dispatcher</dt><dd>适配不同供应商和模型能力。</dd></dl></details>
+      <details class="thv-scope-details"><summary>查看各部分负责什么</summary><dl><dt>接入与负载均衡</dt><dd>接收并分发请求，管理连接与接入流量。</dd><dt>Portal</dt><dd>客户身份、连接与结果交付。</dd><dt>Kernel</dt><dd>协调任务、规则、预算和状态。</dd><dt>Dispatcher</dt><dd>适配不同供应商和模型能力。</dd></dl></details>
     </div>
 
     <div class="th-architecture-layout">
@@ -76,8 +76,8 @@
   <header class="section-heading"><span class="section-index">11</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>让每一笔 AI 支出都有依据</h2></div></header>
   <div class="section-body">
     <div class="th-highlight-title"><span>技术亮点 01</span><p>把有可靠关联的跨模型支出，归入同一份项目记录。</p></div>
-    <div class="thv-bill-layout"><figure class="thv-receipt"><figcaption><div><span>项目 AI 费用明细</span><strong>品牌甲新品推广</strong></div><span class="thv-example-tag">账单示意</span></figcaption><div class="thv-receipt-rule"></div><div class="thv-bill-row"><span>01</span><div><strong>文案 图片 视频</strong><small>首次调用与供应商用量依据</small></div><b>按实际证据核算</b></div><div class="thv-bill-row"><span>02</span><div><strong>重试与额外处理</strong><small>重试 · 传输 · 存储</small></div><b>按实际发生</b></div><div class="thv-bill-row"><span>03</span><div><strong>平台服务</strong><small>客户适用的服务规则</small></div><b>按约定核算</b></div><div class="thv-bill-row thv-bill-pending"><span>…</span><div><strong>尚未确认的用量</strong><small>等待供应商证据或对账</small></div><b>单列待核</b></div><div class="thv-receipt-total"><span>已归属项目的费用</span><strong>已确认金额与待核金额分开显示</strong></div><p class="presentation-note">账单结构示意，归属不明的调用另列待归属。</p></figure>
-      <div class="thv-bill-story"><p class="thv-overline">客户看到什么</p><h3>项目花在哪里<br>费用有据可查</h3><details class="thv-bill-notes" open><summary>查看费用记录规则</summary><ul><li><span>01</span><div><strong>调用有据 归集有因</strong><p>项目汇总可回到原始调用、用量和关联依据。</p></div></li><li><span>02</span><div><strong>重试与额外处理单列</strong><p>每次实际发生的调用、传输和处理均有依据。</p></div></li><li><span>03</span><div><strong>金额与归属分开核对</strong><p>金额未定保留待核，归属不明不混入项目合计。</p></div></li></ul></details></div></div>
+    <div class="thv-bill-layout"><figure class="thv-receipt"><figcaption><div><span>项目 AI 费用明细</span><strong>品牌甲新品推广</strong></div><span class="thv-example-tag">账单示意</span></figcaption><div class="thv-receipt-rule"></div><div class="thv-bill-row"><span>01</span><div><strong>文案 图片 视频</strong><small>首次调用与供应商用量依据</small></div><b>按实际证据核算</b></div><div class="thv-bill-row"><span>02</span><div><strong>重试与额外处理</strong><small>重试 · 传输 · 存储</small></div><b>按实际发生</b></div><div class="thv-bill-row"><span>03</span><div><strong>平台服务</strong><small>客户适用的服务规则</small></div><b>按约定核算</b></div><div class="thv-bill-row thv-bill-pending"><span>…</span><div><strong>尚未确认的用量</strong><small>等待供应商证据或对账</small></div><b>单列待核</b></div><div class="thv-receipt-total"><span>已归属项目的费用</span><strong>已确认费用与待核记录分开显示</strong></div><p class="presentation-note">账单结构示意，归属不明的调用另列待归属。</p></figure>
+      <div class="thv-bill-story"><p class="thv-overline">客户看到什么</p><h3>费用花在哪里<br>记录有据可查</h3><details class="thv-bill-notes" open><summary>查看费用记录规则</summary><ul><li><span>01</span><div><strong>调用有据 归集有因</strong><p>项目汇总可回到原始调用、用量和关联依据。</p></div></li><li><span>02</span><div><strong>重试与额外处理单列</strong><p>每次实际发生的调用、传输和处理均有依据。</p></div></li><li><span>03</span><div><strong>金额与归属分开核对</strong><p>金额未定保留待核，归属不明不混入项目合计。</p></div></li></ul></details></div></div>
 
   </div>
 </section>
@@ -86,7 +86,7 @@
   <div class="section-body">
     <div class="th-highlight-title"><span>技术亮点 02</span><p>同一品牌项目中的文本任务，先验证固定资料的计算复用。</p></div>
     <div class="thv-example-heading"><span>优化前后流程示意</span><p>同一模型、完整输入和验收要求；基线纳入客户已有缓存。</p></div>
-    <figure class="thv-shared-input"><figcaption>优化前后保留完整输入</figcaption><div><strong>同一品牌规范与固定资料</strong><b aria-hidden="true">＋</b><span>本次文案需求 <i>A / B / C</i></span></div></figure>
+    <figure class="thv-shared-input"><figcaption>优化前后保留完整输入</figcaption><div><strong>同一品牌规范与固定资料</strong><b aria-hidden="true">＋</b><span>本次文案需求 <i>① / ② / ③</i></span></div></figure>
     <div class="thv-before-after thv-compute-comparison"><figure class="thv-before"><figcaption><span>优化前 · 对照基线</span><strong><span class="type-phrase">记录</span><span class="type-phrase">现有表现</span></strong></figcaption><div class="thv-baseline-disc"><strong>现有调用</strong><span>命中与费用待测</span></div><ul class="thv-baseline-list"><li>已有缓存收益</li><li>已有流程优化</li></ul><p class="thv-compute-caption">全部纳入基线</p></figure>
       <figure class="thv-after"><figcaption><span>优化后 · 目标流程</span><strong><span class="type-phrase">管理</span><span class="type-phrase">计算复用</span></strong></figcaption><div class="thv-reuse-cycle"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="M35 67A73 73 0 0 1 166 65M165 133A73 73 0 0 1 34 135"/><path d="m148 65 18 0 0-18m-114 88-18 0 0 18"/></svg><strong>已有前缀计算</strong><span>实际命中时复用</span></div><div class="thv-new-computation"><span>＋ 本次需求计算</span><strong>每次生成新文案</strong></div></figure></div>
     <figure class="thc-validation" aria-labelledby="fair-comparison-title">
@@ -102,7 +102,7 @@
 <section class="chapter th-platform thv-section" id="slide-13" data-title="技术亮点 任务恢复">
   <header class="section-heading"><span class="section-index">13</span><div><p class="eyebrow">TokenHarbor 平台规划</p><h2>核对异常调用 避免盲目重复花费</h2></div></header>
   <div class="section-body">
-    <div class="th-highlight-title"><span>技术亮点 03</span><p>一次生成请求响应中断，先查清执行状态与费用，再决定是否重试。</p></div>
+    <div class="th-highlight-title"><span>技术亮点 03</span><p>请求中断后，先核对执行结果和费用记录，再决定下一步。</p></div>
     <figure class="thv-recovery-figure"><figcaption><span class="thv-example-tag">恢复时间线示意</span><span>示例分支：核对后确认生成成功且结果可取</span></figcaption><ol class="thv-recovery-timeline"><li><b>→</b><h3>调用发出</h3><p>保留本次尝试与任务关联</p></li><li class="thv-timeline-fail"><b>?</b><h3>响应中断</h3><p>此时不能认定生成失败</p></li><li><b>⌕</b><h3>核对执行</h3><p>查询供应商状态<br>与用量证据</p></li><li class="thv-timeline-done"><b>↻</b><h3>恢复结果</h3><p>确认成功且可取后<br>交付已有结果</p></li><li class="thv-timeline-done"><b>✓</b><h3>补齐记录</h3><p>更新任务状态；<br>费用有据才确认</p></li></ol><div class="thv-same-result"><span>本例处理结果</span><strong>复用已有结果 保留原调用费用</strong><span>本例无新增生成调用</span></div><p class="presentation-note">费用记录持续保留，传输、存储与平台服务按实际规则核算。</p></figure>
     <p class="presentation-note is-pending"><strong>仍无法确认执行结果</strong><span>保留待核，按约定决定后续处理。</span></p>
 
