@@ -47,7 +47,7 @@ python3 scripts/build-presentations.py
 
 生成的 HTML 内含图片、样式与少量增强脚本，可直接在本地浏览器打开。禁用 JavaScript 时，正文、表格、架构与原生目录锚点仍可阅读使用。页面不加载外部字体、图片或分析脚本，也不依赖本地 PPT、PDF 或项目规划文档。
 
-完整版已发布至[申行科技官网独立 URL](https://shenxingkeji.cn/assets/presentations/tokenharbor-f420777.html)。发布使用官网现有流程，源文件、构建产物与公网正文的 SHA256 一致；具体版本与验收结果见 `publication.md`。该静态路径使用版本化文件名，后续更新生成新地址，不覆盖已发布的长期缓存文件。页首品牌为文字“申行科技”，没有自造 Logo、联系方式或官网域名。
+完整版已发布至[申行科技官网固定地址](https://shenxingkeji.cn/assets/presentations/tokenharbor.html)。发布使用官网现有流程，源文件、构建产物与公网正文的 SHA256 一致；具体版本与验收结果见 `publication.md`。固定路径配置重新验证缓存，后续更新沿用相同地址；版本化文件保留作为归档，不覆盖旧文件。页首品牌为文字“申行科技”，没有自造 Logo、联系方式或官网域名。
 
 ## 内容口径
 
